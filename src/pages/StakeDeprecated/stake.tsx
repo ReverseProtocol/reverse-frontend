@@ -3,7 +3,6 @@ import { Route, useRouteMatch, Link } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
-import { ButtonMenu, ButtonMenuItem, Heading, LinkExternal } from '@pancakeswap-libs/uikit'
 import { BLOCKS_PER_YEAR } from 'config'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
@@ -18,13 +17,7 @@ import {
   getTotalValueFromQuoteTokens,
   lookupPrice, useFarmFromPid,
 } from 'state/hooks'
-import { QuoteToken, PoolCategory } from 'config/constants/types'
-import FlexLayout from 'components/layout/Flex'
-import Page from 'components/layout/Page'
-import { FaQuestionCircle , FaUserCheck, FaLock, FaHistory, FaExchangeAlt, FaWater, FaProjectDiagram } from 'react-icons/fa'
-import FlexStaking from 'components/layout/FlexStaking'
-
-import Coming from './components/Coming'
+import Page from 'components/page'
 import PoolCard from './components/PoolCard'
 
 const Title = styled.p`
@@ -126,21 +119,21 @@ const Farm: React.FC = () => {
   const poolsWithApy = pools.map((pool) => {
 
     const quoteTokens = pool.totalStaked ?
-        new BigNumber(pool.totalStaked.toString()).div(2).div(BIG_TEN.pow(18)) :
-        new BigNumber(0)
+      new BigNumber(pool.totalStaked.toString()).div(2).div(BIG_TEN.pow(18)) :
+      new BigNumber(0)
     const tvl = getTotalValueFromQuoteTokens(quoteTokens, pool.quoteTokenSymbol, prices)
 
     const reverseAtlastUserAction = pool.userData ?
-        new BigNumber(pool.userData.reverseAtlastUserAction) :
-        new BigNumber(0)
+      new BigNumber(pool.userData.reverseAtlastUserAction) :
+      new BigNumber(0)
 
     const lastDepositedTime = pool.userData ?
-        new BigNumber(pool.userData.lastDepositedTime) :
-        new BigNumber(0)
+      new BigNumber(pool.userData.lastDepositedTime) :
+      new BigNumber(0)
 
     const lastUserActionTime = pool.userData ?
-        new BigNumber(pool.userData.lastUserActionTime) :
-        new BigNumber(0)
+      new BigNumber(pool.userData.lastUserActionTime) :
+      new BigNumber(0)
 
     // console.log("APY", pool, tvl && tvl.toNumber())
     const rewardTokenPrice = lookupPrice(pool.tokenName, prices)
@@ -171,23 +164,18 @@ const Farm: React.FC = () => {
 
   return (
     <Page>
-
-      <FlexStaking>
         <Route exact path={`${path}`}>
           <>
             {orderBy(openPools, ['sortOrder']).map((pool) => (
               <PoolCard key={pool.sousId} pool={pool} />
             ))}
-          </> 
+          </>
         </Route>
         <Route path={`${path}/history`}>
           {orderBy(finishedPools, ['sortOrder']).map((pool) => (
             <PoolCard key={pool.sousId} pool={pool} />
           ))}
         </Route>
-      </FlexStaking>
-
-          
     </Page>
   )
 }

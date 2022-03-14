@@ -4,9 +4,9 @@ import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { ResetCSS } from '@pancakeswap-libs/uikit'
 import BigNumber from 'bignumber.js'
 import { useFetchPublicData } from 'state/hooks'
-import MenuBottom from 'menuBottom'
+import MenuBottom from 'components/footer'
 import GlobalStyle from './style/Global'
-import NavBar from './menu'
+import NavBar from './components/menu'
 
 BigNumber.config({
   EXPONENTIAL_AT: 1000,

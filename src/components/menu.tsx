@@ -56,10 +56,10 @@ const NavBar = (props) => {
 }
 
 const TypographyBold = styled.p`
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 0px;
-    text-shadow: 0 0 0 #FFFF;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 0px;
+  text-shadow: 0 0 0 #FFFF;
 `
 
 const NavContainer = styled.div`

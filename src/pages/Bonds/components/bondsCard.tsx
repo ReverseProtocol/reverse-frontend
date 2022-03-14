@@ -12,7 +12,7 @@ const bondsCard = styled.div<{ isActive?: boolean; isFinished?: boolean }>`
   margin-bottom: 0px;
   border: 0px solid #FFFF;
   box-shadow: 0px 0px 0px #FFFF;
-  border: 0.5px;
+  border: 0.5npx;
   border-style: solid !important;
   border-color: #9B9B9B !important;
 `

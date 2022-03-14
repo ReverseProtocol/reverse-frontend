@@ -15,7 +15,6 @@ import useBlock from 'hooks/useBlock'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { QuoteToken, PoolCategory } from 'config/constants/types'
 import { Pool2 } from 'state/types'
-import Balance from 'components/Balance'
 
 // Components imports
 // import Flex from './components/flex'

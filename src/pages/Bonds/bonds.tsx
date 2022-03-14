@@ -18,8 +18,7 @@ import {
   lookupPrice,
 } from 'state/hooks'
 import { QuoteToken, Pool2Category } from 'config/constants/types'
-import FlexLayout from 'components/layout/Flex'
-import Page from 'components/layout/Page'
+import Page from 'components/page'
 import styled from 'styled-components'
 import PoolCard from './bondUI'
 
@@ -91,7 +90,6 @@ const Bond: React.FC = () => {
 
   return (
     <Page>
-      <FlexLayout>
         <Route exact path={`${path}`}>
           <>
             {orderBy(openPools, ['sortOrder']).map((pool2) => (
@@ -114,7 +112,6 @@ const Bond: React.FC = () => {
           }}>
           {TranslateString(698, 'Active')}
         </BtnMenu>
-
         <BtnMenu as={Link} to={`${url}/history`} style={{
           marginRight: '6px',
           marginTop: '0px',
@@ -123,7 +120,6 @@ const Bond: React.FC = () => {
         }}>
           {TranslateString(7200, 'Inactive')}
         </BtnMenu> */ }
-      </FlexLayout> 
     </Page>
   )
 }
