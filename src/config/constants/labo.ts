@@ -7,7 +7,6 @@
 const masterChef = '0xeEA71889c062c135014Ec34825a1958c87A2Ac61'
 
 // Labo ADDRESSES
-
 const LaboUstAddr = '0xfc417a0368263140c59b7aab646d4a270c37d8cb'
 const LaboBnbAddr = '0x60e0d939d4b0c71918088278bcf600470a6c8f26'
 const LaboUstAddrV2 = '0xfc417a0368263140c59b7aab646d4a270c37d8cb'

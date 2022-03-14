@@ -1,7 +1,5 @@
 import contracts from './contracts'
 import { FarmConfig, QuoteToken } from './types'
-import labo  from './labo'
-
 
 const farms: FarmConfig[] = [
   {
@@ -53,9 +51,6 @@ const farms: FarmConfig[] = [
     quoteTokenSymbol: QuoteToken.UST,
     quoteTokenAdresses: contracts.ust,
   }
-
-
-
 ]
 
 export default farms
