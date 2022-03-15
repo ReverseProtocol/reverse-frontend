@@ -2,18 +2,19 @@ import styled from 'styled-components'
 
 const Card = styled.div<{ isActive?: boolean; isFinished?: boolean }>`
 align-self: baseline;
-background-image: linear-gradient(to right, #2E3646, #3B4557 , #2B3344);
-border-radius: 20px;
+background-image: linear-gradient(#2D3544, #2D3544);
+border-radius: 30px;
 display: flex;
 flex-direction: column;
-justify-content: space-around;
-padding: 15px;
+padding: 40px;
 position: relative;
 text-align: center;
-max-width: 750px;
-
-border:0px solid #fff;
-box-shadow: 0px 0px 5px #ccc;
+margin-bottom: 0px;
+border: 1px solid #FFFF;
+box-shadow: 0px 0px 0px #A5A5A5;
+border: 0.5npx;
+border-style: solid !important;
+border-color: #9B9B9B !important;
 `
 
 export default Card

@@ -1,24 +1,11 @@
 import BigNumber from 'bignumber.js'
 import React, { useCallback, useMemo, useState } from 'react'
-import { Button, Modal } from '@pancakeswap-libs/uikit'
+import { Modal } from '@pancakeswap-libs/uikit'
 import ModalActions from 'components/ModalActions'
 import styled from 'styled-components'
-import { FaBurn, FaQuestionCircle } from 'react-icons/fa'
 import TokenInput from '../../../components/TokenInput'
 import useI18n from '../../../hooks/useI18n'
 import { getFullDisplayBalance } from '../../../utils/formatBalance'
-
-const Blablabla = styled.div`
-  text-color: red;
-  margin: 0px 50px;
-  margin-bottom: 5px;
-  text-align: center;
-  line-height: 20px;
-`
-
-const GuideLink = styled.span`
-  color: #0073ff;
-`
 
 const StyledBtn = styled.button`
   -webkit-box-align: center;

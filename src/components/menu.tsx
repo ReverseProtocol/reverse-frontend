@@ -11,10 +11,10 @@ import useTokenBalance from 'hooks/useTokenBalance'
 import { getCakeAddress } from 'utils/addressHelpers'
 
 const NavBar = (props) => {
-  // const { account, connect, reset } = useWallet()
-  // const cakePriceUsd = usePriceCakeBusd()
+  const { account, connect, reset } = useWallet()
+  const cakePriceUsd = usePriceCakeBusd()
   const [isChecked, setIsChecked] = useState(false);
-  // const cakeBalance = getBalanceNumber(useTokenBalance(getCakeAddress())).toLocaleString('en-us', { maximumFractionDigits: 2 });
+  const cakeBalance = getBalanceNumber(useTokenBalance(getCakeAddress())).toLocaleString('en-us', { maximumFractionDigits: 2 });
 
   return (
     <MenuContainer>
@@ -26,32 +26,16 @@ const NavBar = (props) => {
           <Link to="/bonds" className="nav-links" onClick={() => { setIsChecked(!isChecked) }}>
             <TypographyBold>Bonds</TypographyBold>
           </Link>
-          <Link to="/bonds" className="nav-links" onClick={() => { setIsChecked(!isChecked) }}>
-            <TypographyBold>Airdrop</TypographyBold>
-          </Link>
         </Flex>
       </NavContainer>
-    </MenuContainer>
-    /* 
-    <ul className="nav-tabs outsideMainNav">
-      <li className="web3li">
+      { /*  <ul className="nav-tabs outsideMainNav">
+        <li className="web3li">
         {account != null && account.length > 1 ?
-          <Price style={{ justifyContent: 'center' }}>
-            <Balance>{cakeBalance} RVRS</Balance>{account.substring(0, 6)}...
-          </Price>
-          :
-          <UnlockButton style={{
-            fontSize: '14px',
-            marginTop: '15px',
-            width: '100%',
-            minHeight: '21px',
-            maxHeight: '37px'
-          }}>Connect
-          </UnlockButton>
-        }
-      </li>
-      </ul>
-      */
+          <TypographyBold style={{ justifyContent: 'center' }}>
+            <TypographyBold>{cakeBalance} RVRS</TypographyBold>{account.substring(0, 6)}...
+          </TypographyBold> : <TypographyBold>Connect</TypographyBold> }
+      </li> </ul> */ }
+    </MenuContainer>
   )
 }
 
@@ -59,7 +43,6 @@ const TypographyBold = styled.p`
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 0px;
-  text-shadow: 0 0 0 #FFFF;
 `
 
 const NavContainer = styled.div`
@@ -67,15 +50,21 @@ const NavContainer = styled.div`
   border: 1px;
   border-style: solid !important;
   border-color: #ffff !important;
-  border-radius: 30px;
-  padding: 20px;
+  border-radius: 35px;
+  padding: 22px;
   margin-bottom: -10px;
   background-color: #2D3544;
+  
+  &:hover:not(:disabled),
+  &:active:not(:disabled),
+  &:focus  {
+    background-color: #3F4550;
+  }
 `
 const MenuContainer = styled(Container)`
   min-height: calc(1vh - 64px);
-  padding-top: 40px;
-  max-width: 400px;
+  padding-top: 50px;
+  max-width: 260px;
 `
 
 export default NavBar

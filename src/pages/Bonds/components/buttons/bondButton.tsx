@@ -4,7 +4,7 @@ const bondButton = styled.button`
     -webkit-box-align: center;
     align-items: center;
     background-image: linear-gradient(#506063, #909BBF);
-    border-radius: 10px;
+    border-radius: 13px;
     color: #FFFF;
     border: 0.1px;
     border-style: solid !important;

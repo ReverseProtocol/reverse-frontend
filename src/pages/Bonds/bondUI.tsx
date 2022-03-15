@@ -88,6 +88,15 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
   const needsApproval = !accountHasStakedBalance && !allowance.toNumber() && !isBnbPool
   const isCardActive = isFinished && accountHasStakedBalance
   const convertedLimit = new BigNumber(stakingLimit).multipliedBy(new BigNumber(10).pow(tokenDecimals))
+  
+  const HoursToStart = (startBlock - block).toLocaleString('en-us', { maximumFractionDigits: 0 }) // TODO
+  const DaysRemaining = block > startBlock ? (endBlock - block) * 2 * 0.000277778 * 0.0416667 : (endBlock - startBlock) * 2 * 0.000277778 * 0.0416667
+  const StringDaysRemaining = DaysRemaining.toLocaleString('en-us', { maximumFractionDigits: 0 })
+  const TotalValueBonded = pool2.tvl && pool2.tvl.toNumber().toLocaleString('en-us', { maximumFractionDigits: 0 })
+  const ROI = apy && apy.div(365).times(DaysRemaining).minus(100).toNumber()
+  const StringROI = ROI.toLocaleString('en-us', { maximumFractionDigits: 2 })
+  const ClaimableAssets = getBalanceNumber(earnings, tokenDecimals).toLocaleString('en-us', { maximumFractionDigits: 0 })
+  const BondedAssets = getBalanceNumber(stakedBalance).toLocaleString('en-us', { maximumFractionDigits: 1 })
 
   const [onPresentDeposit] = useModal(
     <DepositModal
@@ -104,15 +113,6 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
     }
     catch (e) { console.error(e) }
   }, [onApprove, setRequestedApproval])
-
-  const HoursToStart = (startBlock - block).toLocaleString('en-us', { maximumFractionDigits: 0 }) // TODO
-  const DaysRemaining = block > startBlock ? (endBlock - block) * 2 * 0.000277778 * 0.0416667 : (endBlock - startBlock) * 2 * 0.000277778 * 0.0416667
-  const StringDaysRemaining = DaysRemaining.toLocaleString('en-us', { maximumFractionDigits: 0 })
-  const TotalValueBonded = pool2.tvl && pool2.tvl.toNumber().toLocaleString('en-us', { maximumFractionDigits: 0 })
-  const ROI = apy && apy.div(365).times(DaysRemaining).minus(100).toNumber()
-  const StringROI = ROI.toLocaleString('en-us', { maximumFractionDigits: 2 })
-  const ClaimableAssets = getBalanceNumber(earnings, tokenDecimals).toLocaleString('en-us', { maximumFractionDigits: 0 })
-  const BondedAssets = getBalanceNumber(stakedBalance).toLocaleString('en-us', { maximumFractionDigits: 1 })
 
   return (
     <BondsPage>
@@ -167,10 +167,12 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
                 <TypographyBold style={{ marginBottom: "5px" }}>TVL</TypographyBold>
                 <Typography>${TotalValueBonded}</Typography>
               </Flex>
+              {account && (
               <Flex flexDirection="column" alignItems="start">
                 <TypographyBold style={{ marginBottom: "5px" }}>Bonded</TypographyBold>
                 <Typography>{BondedAssets}&nbsp;{tokenName}</Typography>
               </Flex>
+              )}
             </Flex>
           </ContentCard>
           <Flex>
