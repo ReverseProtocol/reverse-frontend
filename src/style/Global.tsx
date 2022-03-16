@@ -9,15 +9,11 @@ declare module 'styled-components' {
   
 }
 
-
-
-
 const GlobalStyle = createGlobalStyle`
   * {
     font-family: 'Exo', sans-serif; !important;
     font-weight: 600;
     -webkit-background-size: cover;
-
   }
 
   #root {

@@ -4,21 +4,21 @@ import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { ResetCSS } from '@pancakeswap-libs/uikit'
 import BigNumber from 'bignumber.js'
 import { useFetchPublicData } from 'state/hooks'
+import MenuBottom from 'components/footer'
 import GlobalStyle from './style/Global'
-import NavBar from './components/NavBar'
+import NavBar from './components/menu'
 
-// Route-based code splitting
-const Farms = lazy(() => import('./views/Farms'))
-const Pools2 = lazy(() => import('./views/Pools2'))
-const Pools = lazy(() => import('./views/Pools'))
-const NotFound = lazy(() => import('./views/NotFound'))
-
-// This config is required for number formating
 BigNumber.config({
   EXPONENTIAL_AT: 1000,
   DECIMAL_PLACES: 80,
 })
 
+// Pages
+const Bonds = lazy(() => import('./pages/Bonds'))
+const StakeDeprecated = lazy(() => import('./pages/StakeDeprecated'))
+const NotFound = lazy(() => import('./pages/NotFound'))
+
+// App
 const App: React.FC = () => {
   const { account, connect } = useWallet()
   useEffect(() => {
@@ -26,42 +26,25 @@ const App: React.FC = () => {
       connect('injected')
     }
   }, [account, connect])
-
   useFetchPublicData()
 
   return (
     <Router>
       <ResetCSS />
       <GlobalStyle />
-      <NavBar>
-        .
-      </NavBar>
-        <Suspense fallback>
-          <Switch>
-            <Route path="/" exact>
-            <Pools/>
-
-            </Route>
-            <Route path="/reverseum">
-              <Pools2 />
-
-              </Route>
-            <Route path="/bonding">
-              <Pools2 />
-
-            </Route>
-            <Route path="/farm">
-              <Farms />
-
-            </Route>
-            <Route path="/stake">
-              <Pools/>
-            </Route>
-
-            
-            <Route component={NotFound} />
-          </Switch>
-        </Suspense>
+      <NavBar>&nsbp;</NavBar>
+      <Suspense fallback>
+        <Switch>
+          <Route path="/bonds">
+            <Bonds />
+          </Route>
+          <Route path="/stakeDeprecated">
+            <StakeDeprecated />
+          </Route>
+          <Route component={NotFound} />
+        </Switch>
+      </Suspense>
+      <MenuBottom>&nsbp;</MenuBottom>
     </Router>
   )
 }

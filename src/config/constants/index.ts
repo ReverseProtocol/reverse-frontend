@@ -5,4 +5,3 @@ const communityFarms = farmsConfig.filter((farm) => farm.isCommunity).map((farm)
 export { farmsConfig, communityFarms }
 export { default as poolsConfig } from './pools'
 export { default as pools2Config } from './pools2'
-export { default as ifosConfig } from './ifo'
