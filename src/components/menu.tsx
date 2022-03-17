@@ -26,6 +26,9 @@ const NavBar = (props) => {
           <Link to="/bonds" className="nav-links" onClick={() => { setIsChecked(!isChecked) }}>
             <TypographyBold>Bonds</TypographyBold>
           </Link>
+          <Link to="/airdrop" className="nav-links" onClick={() => { setIsChecked(!isChecked) }}>
+            <TypographyBold>Airdrop</TypographyBold>
+          </Link>
         </Flex>
       </NavContainer>
       { /*  <ul className="nav-tabs outsideMainNav">
@@ -54,7 +57,6 @@ const NavContainer = styled.div`
   padding: 22px;
   margin-bottom: -10px;
   background-color: #2D3544;
-  
   &:hover:not(:disabled),
   &:active:not(:disabled),
   &:focus  {
@@ -64,7 +66,7 @@ const NavContainer = styled.div`
 const MenuContainer = styled(Container)`
   min-height: calc(1vh - 64px);
   padding-top: 50px;
-  max-width: 260px;
+  max-width: 350px;
 `
 
 export default NavBar
