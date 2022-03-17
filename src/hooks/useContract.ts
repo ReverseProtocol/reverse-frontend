@@ -2,7 +2,18 @@ import { useEffect, useState } from 'react'
 import { AbiItem } from 'web3-utils'
 import { ContractOptions } from 'web3-eth-contract'
 import useWeb3 from 'hooks/useWeb3'
-import { getMasterChefAddress, getCakeAddress, getLotteryAddress, getLotteryTicketAddress, getWheelAddress, getWbnbAddress, getWheel2Address, getSousChefAddress, getAutoRvrsAddress } from 'utils/addressHelpers'
+import {
+  getMasterChefAddress,
+  getCakeAddress,
+  getLotteryAddress,
+  getLotteryTicketAddress,
+  getWheelAddress,
+  getWbnbAddress,
+  getWheel2Address,
+  getSousChefAddress,
+  getAutoRvrsAddress,
+  getAirdropAddress
+} from 'utils/addressHelpers'
 import { pools2Config, poolsConfig } from 'config/constants'
 import { PoolCategory } from 'config/constants/types'
 import ifo from 'config/abi/ifo.json'
@@ -17,7 +28,7 @@ import lotteryTicket from 'config/abi/lotteryNft.json'
 import masterChef from 'config/abi/masterchef.json'
 import sousChef from 'config/abi/sousChef.json'
 import autoRvrs from 'config/abi/autorvrs.json'
-import sousChefBnb from 'config/abi/sousChefBnb.json'
+import RewardClaim from 'config/abi/RewardClaim.json'
 import sousChefBurn from 'config/abi/sousChefBurn.json'
 import sousChefBurn2 from 'config/abi/sousChefBurn2.json'
 
@@ -97,6 +108,11 @@ export const useLotteryTicket = () => {
 export const useMasterchef = () => {
   const abi = (masterChef as unknown) as AbiItem
   return useContract(abi, getMasterChefAddress())
+}
+
+export const useAirdropContract = () => {
+  const abi = (RewardClaim as unknown) as AbiItem
+  return useContract(abi, getAirdropAddress())
 }
 
 export const useAutoRvrs = () => {

@@ -60,6 +60,16 @@ export interface Pool2 extends Pool2Config {
   }
 }
 
+export interface Airdrop {
+  totalDistributed: BigNumber
+  userClaimable: BigNumber
+  userTotalClaimed: BigNumber
+}
+
+export interface AirdropState {
+  data: Airdrop
+}
+
 export interface Price{
   value: BigNumber
 }
@@ -90,6 +100,7 @@ export interface State {
   pools: PoolsState
   pools2: Pools2State
   price: PriceState
+  airdrop: AirdropState
 }
 
 export interface State2 {

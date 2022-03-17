@@ -8,9 +8,9 @@ import {
   fetchPools2PublicDataAsync,
   fetchPoolsPublicDataAsync,
   fetchPoolsUserDataAsync,
-  fetchPools2UserDataAsync
+  fetchPools2UserDataAsync, fetchAirdropUserDataAsync
 } from './actions'
-import {Farm, Pool, Pool2, State, State2} from './types'
+import {Airdrop, Farm, Pool, Pool2, State, State2} from './types'
 import {QuoteToken} from '../config/constants/types'
 
 const ZERO = new BigNumber(0)
@@ -101,6 +101,18 @@ export const usePools2 = (account): Pool2[] => {
 
   const pools2 = useSelector((state: State) => state.pools2.data)
   return pools2
+}
+
+export const useAirdropData = (account): Airdrop => {
+  const { fastRefresh } = useRefresh()
+  const dispatch = useDispatch()
+  useEffect(() => {
+    if (account) {
+      dispatch(fetchAirdropUserDataAsync(account))
+    }
+  }, [account, dispatch, fastRefresh])
+
+  return useSelector((state: State) => state.airdrop.data)
 }
 
 export const usePool2FromPid = (sousId): Pool2 => {
