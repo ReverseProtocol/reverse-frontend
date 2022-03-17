@@ -17,6 +17,7 @@ BigNumber.config({
 const Bonds = lazy(() => import('./pages/Bonds'))
 const StakeDeprecated = lazy(() => import('./pages/StakeDeprecated'))
 const NotFound = lazy(() => import('./pages/NotFound'))
+const Airdrop = lazy(() => import('./pages/Airdrop'))
 
 // App
 const App: React.FC = () => {
@@ -40,6 +41,9 @@ const App: React.FC = () => {
           </Route>
           <Route path="/stakeDeprecated">
             <StakeDeprecated />
+          </Route>
+          <Route path="/airdrop">
+            <Airdrop />
           </Route>
           <Route component={NotFound} />
         </Switch>
