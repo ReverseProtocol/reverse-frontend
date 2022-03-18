@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 
-const claimButton = styled.button`
+const claimButtonDisabled = styled.button`
     -webkit-box-align: center;
     align-items: center;
-    background-image: linear-gradient(#4E5F62, #5B678F);
+    background-image: linear-gradient(#2D3544, #2D3544);
     border-radius: 15px;
     color: #FFFF;
-    border: 0px;
+    border: 1px;
     border-style: solid !important;
     border-color: #4E5E61 !important;
     font-size: 18px;
@@ -14,9 +14,6 @@ const claimButton = styled.button`
     display: inline-flex;
     min-height: 40px;
     min-width: 110px;
-    :hover {
-        background-image: linear-gradient(#5E7073, #5B678F);
-    }
 `
 
-export default claimButton
+export default claimButtonDisabled

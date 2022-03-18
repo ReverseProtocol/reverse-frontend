@@ -17,6 +17,9 @@ const bondButton = styled.button`
     min-height: 37px;
     min-width: 110px;
     box-shadow: 0px 0px 10px #506063;
+    :hover {
+        background-image: linear-gradient(#5E7073, #909BBF);
+    }
 
 `
 

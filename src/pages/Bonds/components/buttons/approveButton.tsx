@@ -16,6 +16,7 @@ const approveButton = styled.button`
     padding: 10px;
     min-height: 40px;
     min-width: 130px;
+    
 `
 
 export default approveButton
