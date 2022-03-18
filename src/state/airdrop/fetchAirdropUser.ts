@@ -19,11 +19,21 @@ const fetchAirdropUserInfo = async (account) => {
       address: getAirdropAddress(),
       name: 'claimed',
       params: [account]
+    },
+    {
+      address: getAirdropAddress(),
+      name: 'lastClaimAmount',
+      params: [account]
     }
   ];
   const userInfo = await multicall(RewardClaim, calls);
 
-  const output = {totalDistributed: userInfo[0], userClaimable: userInfo[1], userTotalClaimed: userInfo[2]};
+  const output = {
+    totalDistributed: userInfo[0],
+    userClaimable: userInfo[1],
+    userTotalClaimed: userInfo[2],
+    userLastClaimedAmount: userInfo[3]
+  };
   return output
 };
 

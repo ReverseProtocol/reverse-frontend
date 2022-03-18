@@ -64,6 +64,7 @@ export interface Airdrop {
   totalDistributed: BigNumber
   userClaimable: BigNumber
   userTotalClaimed: BigNumber
+  userLastClaimedAmount: BigNumber
 }
 
 export interface AirdropState {

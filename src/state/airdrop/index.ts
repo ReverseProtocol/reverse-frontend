@@ -7,7 +7,8 @@ import { AirdropState, Airdrop } from '../types'
 const defaultAirdrop: Airdrop = {
   totalDistributed: new BigNumber(0),
   userClaimable: new BigNumber(0),
-  userTotalClaimed: new BigNumber(0)
+  userTotalClaimed: new BigNumber(0),
+  userLastClaimedAmount: new BigNumber(0)
 }
 const initialState: AirdropState = { data: defaultAirdrop }
 

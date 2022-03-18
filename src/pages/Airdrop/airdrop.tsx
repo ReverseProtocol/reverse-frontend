@@ -28,9 +28,10 @@ const Airdrop = () => {
   const totalDistributed = getBalanceNumber(airdropData.totalDistributed)
   const toClaim = getBalanceNumber(airdropData.userClaimable)
   const claimed = getBalanceNumber(airdropData.userTotalClaimed)
+  const lastClaimAmount = getBalanceNumber(airdropData.userLastClaimedAmount)
 
-  // Yearly Returns = UST claimed to date by user / amount of airdrops * weeks in a year 
-  const expectedReturns = new BigNumber(claimed).div(1).times(52.2).toNumber().toLocaleString('en-us', { maximumFractionDigits: 3 })
+  // Estimate Yearly Returns by checking the last airdrop amount and mult by weeks in a year
+  const expectedReturns = new BigNumber(lastClaimAmount).times(52.2).toNumber().toLocaleString('en-us', { maximumFractionDigits: 3 })
   const totalDistributedStr = totalDistributed.toLocaleString('en-us', { maximumFractionDigits: 3 })
   const toClaimStr = toClaim.toLocaleString('en-us', { maximumFractionDigits: 3, minimumFractionDigits: 2 })
   const claimedStr = claimed.toLocaleString('en-us', { maximumFractionDigits: 3 })
