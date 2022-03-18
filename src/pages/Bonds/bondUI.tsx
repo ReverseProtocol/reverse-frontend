@@ -48,12 +48,9 @@ const Wrapper = styled(Flex)`
 const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
   const {
     sousId,
-    image,
     tokenName,
     stakingTokenName,
     stakingTokenAddress,
-    projectLink,
-    harvest,
     apy,
     tokenDecimals,
     poolCategory,
@@ -65,10 +62,8 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
     userData,
     stakingLimit,
     tokenPoolAddress,
-    quoteTokenPoolAddress,
-    notFinished,
-    lockBlock,
   } = pool2
+
   const isBnbPool = poolCategory === PoolCategory.BINANCE
   const TranslateString = useI18n()
   const stakingTokenContract = useERC20(stakingTokenAddress)
@@ -79,27 +74,29 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
   const { onReward } = useSousHarvestBurn(sousId, isBnbPool)
   const [requestedApproval, setRequestedApproval] = useState(false)
   const [pendingTx, setPendingTx] = useState(false)
-  const allowance = new BigNumber(userData?.allowance || 0)
   const stakingTokenBalance = new BigNumber(userData?.stakingTokenBalance || 0)
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
-  const earnings = new BigNumber(userData?.pendingReward || 0)
-  const isOldSyrup = stakingTokenName === QuoteToken.SYRUP
   const accountHasStakedBalance = stakedBalance?.toNumber() > 0
+  const allowance = new BigNumber(userData?.allowance || 0)
+  const earnings = new BigNumber(userData?.pendingReward || 0)
   const needsApproval = !accountHasStakedBalance && !allowance.toNumber() && !isBnbPool
   const isCardActive = isFinished && accountHasStakedBalance
   const convertedLimit = new BigNumber(stakingLimit).multipliedBy(new BigNumber(10).pow(tokenDecimals))
+  const vesting = block > startBlock ? (endBlock - block) * 2 * 0.000277778 * 0.0416667 : (endBlock - startBlock) * 2 * 0.000277778 * 0.0416667
+  const TVB = pool2.tvl && pool2.tvl.toNumber()
+  const ROI = apy && apy.div(365).times(vesting).minus(100).toNumber()
+  const claimableAssets = getBalanceNumber(earnings, tokenDecimals)
+  const bondedAssets = stakedBalance.toNumber()
+  const hoursToStartBlock = (startBlock - block) * 2 * 0.000277778
+  const hasStarted = startBlock < block
 
-  const HoursToStart = (startBlock - block).toLocaleString('en-us', { maximumFractionDigits: 0 }) // TODO
-  const DaysRemaining = block > startBlock ? (endBlock - block) * 2 * 0.000277778 * 0.0416667 : (endBlock - startBlock) * 2 * 0.000277778 * 0.0416667
-  const StringDaysRemaining = DaysRemaining.toLocaleString('en-us', { maximumFractionDigits: 1 })
-  const TotalValueBonded = pool2.tvl && pool2.tvl.toNumber().toLocaleString('en-us', { maximumFractionDigits: 0 })
-  const ROI = apy && apy.div(365).times(DaysRemaining).minus(100).toNumber()
-  const StringROI = ROI.toLocaleString('en-us', { maximumFractionDigits: 2 })
-  const ClaimableAssets = getBalanceNumber(earnings, tokenDecimals).toLocaleString('en-us', { maximumFractionDigits: 2 })
-  const ClaimableAssets1 = getBalanceNumber(earnings, tokenDecimals)
-
-  const bonded = stakedBalance.toNumber()
-  const BondedAssets = getBalanceNumber(stakedBalance).toLocaleString('en-us', { maximumFractionDigits: 2 })
+  // strings
+  const vestingStr = vesting.toLocaleString('en-us', { maximumFractionDigits: 1 })
+  const TVBStr = TVB.toLocaleString('en-us', { maximumFractionDigits: 0 })
+  const ROIStr = ROI.toLocaleString('en-us', { maximumFractionDigits: 2 })
+  const claimableAssetsStr = claimableAssets.toLocaleString('en-us', { maximumFractionDigits: 2 })
+  const bondedAssetsStr = bondedAssets.toLocaleString('en-us', { maximumFractionDigits: 2 })
+  const hoursToStartBlockStr = hoursToStartBlock.toLocaleString('en-us', { maximumFractionDigits: 2 })
 
   const [onPresentDeposit] = useModal(
     <DepositModal
@@ -127,25 +124,32 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
               <TypographyTitle>{tokenName}&nbsp;veBonds</TypographyTitle>
             </Flex>
 
-
-            <Flex alignItems="end">
-
-              {account && (needsApproval ? (
-                <BondButton
-                  style={{ justifyContent: "center" }}
-                  disabled={isFinished || isDepositFinished || ROI && ROI < 0}
-                  onClick={handleApprove}>
-                  {ROI > 0 ? 'Enable' : 'Sold Out'}
+            {startBlock < block ?
+              <Flex alignItems="end">
+                {account && (needsApproval ? (
+                  <BondButton
+                    style={{ justifyContent: "center" }}
+                    disabled={isFinished || isDepositFinished || ROI < 0}
+                    onClick={handleApprove}>
+                    {ROI > 0 ? 'Enable' : 'Sold Out'}
+                  </BondButton>
+                ) : (
+                  <BondButton
+                    style={{ justifyContent: "center" }}
+                    disabled={isFinished || isDepositFinished || ROI < 0}
+                    onClick={onPresentDeposit}>
+                    {ROI > 0 ? 'Bond' : 'Sold Out'}
+                  </BondButton>
+                ))}
+              </Flex>
+              :
+              <Flex alignItems="end">
+                <BondButton style={{ justifyContent: "center" }}>
+                  {hoursToStartBlockStr}h To Start
                 </BondButton>
-              ) : (
-                <BondButton
-                  style={{ justifyContent: "center" }}
-                  disabled={isFinished || isDepositFinished || ROI && ROI < 0}
-                  onClick={onPresentDeposit}>
-                  {ROI > 0 ? 'Bond' : 'Sold Out'}
-                </BondButton>
-              ))}
-            </Flex>
+              </Flex>
+            }
+
           </Flex>
         </HeaderCard>
 
@@ -157,32 +161,32 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
               <Flex flexDirection="column" alignItems="start">
                 <TypographyBold style={{ marginBottom: "5px" }}>vROI</TypographyBold>
                 {ROI > 0 ?
-                  <Typography>{StringROI}%</Typography> : <Typography>Sold&nbsp;Out</Typography>
+                  <Typography>{ROIStr}%</Typography> : <Typography>Sold&nbsp;Out</Typography>
                 }
               </Flex>
 
               {/* Vesting */}
               <Flex flexDirection="column" alignItems="start">
                 <TypographyBold style={{ marginBottom: "5px" }}>Vesting</TypographyBold>
-                {DaysRemaining > 0 ?
-                  <Typography>{StringDaysRemaining}&nbsp;Days</Typography> : <Typography>Ended</Typography>
+                {vesting > 0 ?
+                  <Typography>{vestingStr}&nbsp;Days</Typography> : <Typography>Ended</Typography>
                 }
               </Flex>
 
               {/* TVL */}
               <Flex flexDirection="column" alignItems="start">
                 <TypographyBold style={{ marginBottom: "5px" }}>TVL</TypographyBold>
-                <Typography>${TotalValueBonded}</Typography>
+                <Typography>${TVBStr}</Typography>
               </Flex>
 
               {/* Bonded by user */}
               {account && (
                 <Flex flexDirection="column" alignItems="start">
-                  {bonded > 0 ?
+                  {bondedAssets > 0 ?
                     <TypographyBold style={{ marginBottom: "5px" }}>Bonded</TypographyBold> : <Typography>&nbsp;</Typography>
                   }
-                  {bonded > 0 ?
-                    <Typography>{BondedAssets}&nbsp;{tokenName}</Typography> : <Typography>&nbsp;</Typography>
+                  {bondedAssets > 0 ?
+                    <Typography>{bondedAssetsStr}&nbsp;{tokenName}</Typography> : <Typography>&nbsp;</Typography>
                   }
                 </Flex>
               )}
@@ -193,7 +197,7 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
           {/* Claim RVRS */}
           {account && (
             <Flex>
-              {ClaimableAssets1 > 0 ?
+              {claimableAssets > 0 ?
                 <ClaimButton
                   style={{ marginLeft: '20px', justifyContent: "center" }}
                   disabled={!earnings.toNumber() || requestedApproval || pendingTx}
@@ -204,7 +208,7 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
                   }}>
                   <Flex flexDirection="column" alignItems="center">
                     <TypographyBold style={{ marginBottom: "4px" }}>Claim</TypographyBold>
-                    <Typography>{ClaimableAssets}&nbsp;RVRS</Typography>
+                    <Typography>{claimableAssetsStr}&nbsp;RVRS</Typography>
                   </Flex>
                 </ClaimButton>
                 :
@@ -218,7 +222,7 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
                   }}>
                   <Flex flexDirection="column" alignItems="center">
                     <TypographyBold style={{ marginBottom: "4px" }}>Claim</TypographyBold>
-                    <Typography>{ClaimableAssets}&nbsp;RVRS</Typography>
+                    <Typography>{claimableAssetsStr}&nbsp;RVRS</Typography>
                   </Flex>
                 </ClaimButtonDisabled>
               }
