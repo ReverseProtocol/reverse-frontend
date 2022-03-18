@@ -1,10 +1,10 @@
-// Natives
+// natives
 import BigNumber from 'bignumber.js'
 import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
 
-// Web3 Imports
+// web3
 import { useSousApproveBurn } from 'hooks/useApprove'
 import { useSousStakeBurn } from 'hooks/useStake'
 import { useSousHarvestBurn } from 'hooks/useHarvest'
@@ -16,14 +16,14 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import { QuoteToken, PoolCategory } from 'config/constants/types'
 import { Pool2 } from 'state/types'
 
-// Components imports
+// components
 // import Flex from './components/flex'
 import BondsPage from './components/bondsPage'
 import Card from './components/bondsCard'
 import ContentCard from './components/contentCard'
 import HeaderCard from './components/headerCard'
 import DepositModal from './components/bondModal'
-import ApproveButton from './components/buttons/approveButton'
+import ClaimButtonDisabled from './components/buttons/claimButtonDisabled'
 import BondButton from './components/buttons/bondButton'
 import ClaimButton from './components/buttons/claimButton'
 import Typography from './components/typography/typography'
@@ -88,15 +88,18 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
   const needsApproval = !accountHasStakedBalance && !allowance.toNumber() && !isBnbPool
   const isCardActive = isFinished && accountHasStakedBalance
   const convertedLimit = new BigNumber(stakingLimit).multipliedBy(new BigNumber(10).pow(tokenDecimals))
-  
+
   const HoursToStart = (startBlock - block).toLocaleString('en-us', { maximumFractionDigits: 0 }) // TODO
   const DaysRemaining = block > startBlock ? (endBlock - block) * 2 * 0.000277778 * 0.0416667 : (endBlock - startBlock) * 2 * 0.000277778 * 0.0416667
-  const StringDaysRemaining = DaysRemaining.toLocaleString('en-us', { maximumFractionDigits: 0 })
+  const StringDaysRemaining = DaysRemaining.toLocaleString('en-us', { maximumFractionDigits: 1 })
   const TotalValueBonded = pool2.tvl && pool2.tvl.toNumber().toLocaleString('en-us', { maximumFractionDigits: 0 })
   const ROI = apy && apy.div(365).times(DaysRemaining).minus(100).toNumber()
   const StringROI = ROI.toLocaleString('en-us', { maximumFractionDigits: 2 })
-  const ClaimableAssets = getBalanceNumber(earnings, tokenDecimals).toLocaleString('en-us', { maximumFractionDigits: 0 })
-  const BondedAssets = getBalanceNumber(stakedBalance).toLocaleString('en-us', { maximumFractionDigits: 1 })
+  const ClaimableAssets = getBalanceNumber(earnings, tokenDecimals).toLocaleString('en-us', { maximumFractionDigits: 2 })
+  const ClaimableAssets1 = getBalanceNumber(earnings, tokenDecimals)
+
+  const bonded = stakedBalance.toNumber()
+  const BondedAssets = getBalanceNumber(stakedBalance).toLocaleString('en-us', { maximumFractionDigits: 2 })
 
   const [onPresentDeposit] = useModal(
     <DepositModal
@@ -123,74 +126,104 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
             <Flex justifyContent="space-between">
               <TypographyTitle>{tokenName}&nbsp;veBonds</TypographyTitle>
             </Flex>
+
+
             <Flex alignItems="end">
-              {account && (needsApproval && !isOldSyrup ? (
+
+              {account && (needsApproval ? (
                 <BondButton
                   style={{ justifyContent: "center" }}
-                  disabled={isFinished || isDepositFinished}
+                  disabled={isFinished || isDepositFinished || ROI && ROI < 0}
                   onClick={handleApprove}>
-                  Enable
+                  {ROI > 0 ? 'Enable' : 'Sold Out'}
                 </BondButton>
               ) : (
-                <>
-                  {!isOldSyrup && (
-                    <BondButton
-                      style={{ justifyContent: "center" }}
-                      disabled={isFinished || isDepositFinished || ROI && ROI < 0}
-                      onClick={onPresentDeposit}>
-                      {ROI > 0 ? 'Bond' : 'Sold Out'}
-                    </BondButton>)}
-                </>))}
+                <BondButton
+                  style={{ justifyContent: "center" }}
+                  disabled={isFinished || isDepositFinished || ROI && ROI < 0}
+                  onClick={onPresentDeposit}>
+                  {ROI > 0 ? 'Bond' : 'Sold Out'}
+                </BondButton>
+              ))}
             </Flex>
           </Flex>
         </HeaderCard>
+
         <Flex justifyContent="space-between">
           <ContentCard>
             <Flex justifyContent="space-between">
-              {notFinished && (
-                <Flex flexDirection="column" alignItems="start">
-                  <TypographyBold style={{ marginBottom: "5px" }}>vROI</TypographyBold>
-                  {ROI && ROI > 0 ?
-                    <Typography>{StringROI}%</Typography>
-                    :
-                    <Typography>Sold&nbsp;Out</Typography>
-                  }
-                </Flex>
-              )}
-              {notFinished && (
-                <Flex flexDirection="column" alignItems="start">
-                  <TypographyBold style={{ marginBottom: "5px" }}>Vesting</TypographyBold>
-                  <Typography>{StringDaysRemaining}&nbsp;Days</Typography>
-                </Flex>
-              )}
+
+              {/* ROI */}
+              <Flex flexDirection="column" alignItems="start">
+                <TypographyBold style={{ marginBottom: "5px" }}>vROI</TypographyBold>
+                {ROI > 0 ?
+                  <Typography>{StringROI}%</Typography> : <Typography>Sold&nbsp;Out</Typography>
+                }
+              </Flex>
+
+              {/* Vesting */}
+              <Flex flexDirection="column" alignItems="start">
+                <TypographyBold style={{ marginBottom: "5px" }}>Vesting</TypographyBold>
+                {DaysRemaining > 0 ?
+                  <Typography>{StringDaysRemaining}&nbsp;Days</Typography> : <Typography>Ended</Typography>
+                }
+              </Flex>
+
+              {/* TVL */}
               <Flex flexDirection="column" alignItems="start">
                 <TypographyBold style={{ marginBottom: "5px" }}>TVL</TypographyBold>
                 <Typography>${TotalValueBonded}</Typography>
               </Flex>
+
+              {/* Bonded by user */}
               {account && (
-              <Flex flexDirection="column" alignItems="start">
-                <TypographyBold style={{ marginBottom: "5px" }}>Bonded</TypographyBold>
-                <Typography>{BondedAssets}&nbsp;{tokenName}</Typography>
-              </Flex>
+                <Flex flexDirection="column" alignItems="start">
+                  {bonded > 0 ?
+                    <TypographyBold style={{ marginBottom: "5px" }}>Bonded</TypographyBold> : <Typography>&nbsp;</Typography>
+                  }
+                  {bonded > 0 ?
+                    <Typography>{BondedAssets}&nbsp;{tokenName}</Typography> : <Typography>&nbsp;</Typography>
+                  }
+                </Flex>
               )}
+
             </Flex>
           </ContentCard>
-          <Flex>
-            {account && harvest && !isOldSyrup && (
-              <ClaimButton
-                style={{ marginLeft: '20px', justifyContent: "center" }}
-                disabled={!earnings.toNumber() || requestedApproval || pendingTx}
-                onClick={async () => {
-                  setPendingTx(true)
-                  await onReward()
-                  setPendingTx(false)
-                }}>
-                <Flex flexDirection="column" alignItems="center">
-                  <TypographyBold style={{ marginBottom: "4px" }}>Claim</TypographyBold>
-                  <Typography>{ClaimableAssets}&nbsp;RVRS</Typography>
-                </Flex>
-              </ClaimButton>)}
-          </Flex>
+
+          {/* Claim RVRS */}
+          {account && (
+            <Flex>
+              {ClaimableAssets1 > 0 ?
+                <ClaimButton
+                  style={{ marginLeft: '20px', justifyContent: "center" }}
+                  disabled={!earnings.toNumber() || requestedApproval || pendingTx}
+                  onClick={async () => {
+                    setPendingTx(true)
+                    await onReward()
+                    setPendingTx(false)
+                  }}>
+                  <Flex flexDirection="column" alignItems="center">
+                    <TypographyBold style={{ marginBottom: "4px" }}>Claim</TypographyBold>
+                    <Typography>{ClaimableAssets}&nbsp;RVRS</Typography>
+                  </Flex>
+                </ClaimButton>
+                :
+                <ClaimButtonDisabled
+                  style={{ marginLeft: '20px', justifyContent: "center" }}
+                  disabled={!earnings.toNumber() || requestedApproval || pendingTx}
+                  onClick={async () => {
+                    setPendingTx(true)
+                    await onReward()
+                    setPendingTx(false)
+                  }}>
+                  <Flex flexDirection="column" alignItems="center">
+                    <TypographyBold style={{ marginBottom: "4px" }}>Claim</TypographyBold>
+                    <Typography>{ClaimableAssets}&nbsp;RVRS</Typography>
+                  </Flex>
+                </ClaimButtonDisabled>
+              }
+            </Flex>
+          )}
         </Flex>
       </Card >
     </BondsPage>
