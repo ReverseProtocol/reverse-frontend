@@ -1,8 +1,8 @@
 import { Container } from 'react-bootstrap'
 import styled from 'styled-components'
 
-const contentCard = styled(Container)`
-  background-image: linear-gradient(to right, #333B4C, #37404E);
+const contentCardMain = styled(Container)`
+  background-image: linear-gradient(to right, #3E475E, #4E5E62);
   border-radius: 20px;
   flex-direction: column;
   justify-content: space-around;
@@ -11,4 +11,4 @@ const contentCard = styled(Container)`
   padding: 20px;
 `
 
-export default contentCard
+export default contentCardMain

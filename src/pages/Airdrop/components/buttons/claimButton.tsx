@@ -7,9 +7,9 @@ const claimButton = styled.button`
     border: 0.1px;
     border-style: solid !important;
     border-color: #4E5E61 !important;
-    font-size: 18px;
-    font-weight: 600;
-    padding: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 13px;
     box-shadow: 0px 0px 10px #506063;
 `
 

@@ -12,9 +12,9 @@ const airdropCard = styled.div`
   margin-bottom: 0px;
   border: 1px solid #FFFF;
   box-shadow: 0px 0px 0px #A5A5A5;
-  border: 0.5npx;
+  border: 1px;
   border-style: solid !important;
-  border-color: #9B9B9B !important;
+  border-color: #FFFFFF !important;
 `
 
 export default airdropCard
