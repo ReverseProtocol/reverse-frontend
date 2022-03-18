@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const typographyBold = styled.p`
-    font-size: 17px;
+    font-size: 15px;
     font-weight: 600;
 `
 

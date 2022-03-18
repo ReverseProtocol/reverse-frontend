@@ -18,7 +18,7 @@ import TypographyTitle from './components/typography/typographyTitle'
 import TypographyBold from './components/typography/typographyBold'
 import Typography from './components/typography/typography'
 import ContentCard from './components/contentCard'
-
+import Divider from './components/divider'
 
 const Airdrop = () => {
   const { account } = useWallet()
@@ -50,18 +50,20 @@ const Airdrop = () => {
   return (
     <Page>
         <AirdropCard>
-            <TypographyTitle style={{marginTop:'15px', marginBottom:'10px'}}>Claim Your Weekly UST Airdrop</TypographyTitle>
-            <Flex justifyContent="center" padding="10px">
+            <ContentCard style={{marginBottom:'10px'}}>
+              <TypographyTitle style={{marginTop:'15px', marginBottom:'10px'}}>Claim Your Weekly UST Airdrop</TypographyTitle>
+            </ContentCard>
+            <Flex justifyContent="center">
               <ContentCard style={{marginRight:'5px'}}> 
-                <TypographyTitle>{totalDistributedStr} UST</TypographyTitle>
+                <TypographyTitle style={{marginBottom:'5px'}}>{totalDistributedStr} UST</TypographyTitle>
                 <Typography>Total Distributed</Typography>
               </ContentCard>
-              <ContentCard > 
-                <TypographyTitle>{expectedReturns} UST</TypographyTitle>
+              <ContentCard> 
+                <TypographyTitle style={{marginBottom:'5px'}}>{expectedReturns} UST</TypographyTitle>
                 <Typography>Yearly Returns</Typography>
               </ContentCard>
               <ContentCard style={{marginLeft:'5px'}}>
-                <TypographyTitle>{claimedStr} UST</TypographyTitle>
+                <TypographyTitle style={{marginBottom:'5px'}}>{claimedStr} UST</TypographyTitle>
                 {account != null && account.length > 1? 
                 <Typography>Claimed by ({account.substring(0,6)})</Typography>
                 :
@@ -69,28 +71,26 @@ const Airdrop = () => {
                 }
               </ContentCard>
             </Flex>
-            <Flex justifyContent="space-between" padding="10px">
-              {account != null && account.length > 1?
-              <TypographyBold>{toClaimStr} UST</TypographyBold>
-              :
-              <ClaimButton>
-                ...
-              </ClaimButton>
-              }
+            <Flex justifyContent="space-between" padding="10px" marginTop="20px">
+              <Flex flexDirection="column" justifyContent="left" marginTop="2px"> 
+                <Typography style={{marginLeft:'5px'}}>UST</Typography>
+                <TypographyBold style={{marginLeft:'0px'}}>{toClaimStr}</TypographyBold>
+              </Flex>
               {toClaim && toClaim > 0 ?
               <ClaimButton onClick={handleAirdropClaim} disabled={pendingTxn}>
                 Claim
               </ClaimButton>
               :
               <ClaimButton>
-                Claimed
+                Already Claimed
               </ClaimButton>
               }
             </Flex>
-
+            <Divider/>
         </AirdropCard>
     </Page>
   )
 }
+
 
 export default Airdrop
