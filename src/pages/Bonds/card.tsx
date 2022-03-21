@@ -12,6 +12,7 @@ import useBlock from 'hooks/useBlock'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { QuoteToken, PoolCategory } from 'config/constants/types'
 import { Pool2 } from 'state/types'
+import { Link } from 'react-router-dom'
 import BondsContainer from '../../components/layout/containers/bondsContainer'
 import ContentCard from '../../components/layout/cards/bonds/contentCard'
 import HeaderCard from '../../components/layout/cards/bonds/headerCard'
@@ -166,9 +167,14 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
           <Flex justifyContent="space-between">
             {/* ROI */}
             <Flex flexDirection="column" alignItems="start">
-              <TypographyBold style={{ marginBottom: "5px" }}>vROI</TypographyBold>
+              <Link  to='https://reverse.gitbook.io/docs/the-protocol/reverseum-bonding-pools'>
+                <TypographyBold style={{ marginBottom: "5px", borderBottom:'1px dotted #FFFF' }}>vROI</TypographyBold>
+              </Link> 
+              
               {positiveRoi ?
-                <Typography>{roiStr}%</Typography> : <Typography>Sold&nbsp;Out</Typography>
+                <Typography>{roiStr}%</Typography> 
+                : 
+                <Typography>Sold&nbsp;Out</Typography>
               }
             </Flex>
             {/* Vesting */}
