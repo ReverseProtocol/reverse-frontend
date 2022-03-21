@@ -5,7 +5,7 @@ import { ResetCSS } from '@pancakeswap-libs/uikit'
 import BigNumber from 'bignumber.js'
 import { useFetchPublicData } from 'state/hooks'
 import MenuBottom from 'components/layout/natigation/footer'
-import GlobalStyle from './style/Global'
+import GlobalStyle from './Style'
 import NavBar from './components/layout/natigation/menu'
 
 BigNumber.config({

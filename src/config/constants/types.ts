@@ -149,16 +149,16 @@ export interface Pool2Config {
   sousId?: number
   image?: string
   tokenName: string
-  quoteTokenSymbol: QuoteToken
-  stakingTokenName: QuoteToken
+  quoteTokenSymbol?: QuoteToken
+  stakingTokenName?: QuoteToken
   stakingLimit?: number
   stakingTokenAddress?: string
   tokenPoolAddress?: string
   quoteTokenPoolAddress?: string
-  contractAddress: Address
-  poolCategory: PoolCategory
-  projectLink: string
-  tokenPerBlock: string
+  contractAddress?: Address
+  poolCategory?: PoolCategory
+  projectLink?: string
+  tokenPerBlock?: string
   startBlock?: number
   endBlock?: number
   sortOrder?: number
@@ -167,8 +167,8 @@ export interface Pool2Config {
   isFinished?: boolean
   tokenDecimals: number
   isDepositFinished?: boolean
-  lockBlock: number
-  notFinished: boolean
+  lockBlock?: number
+  notFinished?: boolean
 }
 
 export type Images = {

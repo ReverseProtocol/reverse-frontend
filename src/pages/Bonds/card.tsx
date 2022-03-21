@@ -12,7 +12,7 @@ import useBlock from 'hooks/useBlock'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { QuoteToken, PoolCategory } from 'config/constants/types'
 import { Pool2 } from 'state/types'
-import Card from '../../components/layout/containers/bondsContainer'
+import BondsContainer from '../../components/layout/containers/bondsContainer'
 import ContentCard from '../../components/layout/cards/bonds/contentCard'
 import HeaderCard from '../../components/layout/cards/bonds/headerCard'
 import DepositModal from '../../components/bondModal'
@@ -24,7 +24,6 @@ import Typography from '../../components/layout/typography/typography'
 import TypographyBold from '../../components/layout/typography/typographyBold'
 import TypographyTitle from '../../components/layout/typography/typographyTitle'
 
-
 interface PoolWithApy extends Pool2 {
   apy: BigNumber
 }
@@ -32,12 +31,6 @@ interface PoolWithApy extends Pool2 {
 interface HarvestProps {
   pool2: PoolWithApy
 }
-
-const Wrapper = styled(Flex)`
-  svg {
-    margin-right: 0.25rem;
-  }
-`
 
 const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
   const {
@@ -47,58 +40,72 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
     stakingTokenAddress,
     apy,
     tokenDecimals,
-    poolCategory,
-    totalStaked,
     startBlock,
     endBlock,
-    isFinished,
-    isDepositFinished,
     userData,
     stakingLimit,
-    tokenPoolAddress,
   } = pool2
 
-  const isBnbPool = poolCategory === PoolCategory.BINANCE
-  const TranslateString = useI18n()
-  const stakingTokenContract = useERC20(stakingTokenAddress)
-  const { account } = useWallet()
-  const block = useBlock()
-  const { onApprove } = useSousApproveBurn(stakingTokenContract, sousId)
-  const { onStake } = useSousStakeBurn(sousId, isBnbPool)
-  const { onReward } = useSousHarvestBurn(sousId, isBnbPool)
-  const [requestedApproval, setRequestedApproval] = useState(false)
-  const [pendingTx, setPendingTx] = useState(false)
-  const stakingTokenBalance = new BigNumber(userData?.stakingTokenBalance || 0)
-  const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
-  const accountHasStakedBalance = stakedBalance?.toNumber() > 0
-  const allowance = new BigNumber(userData?.allowance || 0)
-  const earnings = new BigNumber(userData?.pendingReward || 0)
-  const needsApproval = !accountHasStakedBalance && !allowance.toNumber() && !isBnbPool
-  const isCardActive = isFinished && accountHasStakedBalance
-  const convertedLimit = new BigNumber(stakingLimit).multipliedBy(new BigNumber(10).pow(tokenDecimals))
+  const block = useBlock();
+  const user = useWallet();
+  const tokenAddress = useERC20(stakingTokenAddress);
+  const allowance = new BigNumber(userData?.allowance || 0);
+  const earnings = new BigNumber(userData?.pendingReward || 0);
+  const earningsNo = earnings.toNumber();
+  const convertedLimit = new BigNumber(stakingLimit).multipliedBy(new BigNumber(10).pow(tokenDecimals));
+
+  // functions
+  const { onApprove } = useSousApproveBurn(tokenAddress, sousId);
+  const { onStake } = useSousStakeBurn(sousId);
+  const { onReward } = useSousHarvestBurn(sousId);
+  const [requestedApproval, setRequestedApproval] = useState(false);
+  const [pendingTx, setPendingTx] = useState(false);
+
+  // bond token balance
+  const bondTokenBalance = new BigNumber(userData?.stakingTokenBalance || 0);
+  const bondTokenBalanceNo = bondTokenBalance.toNumber();
+  const bondTokenBalanceStr = bondTokenBalanceNo.toLocaleString('en-us', { maximumFractionDigits: 2, minimumFractionDigits: 0 });
+
+  // bonded balance
+  const bondedBalance = new BigNumber(userData?.stakedBalance || 0);
+  const userHasBondedBalance = bondedBalance?.toNumber() > 0
+  const bondedBalanceNo = bondedBalance.toNumber();
+  const bondedBalanceStr = bondedBalanceNo.toLocaleString('en-us', { maximumFractionDigits: 2, minimumFractionDigits: 0 });
+  const needsApproval = !userHasBondedBalance && !allowance.toNumber()
+
+  // to start 
+  const hasStarted =  block > startBlock
+  const hoursToStartNo = (startBlock - block) * 2 * 0.000277778;
+  const hoursToStartStr = hoursToStartNo.toLocaleString('en-us', { maximumFractionDigits: 2, minimumFractionDigits: 0 });
+
+  // vesting period
+  const hasEnded = block > endBlock
   const vesting = block > startBlock ? (endBlock - block) * 2 * 0.000277778 * 0.0416667 : (endBlock - startBlock) * 2 * 0.000277778 * 0.0416667
-  const TVB = pool2.tvl && pool2.tvl.toNumber()
-  const ROI = apy && apy.div(365).times(vesting).minus(100).toNumber()
-  const claimableAssets = getBalanceNumber(earnings, tokenDecimals)
-  const bondedAssets = stakedBalance.toNumber()
-  const hoursToStartBlock = (startBlock - block) * 2 * 0.000277778
-  const hasStarted = startBlock < block
-
-  // strings
   const vestingStr = vesting.toLocaleString('en-us', { maximumFractionDigits: 1 })
-  const TVBStr = TVB.toLocaleString('en-us', { maximumFractionDigits: 0 })
-  const ROIStr = ROI.toLocaleString('en-us', { maximumFractionDigits: 2 })
-  const claimableAssetsStr = claimableAssets.toLocaleString('en-us', { maximumFractionDigits: 2, minimumFractionDigits: 0 })
-  const bondedAssetsStr = bondedAssets.toLocaleString('en-us', { maximumFractionDigits: 2 })
-  const hoursToStartBlockStr = hoursToStartBlock.toLocaleString('en-us', { maximumFractionDigits: 0 })
 
+  // returns
+  const roiNo = (apy && apy.div(365).times(vesting).minus(100)).toNumber();
+  const positiveRoi = roiNo > 0;
+  const roiStr = roiNo.toLocaleString('en-us', { maximumFractionDigits: 2, minimumFractionDigits: 0 });
+
+  // tvl
+  const tbvNo = pool2.tvl && pool2.tvl.toNumber();
+  const tbvStr = tbvNo.toLocaleString('en-us', { maximumFractionDigits: 2, minimumFractionDigits: 0 });
+
+  // rewards to claim
+  const rewardsNo = getBalanceNumber(earnings, tokenDecimals);
+  const rewardsStr = rewardsNo.toLocaleString('en-us', { maximumFractionDigits: 2, minimumFractionDigits: 0 });
+
+  // bond modal
   const [onPresentDeposit] = useModal(
     <DepositModal
-      max={stakingLimit && stakingTokenBalance.isGreaterThan(convertedLimit) ? convertedLimit : stakingTokenBalance}
+      max={stakingLimit && bondTokenBalance.isGreaterThan(convertedLimit) ? convertedLimit : bondTokenBalance}
       onConfirm={onStake}
       tokenName={stakingLimit ? `${stakingTokenName} (${stakingLimit} max)` : stakingTokenName}
     />
   )
+
+  // approve tx
   const handleApprove = useCallback(async () => {
     try {
       setRequestedApproval(true)
@@ -109,26 +116,25 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
   }, [onApprove, setRequestedApproval])
 
   return (
-    <Card isActive={isCardActive} isFinished={isFinished && sousId !== 0}>
-      { /* Header and Bond Modal */}
+    <BondsContainer>
       <HeaderCard>
-        {startBlock < block ?
+        {hasStarted ?
           <Flex justifyContent="space-between">
             <Flex justifyContent="space-between">
-              <TypographyTitle style={{ marginLeft: "5px" }}>{tokenName}&nbsp;veBonds</TypographyTitle>
+              <TypographyTitle style={{ marginLeft: "15px" }}>{tokenName}&nbsp;veBonds</TypographyTitle>
             </Flex>
-            {ROI > 0 ?
+            {positiveRoi ?
               <Flex alignItems="end">
-                {account && (needsApproval ? (
+                {user && (needsApproval ? (
                   <BondButton
                     style={{ justifyContent: "center" }}
-                    disabled={isFinished || isDepositFinished || ROI < 0}
+                    disabled={hasEnded}
                     onClick={handleApprove}>
                     Enable
                   </BondButton>
                 ) : (
                   <BondButton style={{ justifyContent: "center" }}
-                    disabled={isFinished || isDepositFinished || ROI < 0}
+                    disabled={hasEnded}
                     onClick={onPresentDeposit}>
                     Bond
                   </BondButton>
@@ -136,23 +142,20 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
               </Flex>
               :
               <Flex alignItems="end">
-                {account &&
+                {user &&
                   <BondButtonDisabled disabled>Sold Out</BondButtonDisabled>
                 }
               </Flex>
             }
-
           </Flex>
-
           :
-
           <Flex justifyContent="space-between">
             <Flex justifyContent="space-between">
               <TypographyTitle style={{ marginLeft: "17px" }}>{tokenName}&nbsp;veBonds</TypographyTitle>
             </Flex>
             <Flex alignItems="end">
               <BondButtonDisabled disabled style={{ justifyContent: "center" }}>
-                {hoursToStartBlockStr}h Left
+                {hoursToStartStr}h Left
               </BondButtonDisabled>
             </Flex>
           </Flex>
@@ -161,50 +164,45 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
       <Flex justifyContent="space-between">
         <ContentCard>
           <Flex justifyContent="space-between">
-
             {/* ROI */}
             <Flex flexDirection="column" alignItems="start">
               <TypographyBold style={{ marginBottom: "5px" }}>vROI</TypographyBold>
-              {ROI > 0 ?
-                <Typography>{ROIStr}%</Typography> : <Typography>Sold&nbsp;Out</Typography>
+              {positiveRoi ?
+                <Typography>{roiStr}%</Typography> : <Typography>Sold&nbsp;Out</Typography>
               }
             </Flex>
-
             {/* Vesting */}
             <Flex flexDirection="column" alignItems="start">
               <TypographyBold style={{ marginBottom: "5px" }}>Vesting</TypographyBold>
-              {vesting > 0 ?
+              {!hasEnded ?
                 <Typography>{vestingStr}&nbsp;Days</Typography> : <Typography>Ended</Typography>
               }
             </Flex>
-
             {/* TVL */}
             <Flex flexDirection="column" alignItems="start">
               <TypographyBold style={{ marginBottom: "5px" }}>TVL</TypographyBold>
-              <Typography>${TVBStr}</Typography>
+              <Typography>${tbvStr}</Typography>
             </Flex>
-
             {/* Bonded by user */}
-            {account && (
+            {user && (
               <Flex flexDirection="column" alignItems="start">
-                {bondedAssets > 0 ?
+                {bondTokenBalanceNo > 0 ?
                   <TypographyBold style={{ marginBottom: "5px" }}>Bonded</TypographyBold> : <Typography>&nbsp;</Typography>
                 }
-                {bondedAssets > 0 ?
+                {bondTokenBalanceNo > 0 ?
                   <Typography>TODO&nbsp;{tokenName}</Typography> : <Typography>&nbsp;</Typography>
                 }
               </Flex>
             )}
           </Flex>
         </ContentCard>
-
         {/* Claim RVRS */}
-        {account && (
+        {user && (
           <Flex>
-            {claimableAssets > 0 ?
+            {rewardsNo > 0 ?
               <ClaimButton
                 style={{ marginLeft: '20px', justifyContent: "center" }}
-                disabled={!earnings.toNumber() || requestedApproval || pendingTx}
+                disabled={!rewardsNo}
                 onClick={async () => {
                   setPendingTx(true)
                   await onReward()
@@ -212,13 +210,13 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
                 }}>
                 <Flex flexDirection="column" alignItems="center">
                   <TypographyBold style={{ marginBottom: "4px" }}>Claim</TypographyBold>
-                  <Typography>{claimableAssetsStr}&nbsp;RVRS</Typography>
+                  <Typography>{rewardsStr}&nbsp;RVRS</Typography>
                 </Flex>
               </ClaimButton>
               :
               <ClaimButtonDisabled
                 style={{ marginLeft: '20px', justifyContent: "center" }}
-                disabled={!earnings.toNumber() || requestedApproval || pendingTx}
+                disabled={!rewardsNo}
                 onClick={async () => {
                   setPendingTx(true)
                   await onReward()
@@ -226,14 +224,14 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
                 }}>
                 <Flex flexDirection="column" alignItems="center">
                   <TypographyBold style={{ marginBottom: "4px" }}>Claim</TypographyBold>
-                  <Typography>{claimableAssetsStr}&nbsp;RVRS</Typography>
+                  <Typography>{rewardsStr}&nbsp;RVRS</Typography>
                 </Flex>
               </ClaimButtonDisabled>
             }
           </Flex>
         )}
       </Flex>
-    </Card >
+    </BondsContainer>
   )
 }
 
