@@ -13,13 +13,7 @@ const GlobalStyle = createGlobalStyle`
 }
 
 #root {
-  background-image: url('/images/bg.png');
-  background-repeat: no-repeat;
-  height: 100%;
-  -webkit-background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-image: linear-gradient(#323B4A, #252B38);
 }
 
 div {
@@ -44,7 +38,7 @@ a:hover{
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2D3544;
+  background: #323B4A;
   border-radius: 0px;
   height: 10px;
 }

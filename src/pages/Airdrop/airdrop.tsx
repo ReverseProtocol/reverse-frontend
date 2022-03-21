@@ -20,6 +20,7 @@ import Typography from './components/typography/typography'
 import ContentCard from './components/contentCard'
 import ContentCardMain from './components/contentCardMain'
 import Divider from './components/divider'
+import ClaimButtonDisabled from './components/buttons/claimButtonDisabled'
 
 const Airdrop = () => {
   const { account } = useWallet()
@@ -35,6 +36,7 @@ const Airdrop = () => {
   const totalDistributedStr = totalDistributed.toLocaleString('en-us', { maximumFractionDigits: 2 })
   const toClaimStr = toClaim.toLocaleString('en-us', { maximumFractionDigits: 3, minimumFractionDigits: 2 })
   const claimedStr = claimed.toLocaleString('en-us', { maximumFractionDigits: 3 })
+  const lastClaimAmountStr = lastClaimAmount.toLocaleString('en-us', { maximumFractionDigits: 0 })
   
   const [pendingTxn, setPendingTxn] = useState(false)
   const handleAirdropClaim = useCallback(async () => {
@@ -51,7 +53,7 @@ const Airdrop = () => {
   return (
     <Page>
         <AirdropCard>
-            <ContentCard style={{marginBottom:'12px'}}>
+            <ContentCard style={{marginBottom:'10px'}}>
               <TypographyTitle style={{marginTop:'15px', marginBottom:'10px'}}>Claim Your Weekly UST Airdrop</TypographyTitle>
             </ContentCard>
             <Flex justifyContent="center">
@@ -66,7 +68,7 @@ const Airdrop = () => {
               <ContentCard style={{marginLeft:'7px'}}>
                 <TypographyBold style={{marginBottom:'5px'}}>{claimedStr} UST</TypographyBold>
                 {account != null && account.length > 1? 
-                <Typography>Claimed by ({account.substring(0,6)})</Typography>
+                <Typography>Claimed by ({account.substring(0,5)})</Typography>
                 :
                 <Typography>&nsbp;</Typography>
                 }
@@ -82,9 +84,9 @@ const Airdrop = () => {
                 Claim
               </ClaimButton>
               :
-              <ClaimButton>
-                Nothing to Claim
-              </ClaimButton>
+              <ClaimButtonDisabled disabled>
+                Claimed
+              </ClaimButtonDisabled>
               }
             </Flex>
             <Divider/>

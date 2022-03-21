@@ -25,6 +25,7 @@ import HeaderCard from './components/headerCard'
 import DepositModal from './components/bondModal'
 import ClaimButtonDisabled from './components/buttons/claimButtonDisabled'
 import BondButton from './components/buttons/bondButton'
+import BondButtonDisabled from './components/buttons/bondButtonDisabled'
 import ClaimButton from './components/buttons/claimButton'
 import Typography from './components/typography/typography'
 import TypographyBold from './components/typography/typographyBold'
@@ -94,9 +95,9 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
   const vestingStr = vesting.toLocaleString('en-us', { maximumFractionDigits: 1 })
   const TVBStr = TVB.toLocaleString('en-us', { maximumFractionDigits: 0 })
   const ROIStr = ROI.toLocaleString('en-us', { maximumFractionDigits: 2 })
-  const claimableAssetsStr = claimableAssets.toLocaleString('en-us', { maximumFractionDigits: 2 })
+  const claimableAssetsStr = claimableAssets.toLocaleString('en-us', { maximumFractionDigits: 2, minimumFractionDigits: 0 })
   const bondedAssetsStr = bondedAssets.toLocaleString('en-us', { maximumFractionDigits: 2 })
-  const hoursToStartBlockStr = hoursToStartBlock.toLocaleString('en-us', { maximumFractionDigits: 2 })
+  const hoursToStartBlockStr = hoursToStartBlock.toLocaleString('en-us', { maximumFractionDigits: 0 })
 
   const [onPresentDeposit] = useModal(
     <DepositModal
@@ -119,38 +120,56 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
       <Card isActive={isCardActive} isFinished={isFinished && sousId !== 0}>
         { /* Header and Bond Modal */}
         <HeaderCard>
-          <Flex justifyContent="space-between">
+
+          {startBlock < block ?
+
             <Flex justifyContent="space-between">
-              <TypographyTitle>{tokenName}&nbsp;veBonds</TypographyTitle>
+
+              <Flex justifyContent="space-between">
+                <TypographyTitle style={{ marginLeft: "5px" }}>{tokenName}&nbsp;veBonds</TypographyTitle>
+              </Flex>
+
+              {ROI > 0 ?
+                <Flex alignItems="end">
+                  {account && (needsApproval ? (
+                    <BondButton
+                      style={{ justifyContent: "center" }}
+                      disabled={isFinished || isDepositFinished || ROI < 0}
+                      onClick={handleApprove}>
+                      Enable
+                    </BondButton>
+                  ) : (
+                    <BondButton style={{ justifyContent: "center" }}
+                      disabled={isFinished || isDepositFinished || ROI < 0}
+                      onClick={onPresentDeposit}>
+                      Bond
+                    </BondButton>
+                  ))}
+                </Flex>
+                :
+                <Flex alignItems="end">
+                  {account &&
+                    <BondButtonDisabled disabled>Sold Out</BondButtonDisabled>
+                  }
+                </Flex>
+              }
+
             </Flex>
 
-            {startBlock < block ?
-              <Flex alignItems="end">
-                {account && (needsApproval ? (
-                  <BondButton
-                    style={{ justifyContent: "center" }}
-                    disabled={isFinished || isDepositFinished || ROI < 0}
-                    onClick={handleApprove}>
-                    {ROI > 0 ? 'Enable' : 'Sold Out'}
-                  </BondButton>
-                ) : (
-                  <BondButton
-                    style={{ justifyContent: "center" }}
-                    disabled={isFinished || isDepositFinished || ROI < 0}
-                    onClick={onPresentDeposit}>
-                    {ROI > 0 ? 'Bond' : 'Sold Out'}
-                  </BondButton>
-                ))}
-              </Flex>
-              :
-              <Flex alignItems="end">
-                <BondButton style={{ justifyContent: "center" }}>
-                  {hoursToStartBlockStr}h To Start
-                </BondButton>
-              </Flex>
-            }
+            :
 
-          </Flex>
+            <Flex justifyContent="space-between">
+              <Flex justifyContent="space-between">
+                <TypographyTitle style={{ marginLeft: "17px" }}>{tokenName}&nbsp;veBonds</TypographyTitle>
+              </Flex>
+              <Flex alignItems="end">
+                <BondButtonDisabled disabled style={{ justifyContent: "center" }}>
+                  {hoursToStartBlockStr}h Left
+                </BondButtonDisabled>
+              </Flex>
+            </Flex>
+
+          }
         </HeaderCard>
 
         <Flex justifyContent="space-between">
@@ -186,10 +205,11 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
                     <TypographyBold style={{ marginBottom: "5px" }}>Bonded</TypographyBold> : <Typography>&nbsp;</Typography>
                   }
                   {bondedAssets > 0 ?
-                    <Typography>{bondedAssetsStr}&nbsp;{tokenName}</Typography> : <Typography>&nbsp;</Typography>
+                    <Typography>TODO&nbsp;{tokenName}</Typography> : <Typography>&nbsp;</Typography>
                   }
                 </Flex>
               )}
+
 
             </Flex>
           </ContentCard>

@@ -7,14 +7,14 @@ const bondsCard = styled.div<{ isActive?: boolean; isFinished?: boolean }>`
   display: flex;
   flex-direction: column;
   padding: 10px;
-  position: relative;
-  text-align: center;
-  margin-bottom: 0px;
   border: 1px solid #FFFF;
-  box-shadow: 0px 0px 0px #A5A5A5;
-  border: 0.5npx;
   border-style: solid !important;
   border-color: #9B9B9B !important;
+  margin-bottom: 20px;
+
+  :hover {
+    border-color: #A8A8A8 !important;
+} 
 `
 
 export default bondsCard
