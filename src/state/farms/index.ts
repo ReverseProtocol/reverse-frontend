@@ -2,7 +2,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import farmsConfig from 'config/constants/farms'
 import BigNumber from 'bignumber.js'
-import labo from 'config/constants/labo'
+import rvrs from 'config/constants/rvrs'
 import fetchFarms from './fetchFarms'
 import {
   fetchFarmUserEarnings,
@@ -32,14 +32,14 @@ export const farmsSlice = createSlice({
         state.data[index] = { ...state.data[index], userData: userDataEl }
       })
     },
-    setLaboPrice: (state, action) => {
+    setrvrsPrice: (state, action) => {
       state.price = action.payload
     },
   },
 })
 
 // Actions
-export const { setFarmsPublicData, setFarmUserData, setLaboPrice } = farmsSlice.actions
+export const { setFarmsPublicData, setFarmUserData, setrvrsPrice } = farmsSlice.actions
 
 // Thunks
 export const fetchFarmsPublicDataAsync = () => async (dispatch) => {
@@ -65,10 +65,10 @@ export const fetchFarmUserDataAsync = (account) => async (dispatch) => {
   dispatch(setFarmUserData({ arrayOfUserDataObjects }))
 }
 
-export const fetchLaboPriceAsync = () => async (dispatch) => { // Change the address below to LABO-BUSD LP
+export const fetchrvrsPriceAsync = () => async (dispatch) => { // Change the address below to rvrs-BUSD LP
   const query = `
   {ethereum(network: bsc){
-    address(address: {is: "${labo.addr.LaboUstAddr}"}){
+    address(address: {is: "${rvrs.addr.rvrsUstAddr}"}){
     balances {
     currency {
     symbol
@@ -92,8 +92,8 @@ fetch(url, opts)
   .then(response => response.json())
   .then(json => {
     // if (process.env.REACT_APP_DEBUG === "true") console.log(json, 'testing output');
-    const lprice = json.data.ethereum.address[0].balances[labo.queryPosition.busd].value / json.data.ethereum.address[0].balances[labo.queryPosition.token].value;
-    dispatch(setLaboPrice(lprice));
+    const lprice = json.data.ethereum.address[0].balances[rvrs.queryPosition.busd].value / json.data.ethereum.address[0].balances[rvrs.queryPosition.token].value;
+    dispatch(setrvrsPrice(lprice));
   })
   .catch(console.error);
 }

@@ -1,4 +1,4 @@
-export { fetchLaboPriceAsync, fetchFarmsPublicDataAsync, fetchFarmUserDataAsync } from './farms'
+export { fetchrvrsPriceAsync, fetchFarmsPublicDataAsync, fetchFarmUserDataAsync } from './farms'
 export { fetchAirdropUserDataAsync } from './airdrop'
 export {
   fetchPoolsUserDataAsync,
@@ -6,7 +6,7 @@ export {
   updateUserAllowance,
   updateUserBalance,
   updateUserStakedBalance
-} from './pools'
+} from './stake'
 export {
   fetchPools2PublicDataAsync,
   fetchPools2UserDataAsync,
@@ -14,4 +14,4 @@ export {
   updateUserBalance2,
   updateUserPendingReward2,
   updateUserStakedBalance2,
-} from './pools2'
+} from './bonds'

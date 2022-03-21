@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, useWalletModal } from '@pancakeswap-libs/uikit'
 import ReactTooltip from 'react-tooltip';
-import labo from 'config/constants/labo'
+import rvrs from 'config/constants/rvrs'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import useI18n from 'hooks/useI18n'
 import styled from 'styled-components';
@@ -37,7 +37,7 @@ const UnlockButton = (props) => {
   return (
     <span data-tip data-for='happyFace3'>
       <UnlockBtn 
-      disabled={ labo.isLocked.unlockWalletButton } 
+      disabled={ rvrs.isLocked.unlockWalletButton } 
       onClick={onPresentConnectModal} {...props}>
         {TranslateString(2922, 'Connect Wallet')}
       </UnlockBtn>

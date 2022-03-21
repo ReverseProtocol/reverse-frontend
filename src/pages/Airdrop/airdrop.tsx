@@ -1,26 +1,33 @@
 import React, {useCallback, useState} from 'react'
 import styled from 'styled-components'
-import Page from 'components/page'
+import Page from 'components/layout/page'
 import useI18n from 'hooks/useI18n'
 import { Flex } from '@pancakeswap-libs/uikit'
 import BigNumber from 'bignumber.js'
 
-// web3
 import {useWallet} from "@binance-chain/bsc-use-wallet"
+
+
+import TypographyTitle from 'components/layout/typography/typographyTitle'
+import TypographyBold from 'components/layout/typography/typographyBold'
+import Typography from 'components/layout/typography/typography'
+import AirdropContainer from 'components/layout/containers/airdropContainer'
+import ContentCard from 'components/layout/cards/airdrop/contentCard'
+import ContentCardMain from 'components/layout/cards/airdrop/contentCardMain'
+import Divider from 'components/divider'
+import ClaimButtonDisabled from 'components/layout/buttons/claimAirdropButtonDisabled'
+import ClaimButton from 'components/layout/buttons/claimAirdropButton'
+
+
+
+// web3
 import {useAirdropData} from "../../state/hooks"
 import useAirdropClaim from "../../hooks/useAirdropClaim"
 import {getBalanceNumber} from "../../utils/formatBalance"
 
 // components
-import AirdropCard from './components/airdropCard'
-import ClaimButton from './components/buttons/claimButton'
-import TypographyTitle from './components/typography/typographyTitle'
-import TypographyBold from './components/typography/typographyBold'
-import Typography from './components/typography/typography'
-import ContentCard from './components/contentCard'
-import ContentCardMain from './components/contentCardMain'
-import Divider from './components/divider'
-import ClaimButtonDisabled from './components/buttons/claimButtonDisabled'
+
+
 
 const Airdrop = () => {
   const { account } = useWallet()
@@ -52,7 +59,7 @@ const Airdrop = () => {
 
   return (
     <Page>
-        <AirdropCard>
+        <AirdropContainer>
             <ContentCard style={{marginBottom:'10px'}}>
               <TypographyTitle style={{marginTop:'15px', marginBottom:'10px'}}>Claim Your Weekly UST Airdrop</TypographyTitle>
             </ContentCard>
@@ -90,7 +97,7 @@ const Airdrop = () => {
               }
             </Flex>
             <Divider/>
-        </AirdropCard>
+        </AirdropContainer>
     </Page>
   )
 }

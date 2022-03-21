@@ -11,9 +11,9 @@ import useBlock from 'hooks/useBlock'
 import { getBalanceNumber } from 'utils/formatBalance'
 import {useFarms, usePriceBnbBusd, usePools2, usePrices, getTotalValueFromQuoteTokens, lookupPrice} from 'state/hooks'
 import { QuoteToken, Pool2Category } from 'config/constants/types'
-import Page from 'components/page'
+import Page from 'components/layout/page'
 import styled from 'styled-components'
-import PoolCard from './bondUI'
+import PoolCard from './card'
 
 const Bond: React.FC = () => {
   const { path } = useRouteMatch()

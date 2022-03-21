@@ -1,7 +1,7 @@
 import BigNumber from 'bignumber.js'
 import erc20ABI from 'config/abi/erc20.json'
 import masterchefABI from 'config/abi/masterchef.json'
-import labo from 'config/constants/labo'
+import rvrs from 'config/constants/rvrs'
 import multicall from 'utils/multicall'
 import farmsConfig from 'config/constants/farms'
 import { getMasterChefAddress } from 'utils/addressHelpers'
@@ -64,7 +64,7 @@ export const fetchFarmUserEarnings = async (account: string) => {
   const calls = farmsConfig.map((farm) => {
     return {
       address: masterChefAdress,
-      name: labo.strings.pendingX,
+      name: rvrs.strings.pendingX,
       params: [farm.pid, account],
     }
   })

@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import farmsReducer from './farms'
-import poolsReducer from './pools'
-import poolsReducer2 from './pools2'
+import poolsReducer from './stake'
+import poolsReducer2 from './bonds'
 import airdropReducer from './airdrop'
 
 export default configureStore({

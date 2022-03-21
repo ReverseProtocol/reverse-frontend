@@ -1,11 +1,11 @@
 import BigNumber from 'bignumber.js'
 import React, { useCallback, useMemo, useState } from 'react'
 import { Modal } from '@pancakeswap-libs/uikit'
-import ModalActions from 'components/ModalActions'
+import ModalActions from 'components/modalActions'
 import styled from 'styled-components'
-import TokenInput from '../../../components/TokenInput'
-import useI18n from '../../../hooks/useI18n'
-import { getFullDisplayBalance } from '../../../utils/formatBalance'
+import TokenInput from './TokenInput'
+import useI18n from '../hooks/useI18n'
+import { getFullDisplayBalance } from '../utils/formatBalance'
 
 const StyledBtn = styled.button`
   -webkit-box-align: center;

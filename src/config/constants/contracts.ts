@@ -1,4 +1,4 @@
-import labo from "./labo"
+import rvrs from "./rvrs"
 
 export default {
   rewardClaim: {
@@ -14,8 +14,8 @@ export default {
     1666700000: '0xED0B4b0F0E2c17646682fc98ACe09feB99aF3adE',
   },
   masterChef: {
-    1666600000: labo.addr.masterChef,
-    1666700000: labo.addr.masterChefTestnet,
+    1666600000: rvrs.addr.masterChef,
+    1666700000: rvrs.addr.masterChefTestnet,
   },
   sousChef: {
     1666600000: '0xC2B1FC77e49BE0a99520EAd73da3a76AF533482D', // cambiar

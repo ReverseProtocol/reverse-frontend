@@ -1,4 +1,4 @@
-import poolsConfig2 from 'config/constants/pools2'
+import poolsConfig2 from 'config/constants/bonds'
 import sousChefABI from 'config/abi/sousChefBurn.json'
 import cakeABI from 'config/abi/cake.json'
 import wbnbABI from 'config/abi/weth.json'

@@ -1,9 +1,10 @@
 import styled from 'styled-components'
-import Container from './container'
 
-const Page = styled(Container)`
-  min-height: calc(100vh - 173px);
-  max-width: 640px;
+const Page = styled.div`
+  min-height: calc(100vh - 187px);
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 600px;
   padding-top: 50px;
   justify-content: center;
   flex-wrap: wrap;

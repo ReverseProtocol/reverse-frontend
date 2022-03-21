@@ -1,6 +1,6 @@
 import BigNumber from 'bignumber.js'
 import {useEffect} from 'react'
-import labo from 'config/constants/labo'
+import rvrs from 'config/constants/rvrs'
 import {useDispatch, useSelector} from 'react-redux'
 import useRefresh from 'hooks/useRefresh'
 import {
@@ -128,14 +128,14 @@ export const usePoolFromPid = (sousId): Pool => {
 // Prices
 
 export const usePriceBnbBusd = (): BigNumber => {
-  const pid = labo.pids.pidBnbBusd // BUSD-BNB LP
+  const pid = rvrs.pids.pidBnbBusd // BUSD-BNB LP
   const farm = useFarmFromPid(pid)
   return farm.tokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : ZERO
 }
 
 
 
-// export const fetchLaboPrice = (): BigNumber => {
+// export const fetchrvrsPrice = (): BigNumber => {
 //   const query = `
 //   {ethereum(network: bsc){
 //     address(address: {is: "0xbf9a298a948079bed1e0902e78c61b1b30f58e7e"}){

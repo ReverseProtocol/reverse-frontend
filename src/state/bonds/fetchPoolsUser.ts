@@ -1,5 +1,5 @@
 import { AbiItem } from 'web3-utils'
-import poolsConfig2 from 'config/constants/pools2'
+import poolsConfig2 from 'config/constants/bonds'
 import masterChefABI from 'config/abi/masterchef.json'
 import sousChefABI from 'config/abi/sousChef.json'
 import erc20ABI from 'config/abi/erc20.json'

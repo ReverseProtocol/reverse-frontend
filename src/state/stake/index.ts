@@ -2,7 +2,7 @@
 import BigNumber from "bignumber.js";
 import { createSlice } from '@reduxjs/toolkit'
 import autoRvrsAbi from "config/abi/autorvrs.json";
-import poolsConfig from 'config/constants/pools'
+import poolsConfig from 'config/constants/stake'
 import {
   fetchPoolsAllowance,
   fetchUserBalances,

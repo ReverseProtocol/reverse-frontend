@@ -1,5 +1,5 @@
 import { AbiItem } from 'web3-utils'
-import poolsConfig from 'config/constants/pools'
+import poolsConfig from 'config/constants/stake'
 import masterChefABI from 'config/abi/masterchef.json'
 import autorvrsAbi from 'config/abi/autorvrs.json'
 import sousChefABI from 'config/abi/sousChef.json'

@@ -1,7 +1,7 @@
 import BigNumber from 'bignumber.js'
 import React, { useCallback, useMemo, useState } from 'react'
 import { Button, Modal } from '@pancakeswap-libs/uikit'
-import ModalActions from 'components/ModalActions'
+import ModalActions from 'components/modalActions'
 import styled from 'styled-components'
 import TokenInput from '../../../components/TokenInput'
 import useI18n from '../../../hooks/useI18n'

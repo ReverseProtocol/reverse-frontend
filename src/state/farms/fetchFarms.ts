@@ -4,7 +4,7 @@ import masterchefABI from 'config/abi/masterchef.json'
 import multicall from 'utils/multicall'
 import { getMasterChefAddress } from 'utils/addressHelpers'
 import farmsConfig from 'config/constants/farms'
-import labo from 'config/constants/labo'
+import rvrs from 'config/constants/rvrs'
 import { QuoteToken } from '../../config/constants/types'
 
 
@@ -113,7 +113,7 @@ const fetchFarms = async () => {
         },
         {
           address: getMasterChefAddress(),
-          name: labo.strings.xPerBlock,
+          name: rvrs.strings.xPerBlock,
         },
       ])
 

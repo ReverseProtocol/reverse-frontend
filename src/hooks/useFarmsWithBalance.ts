@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import BigNumber from 'bignumber.js'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import multicall from 'utils/multicall'
-import labo from 'config/constants/labo'
+import rvrs from 'config/constants/rvrs'
 import { getMasterChefAddress } from 'utils/addressHelpers'
 import masterChefABI from 'config/abi/masterchef.json'
 import { farmsConfig } from 'config/constants'
@@ -22,7 +22,7 @@ const useFarmsWithBalance = () => {
     const fetchBalances = async () => {
       const calls = farmsConfig.map((farm) => ({
         address: getMasterChefAddress(),
-        name: labo.strings.pendingX,
+        name: rvrs.strings.pendingX,
         params: [farm.pid, account],
       }))
 
