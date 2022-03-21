@@ -7,7 +7,7 @@ export interface DefaultTheme {}
 
 }
 
-const GlobalStyle = createGlobalStyle`
+const Style = createGlobalStyle`
 * {
   font-family: 'Exo', sans-serif;
 }
@@ -53,4 +53,4 @@ a:hover{
 }
 
 `
-export default GlobalStyle
+export default Style

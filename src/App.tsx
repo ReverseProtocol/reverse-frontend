@@ -5,21 +5,19 @@ import { ResetCSS } from '@pancakeswap-libs/uikit'
 import BigNumber from 'bignumber.js'
 import { useFetchPublicData } from 'state/hooks'
 import MenuBottom from 'components/layout/natigation/footer'
-import GlobalStyle from './Style'
-import NavBar from './components/layout/natigation/menu'
+import Style from 'components/Style'
+import Nav from './components/layout/natigation/nav'
 
 BigNumber.config({
   EXPONENTIAL_AT: 1000,
   DECIMAL_PLACES: 80,
 })
 
-// Pages
 const Bonds = lazy(() => import('./pages/Bonds'))
 const StakeDeprecated = lazy(() => import('./pages/StakeDeprecated'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 const Airdrop = lazy(() => import('./pages/Airdrop'))
 
-// App
 const App: React.FC = () => {
   const { account, connect } = useWallet()
   useEffect(() => {
@@ -32,8 +30,8 @@ const App: React.FC = () => {
   return (
     <Router>
       <ResetCSS />
-      <GlobalStyle />
-      <NavBar>&nsbp;</NavBar>
+      <Style />
+      <Nav>&nsbp;</Nav>
       <Suspense fallback>
         <Switch>
           <Route path="/bonds">

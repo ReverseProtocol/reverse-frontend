@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
-import Page from 'components/layout/page'
+import Page from 'components/layout/containers/page'
 import useI18n from 'hooks/useI18n'
 import { Flex } from '@pancakeswap-libs/uikit'
 import BigNumber from 'bignumber.js'

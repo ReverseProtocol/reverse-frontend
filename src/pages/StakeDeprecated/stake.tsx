@@ -17,7 +17,7 @@ import {
   getTotalValueFromQuoteTokens,
   lookupPrice, useFarmFromPid,
 } from 'state/hooks'
-import Page from 'components/layout/page'
+import Page from 'components/layout/containers/page'
 import PoolCard from './components/PoolCard'
 
 const Title = styled.p`

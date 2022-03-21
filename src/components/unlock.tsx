@@ -6,6 +6,22 @@ import { useWallet } from '@binance-chain/bsc-use-wallet'
 import useI18n from 'hooks/useI18n'
 import styled from 'styled-components';
 
+const UnlockButton = (props) => {
+  const TranslateString = useI18n()
+  const { connect, reset } = useWallet()
+  const { onPresentConnectModal } = useWalletModal(connect, reset)
+
+  return (
+    <span data-tip data-for='happyFace3'>
+      <UnlockBtn 
+      disabled={ rvrs.isLocked.unlockWalletButton } 
+      onClick={onPresentConnectModal} {...props}>
+        {TranslateString(2922, 'Connect Wallet')}
+      </UnlockBtn>
+    </span>
+  )
+}
+
 const UnlockBtn = styled.button`
   -webkit-box-align: center;
   align-items: center;
@@ -23,27 +39,8 @@ const UnlockBtn = styled.button`
   max-height: 35px;
   max-width: 140px;
   padding: 12px;
-
   text-shadow: 0px 0px 5px #fff;
   box-shadow: 0px 0px 5px #fff;
-  `
-
-
-const UnlockButton = (props) => {
-  const TranslateString = useI18n()
-  const { connect, reset } = useWallet()
-  const { onPresentConnectModal } = useWalletModal(connect, reset)
-
-  return (
-    <span data-tip data-for='happyFace3'>
-      <UnlockBtn 
-      disabled={ rvrs.isLocked.unlockWalletButton } 
-      onClick={onPresentConnectModal} {...props}>
-        {TranslateString(2922, 'Connect Wallet')}
-      </UnlockBtn>
-     
-    </span>
-  )
-}
+`
 
 export default UnlockButton

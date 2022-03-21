@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Page from 'components/layout/page'
+import Page from 'components/layout/containers/page'
 import useI18n from 'hooks/useI18n'
 
 const StyledNotFound = styled.div`

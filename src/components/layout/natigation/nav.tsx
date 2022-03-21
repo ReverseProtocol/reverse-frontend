@@ -10,7 +10,7 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import useTokenBalance from 'hooks/useTokenBalance'
 import { getCakeAddress } from 'utils/addressHelpers'
 
-const NavBar = (props) => {
+const Nav = (props) => {
   const { account, connect, reset } = useWallet()
   const cakePriceUsd = usePriceCakeBusd()
   const [isChecked, setIsChecked] = useState(false);
@@ -69,4 +69,4 @@ const MenuContainer = styled(Container)`
   max-width: 350px;
 `
 
-export default NavBar
+export default Nav
