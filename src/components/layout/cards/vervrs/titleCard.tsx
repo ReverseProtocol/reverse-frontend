@@ -9,7 +9,6 @@ const contentCard = styled(Container)`
   position: center;
   text-align: center;
   padding: 20px;
-  flex-wrap: wrap;
 `
 
 export default contentCard

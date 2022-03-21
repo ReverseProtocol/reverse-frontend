@@ -13,7 +13,7 @@ const Input: React.FC<InputProps> = ({ endAdornment, onChange, placeholder, star
   return (
     <StyledInputWrapper>
       {startAdornment}
-      <StyledInput placeholder={placeholder} value={value} onChange={onChange} />
+      <StyledInput placeholder="0 RVRS" value={value} onChange={onChange} />
       {endAdornment}
     </StyledInputWrapper>
   )
@@ -21,14 +21,15 @@ const Input: React.FC<InputProps> = ({ endAdornment, onChange, placeholder, star
 
 const StyledInputWrapper = styled.div`
   align-items: center;
-  background-image: linear-gradient(to right, #F2F2F2, #D6D6D6);
-  border-radius: 25px;
+  background-image: linear-gradient(to right, #F2F2F2, #CCCCCC);
+  border-radius: 20px;
   display: flex;
   height: 55px;
   padding: 10px;
-  border: 1px;
+  border: 0px;
   border-style: solid !important;
   border-color: #A8A8A8 !important;
+  box-shadow: 0px 0px 15px #828C92;
 
 `
 
@@ -37,7 +38,7 @@ const StyledInput = styled.input`
   font-weight: 400;
   background: none;
   border: 0;
-  color: #333;
+  color: #2D3544;
 `
 
 export default Input

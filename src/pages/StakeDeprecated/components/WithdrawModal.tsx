@@ -47,9 +47,8 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
         max={fullBalance}
         symbol={tokenName}
       />
-      <ModalActions>
+      <ModalActions>        
         <ModalButton
-          style={{justifyContent:"center" }}
           disabled={pendingTx}
           onClick={async () => {
             setPendingTx(true)
@@ -61,12 +60,5 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
     </Modal>
   )
 }
-
-const WarningWithdraw = styled.div`
-  text-align: left;
-  overflow-y: auto;
-  max-height: 400px;
-  color: ${(props) => props.theme.colors.primary};
-`
 
 export default WithdrawModal

@@ -14,24 +14,20 @@ interface TokenInputProps extends InputProps {
 }
 
 
-
 const TokenInput: React.FC<TokenInputProps> = (
     { max, symbol, onChange, onSelectMax, value, depositFeeBP = 0, valueUsd= 0 }) => {
     const maxAvailableNo = new BigNumber(max).toNumber();
-    const maxAvailableStr = maxAvailableNo.toLocaleString('en-us', { maximumFractionDigits: 18, minimumFractionDigits: 18 });
+    const maxAvailableStr = maxAvailableNo.toLocaleString('en-us', { maximumFractionDigits: 2, minimumFractionDigits: 2 });
     
   return (
     <StyledTokenInput>
       <StyledMaxText onClick={onSelectMax}>{maxAvailableStr}&nbsp;{symbol}&nbsp;Available</StyledMaxText>
       <Input
         endAdornment={
-          <StyledTokenAdornmentWrapper>
-            <StyledTokenSymbol style={{marginLeft: '10px', marginRight: '8px'}}>{symbol}</StyledTokenSymbol>
-            <MaxButton onClick={onSelectMax}>Max</MaxButton>
-          </StyledTokenAdornmentWrapper>
+          <MaxButton onClick={onSelectMax}>Max</MaxButton>
         }
         onChange={onChange}
-        placeholder="0"
+        placeholder="0 RVRS"
         value={value}
       />
     </StyledTokenInput>
@@ -58,7 +54,7 @@ const StyledMaxText = styled.div`
   display: flex;
   font-size: 16px;
   font-weight: 500;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
   margin-left: 10px;
   justify-content: flex-start;
 `
@@ -75,8 +71,9 @@ const MaxButton = styled.button`
     padding-right: 20px;
     font-weight: 700;
     margin-right: -5px;
+    margin-left: 5px;
     background-image: linear-gradient(#506063, #909BBF);
-    border-radius: 20px;
+    border-radius: 17px;
     border: 0px;
     :hover {
         background-image: linear-gradient(#506063, #A1ACCD);

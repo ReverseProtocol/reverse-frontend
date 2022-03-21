@@ -7,7 +7,7 @@ const confirmModalButton = styled.button`
     padding: 15px;
     justify-content: center;
     background-image: linear-gradient(#506063, #909BBF);
-    border-radius: 20px;
+    border-radius: 15px;
     border: 0px;
     box-shadow: 0px 0px 10px #506063;
     :hover {

@@ -18,9 +18,6 @@ import { getCakeAddress } from 'utils/addressHelpers'
 import WithdrawModal from './WithdrawModal'
 import Card from './Card'
 import { usePriceCakeBusd } from "../../../state/hooks";
-import useWithdrawFeeTimer from "./useWithdrawFeeTimer";
-import WithdrawalFeeTimer from "./withdrawFeeTimer";
-
 
 const QuoteTitle = styled.p`
   font-size: 20px;
@@ -124,10 +121,6 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
   const { onUnstake } = useSousUnstake(sousId)
   const { onReward } = useSousHarvest(sousId, isBnbPool)
   const rvrsPrice = usePriceCakeBusd()
-  const { secondsRemaining, hasUnstakingFee } = useWithdrawFeeTimer(
-    userData ? userData.lastDepositedTime.toNumber() : 0,
-    parseInt('259200', 10)
-  );
   const [requestedApproval, setRequestedApproval] = useState(false)
   const [pendingTx, setPendingTx] = useState(false)
   const allowance = new BigNumber(userData?.allowance || 0)
