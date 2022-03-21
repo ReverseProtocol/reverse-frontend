@@ -12,34 +12,32 @@ export interface InputProps {
 const Input: React.FC<InputProps> = ({ endAdornment, onChange, placeholder, startAdornment, value }) => {
   return (
     <StyledInputWrapper>
-      {!!startAdornment && startAdornment}
+      {startAdornment}
       <StyledInput placeholder={placeholder} value={value} onChange={onChange} />
-      {!!endAdornment && endAdornment}
+      {endAdornment}
     </StyledInputWrapper>
   )
 }
 
 const StyledInputWrapper = styled.div`
   align-items: center;
-  background-color: ${(props) => props.theme.colors.input};
-  border-radius: 5px;
-  color: #333;
+  background-image: linear-gradient(to right, #F2F2F2, #D6D6D6);
+  border-radius: 25px;
   display: flex;
-  height: 72px;
-  padding: 0 ${(props) => props.theme.spacing[3]}px;
+  height: 55px;
+  padding: 10px;
+  border: 1px;
+  border-style: solid !important;
+  border-color: #A8A8A8 !important;
+
 `
 
 const StyledInput = styled.input`
-  width: 100%;
+  font-size: 16px;
+  font-weight: 400;
   background: none;
   border: 0;
   color: #333;
-  font-size: 18px;
-  flex: 1;
-  height: 56px;
-  margin: 0;
-  padding: 0;
-  outline: none;
 `
 
 export default Input

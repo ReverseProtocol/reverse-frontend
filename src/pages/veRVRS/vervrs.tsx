@@ -6,16 +6,16 @@ import { useWallet } from "@binance-chain/bsc-use-wallet"
 import TypographyTitle from 'components/layout/typography/typographyTitle'
 import TypographyBold from 'components/layout/typography/typographyBold'
 import Typography from 'components/layout/typography/typography'
-import AirdropContainer from 'components/layout/containers/airdropContainer'
-import ContentCard from 'components/layout/cards/airdrop/contentCard'
-import ContentCardMain from 'components/layout/cards/airdrop/contentCardMain'
+import VeRvrsContainer from 'components/layout/containers/veRvrsContainer'
+import ContentCard from 'components/layout/cards/vervrs/contentCard'
+import ContentCardMain from 'components/layout/cards/vervrs/contentCardMain'
 
 const VERVRS = () => {
   const { account } = useWallet()
 
   return (
     <Page>
-      <AirdropContainer>
+      <VeRvrsContainer>
         <ContentCard style={{ marginBottom: '10px' }}>
           <TypographyTitle style={{ marginTop: '15px', marginBottom: '10px' }}>Accumulate veRVRS and Boost your RVRS Yield</TypographyTitle>
         </ContentCard>
@@ -33,7 +33,7 @@ const VERVRS = () => {
             <Typography>veRVRS</Typography>
           </ContentCard>
         </Flex>
-      </AirdropContainer>
+      </VeRvrsContainer>
     </Page>
   )
 }

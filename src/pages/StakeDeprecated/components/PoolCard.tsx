@@ -15,7 +15,6 @@ import { QuoteToken, PoolCategory } from 'config/constants/types'
 import { Pool } from 'state/types'
 import useTokenBalance from 'hooks/useTokenBalance'
 import { getCakeAddress } from 'utils/addressHelpers'
-import DepositModal from './DepositModal'
 import WithdrawModal from './WithdrawModal'
 import Card from './Card'
 import { usePriceCakeBusd } from "../../../state/hooks";
@@ -141,13 +140,6 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
   const needsApproval = !accountHasStakedBalance && !allowance.toNumber() && !isBnbPool
   const isCardActive = isFinished && accountHasStakedBalance
   const convertedLimit = new BigNumber(stakingLimit).multipliedBy(new BigNumber(10).pow(tokenDecimals))
-  const [onPresentDeposit] = useModal(
-    <DepositModal
-      max={stakingLimit && stakingTokenBalance.isGreaterThan(convertedLimit) ? convertedLimit : stakingTokenBalance}
-      onConfirm={onStake}
-      tokenName={stakingLimit ? `${stakingTokenName} (${stakingLimit} max)` : stakingTokenName}
-    />,
-  )
   const [onPresentWithdraw] = useModal(
     <WithdrawModal max={stakedBalance} onConfirm={onUnstake} tokenName={stakingTokenName} pricePerShare={pricePerShare} />,
   )

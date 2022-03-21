@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const airdropContainer = styled.div`
+const veRvrsContainer = styled.div`
   align-self: baseline;
   background-image: linear-gradient(#2D3544, #2D3544);
   border-radius: 30px;
@@ -17,4 +17,4 @@ const airdropContainer = styled.div`
   border-color: #FFFFFF !important;
 `
 
-export default airdropContainer
+export default veRvrsContainer

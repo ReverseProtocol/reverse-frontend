@@ -14,42 +14,26 @@ interface TokenInputProps extends InputProps {
 }
 
 
+
 const TokenInput: React.FC<TokenInputProps> = (
     { max, symbol, onChange, onSelectMax, value, depositFeeBP = 0, valueUsd= 0 }) => {
-  const TranslateString = useI18n()
+    const maxAvailableNo = new BigNumber(max).toNumber();
+    const maxAvailableStr = maxAvailableNo.toLocaleString('en-us', { maximumFractionDigits: 18, minimumFractionDigits: 18 });
+    
   return (
     <StyledTokenInput>
-      <StyledMaxText>
-        {max.toLocaleString()} {symbol} {TranslateString(526, 'Available')}
-      </StyledMaxText>
-        <Staked>
-          {/* ~${valueUsd.toLocaleString()} TODO-center this somehow */}
-      </Staked>
+      <StyledMaxText onClick={onSelectMax}>{maxAvailableStr}&nbsp;{symbol}&nbsp;Available</StyledMaxText>
       <Input
         endAdornment={
           <StyledTokenAdornmentWrapper>
-            <StyledTokenSymbol style={{"color": "#1E2129 "}}>{symbol}</StyledTokenSymbol>
-            <StyledSpacer />
-            <div>
-              <Button size="md" style={{'borderRadius': '5px', 'color': 'white'}} onClick={onSelectMax}>
-                {TranslateString(452, 'Max')}
-              </Button>
-            </div>
+            <StyledTokenSymbol style={{marginLeft: '10px', marginRight: '8px'}}>{symbol}</StyledTokenSymbol>
+            <MaxButton onClick={onSelectMax}>Max</MaxButton>
           </StyledTokenAdornmentWrapper>
         }
         onChange={onChange}
         placeholder="0"
         value={value}
       />
-      {
-        depositFeeBP > 0 ?
-          <StyledMaxText>
-            {TranslateString(10001, 'Deposit Fee')}: {new BigNumber(value || 0).times(depositFeeBP/10000).toString()} {symbol}
-          </StyledMaxText>
-          :
-          null
-      }
-
     </StyledTokenInput>
   )
 }
@@ -71,18 +55,33 @@ const StyledTokenAdornmentWrapper = styled.div`
 `
 
 const StyledMaxText = styled.div`
-  align-items: center;
-  color: ${(props) => props.theme.colors.primary};
   display: flex;
-  font-size: 14px;
-  font-weight: 700;
-  height: 44px;
-  justify-content: flex-end;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  justify-content: flex-start;
 `
 
 const StyledTokenSymbol = styled.span`
   color: ${(props) => props.theme.colors.primary};
   font-weight: 700;
+`
+
+const MaxButton = styled.button`
+    padding: 15px;
+    padding-left: 20px;
+    color: #D6D6D6;
+    padding-right: 20px;
+    font-weight: 700;
+    margin-right: -5px;
+    background-image: linear-gradient(#506063, #909BBF);
+    border-radius: 20px;
+    border: 0px;
+    :hover {
+        background-image: linear-gradient(#506063, #A1ACCD);
+        box-shadow: 0px 0px 5px #5A6F73;
+    } 
 `
 
 export default TokenInput

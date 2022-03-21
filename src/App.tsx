@@ -36,7 +36,7 @@ const App: React.FC = () => {
       <Suspense fallback={null}>
         <Switch>
           <Route path="/bonds" component={BONDS} />
-          <Route path="/stakeDeprecated" component={VERVRS} />
+          <Route path="/stakeDeprecated" component={STAKEDEPRECATED} />
           <Route path="/airdrop" component={AIRDROP} />
           <Route component={NOTFOUND} />
         </Switch>
