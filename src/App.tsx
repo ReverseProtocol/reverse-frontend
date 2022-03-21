@@ -4,19 +4,20 @@ import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { ResetCSS } from '@pancakeswap-libs/uikit'
 import BigNumber from 'bignumber.js'
 import { useFetchPublicData } from 'state/hooks'
-import MenuBottom from 'components/layout/natigation/footer'
+import MenuBottom from 'components/layout/navigation/footer'
 import Style from 'components/Style'
-import Nav from './components/layout/natigation/nav'
+import Nav from './components/layout/navigation/nav'
 
 BigNumber.config({
   EXPONENTIAL_AT: 1000,
   DECIMAL_PLACES: 80,
 })
 
-const Bonds = lazy(() => import('./pages/Bonds'))
-const StakeDeprecated = lazy(() => import('./pages/StakeDeprecated'))
-const NotFound = lazy(() => import('./pages/notFound'))
-const Airdrop = lazy(() => import('./pages/Airdrop'))
+const BONDS = lazy(() => import('./pages/Bonds'))
+const STAKEDEPRECATED = lazy(() => import('./pages/StakeDeprecated'))
+const NOTFOUND = lazy(() => import('./pages/notFound'))
+const AIRDROP = lazy(() => import('./pages/Airdrop'))
+const VERVRS = lazy(() => import('./pages/veRVRS'))
 
 const App: React.FC = () => {
   const { account, connect } = useWallet()
@@ -34,16 +35,15 @@ const App: React.FC = () => {
       <Nav />
       <Suspense fallback={null}>
         <Switch>
-          <Route path="/bonds" component={Bonds} />
-          <Route path="/stakeDeprecated" component={StakeDeprecated} />
-          <Route path="/airdrop" component={Airdrop} />
-          <Route component={NotFound} />
+          <Route path="/bonds" component={BONDS} />
+          <Route path="/stakeDeprecated" component={VERVRS} />
+          <Route path="/airdrop" component={AIRDROP} />
+          <Route component={NOTFOUND} />
         </Switch>
       </Suspense>
       <MenuBottom />
     </Router>
   )
-
 }
 
 export default React.memo(App)

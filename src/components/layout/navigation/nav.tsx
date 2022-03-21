@@ -5,49 +5,13 @@ import { usePriceCakeBusd } from 'state/hooks'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Container, ButtonGroup, Button } from 'react-bootstrap'
 import { getBalanceNumber } from 'utils/formatBalance'
+import UnlockButton from 'components/unlock'
 import useTokenBalance from 'hooks/useTokenBalance'
 import { getCakeAddress } from 'utils/addressHelpers'
 import { NavLink } from 'react-router-dom'
+import Typography from '../typography/typography'
 
-const StyledButton = styled(Button)`
-  text-align: center;
-  border: #FFFF solid 0px;
-  border-radius: 30px;
-  background-color: #2D3544;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 30px;
-  padding-right: 30px;
-  font-size: 18px;
-  font-weight: 400;
-`
-
-const MenuContainer = styled(Container)`
-  padding-top: 50px;
-  text-align: center;
-`
-
-const ButtonContainer = styled.div`
-  border-radius: 35px;
-  background-color: #2D3544;
-  padding: 1px;
-  padding-top: 23px;
-  padding-bottom: 23px;
-  border: 1.5px;
-  border-style: solid !important;
-  border-color: #CBCBCB !important;
-`
-
-const activeClassName = 'ACTIVE'
-
-const StyledNavLink = styled(NavLink).attrs({ activeClassName })`
-  &:focus  {
-    background-image: linear-gradient(to right, #3E475E, #4E5E62);
-    font-weight: 600;
-  }
-`
-
-const NavBar = () => {
+const Nav = () => {
   const { account, connect, reset } = useWallet()
   const rvrsPriceUsd = usePriceCakeBusd()
   const rvrsBalance = getBalanceNumber(useTokenBalance(getCakeAddress())).toLocaleString('en-us', { maximumFractionDigits: 2 });
@@ -83,8 +47,58 @@ const NavBar = () => {
           </StyledButton>
         </ButtonContainer>
       </ButtonGroup>
+
+      {/*
+      {account != null && account.length > 1 ?
+        <Typography>
+          {rvrsBalance} RVRS {account.substring(0, 6)} 
+        </Typography>
+        :
+        <Typography>
+          <UnlockButton>Connect</UnlockButton>
+        </Typography>}
+        */ }
+
     </MenuContainer>
   )
 }
 
-export default NavBar
+const StyledButton = styled(Button)`
+  text-align: center;
+  border: #FFFF solid 0px;
+  border-radius: 35px;
+  background-color: #2D3544;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+  font-size: 18px;
+  font-weight: 500;
+`
+
+const MenuContainer = styled(Container)`
+  padding-top: 50px;
+  text-align: center;
+`
+
+const ButtonContainer = styled.div`
+  border-radius: 35px;
+  background-color: #2D3544;
+  padding: 1px;
+  padding-top: 23px;
+  padding-bottom: 23px;
+  border: 1.5px;
+  border-style: solid !important;
+  border-color: #CBCBCB !important;
+`
+
+const activeClassName = 'ACTIVE'
+
+const StyledNavLink = styled(NavLink).attrs({ activeClassName })`
+  &:focus  {
+    background-image: linear-gradient(to right, #3E475E, #4E5E62);
+    font-weight: 600;
+  }
+`
+
+export default Nav

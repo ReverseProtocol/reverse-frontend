@@ -18,7 +18,7 @@ import { useAirdropData } from "../../state/hooks"
 import useAirdropClaim from "../../hooks/useAirdropClaim"
 import { getBalanceNumber } from "../../utils/formatBalance"
 
-const Airdrop = () => {
+const VERVRS = () => {
   const { account } = useWallet()
   const airdropData = useAirdropData(account)
   const { onAirdropClaim } = useAirdropClaim(account)
@@ -47,46 +47,26 @@ const Airdrop = () => {
     <Page>
       <AirdropContainer>
         <ContentCard style={{ marginBottom: '10px' }}>
-          <TypographyTitle style={{ marginTop: '15px', marginBottom: '10px' }}>Claim Your Weekly UST Airdrop</TypographyTitle>
+          <TypographyTitle style={{ marginTop: '15px', marginBottom: '10px' }}>Accumulate veRVRS and Boost your RVRS Yield</TypographyTitle>
         </ContentCard>
         <Flex justifyContent="center">
           <ContentCard style={{ marginRight: '7px' }}>
-            <TypographyBold style={{ marginBottom: '5px' }}>{totalDistributedStr} UST</TypographyBold>
-            <Typography>Total Distributed</Typography>
+            <TypographyBold style={{ marginBottom: '5px' }}>5,560,452</TypographyBold>
+            <Typography>Staked RVRS</Typography>
           </ContentCard>
           <ContentCardMain>
-            <TypographyBold style={{ marginBottom: '5px' }}>{expectedReturns} UST</TypographyBold>
-            <Typography>Yearly Returns</Typography>
+            <TypographyBold style={{ marginBottom: '5px' }}>45.34%</TypographyBold>
+            <Typography>Base APY</Typography>
           </ContentCardMain>
           <ContentCard style={{ marginLeft: '7px' }}>
-            <TypographyBold style={{ marginBottom: '5px' }}>{claimedStr} UST</TypographyBold>
-            {account != null && account.length > 1 ?
-              <Typography>Claimed by ({account.substring(0, 5)})</Typography>
-              :
-              <Typography>&nbsp;</Typography>
-            }
+            <TypographyBold style={{ marginBottom: '5px' }}>738</TypographyBold>
+            <Typography>veRVRS</Typography>
           </ContentCard>
         </Flex>
-        <Flex justifyContent="space-between" padding="10px" marginTop="20px">
-          <Flex flexDirection="column" marginTop="2px">
-            <Typography>UST</Typography>
-            <TypographyBold style={{ marginLeft: '10px', marginTop: '5px' }}>{toClaimStr}</TypographyBold>
-          </Flex>
-          {toClaim && toClaim > 0 ?
-            <ClaimButton onClick={handleAirdropClaim} disabled={pendingTxn}>
-              Claim
-            </ClaimButton>
-            :
-            <ClaimButtonDisabled disabled>
-              Claimed
-            </ClaimButtonDisabled>
-          }
-        </Flex>
-        <Divider />
       </AirdropContainer>
     </Page>
   )
 }
 
 
-export default Airdrop
+export default VERVRS

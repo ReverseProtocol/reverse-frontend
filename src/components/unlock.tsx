@@ -23,24 +23,16 @@ const UnlockButton = (props) => {
 }
 
 const UnlockBtn = styled.button`
-  -webkit-box-align: center;
-  align-items: center;
   background-color: rgba(0, 0, 0,0) !important;
-  border: 1px;
+  border: 0px;
   border-style: solid !important;
   border-color: #ffff !important;
   border-radius: 10px;
-  color: #ffff;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 500;
+  color: #FFFF;
   width: 100%;
-  display: inline-flex;
-  min-height: 18px;
-  max-height: 35px;
-  max-width: 140px;
-  padding: 12px;
-  text-shadow: 0px 0px 5px #fff;
-  box-shadow: 0px 0px 5px #fff;
+  padding: 13px;
 `
 
 export default UnlockButton
