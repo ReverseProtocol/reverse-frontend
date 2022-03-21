@@ -31,10 +31,10 @@ const MenuBottom = (props) => {
 }
 
 const TypographyBold = styled.p`
-    font-size: 15px;
-    font-weight: 500;
-    margin-bottom: 0px;
-    text-shadow: 0 0 0 #FFFF;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 0px;
+  text-shadow: 0 0 0 #FFFF;
 `
 
 const NavContainer = styled.div`

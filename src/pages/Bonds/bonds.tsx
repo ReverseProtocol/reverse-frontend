@@ -11,16 +11,16 @@ import useBlock from 'hooks/useBlock'
 import { usePools2, usePrices, getTotalValueFromQuoteTokens, lookupPrice } from 'state/hooks'
 import { QuoteToken } from 'config/constants/types'
 import Page from 'components/layout/containers/page'
+import styled from 'styled-components'
 import PoolCard from './card'
 
-const Bonds: React.FC = () => {
-  const path = useRouteMatch()
-  const user = useWallet()
-  const bonds = usePools2(user)
+const Bond: React.FC = () => {
+  const { path } = useRouteMatch()
+  const { account } = useWallet()
+  const pools2 = usePools2(account)
   const prices = usePrices()
   const block = useBlock()
-
-  const poolsWithApy = bonds.map((pool2) => {
+  const poolsWithApy = pools2.map((pool2) => {
     let quoteTokens = new BigNumber(pool2.quoteTokenPerLp).times(pool2.totalStaked).div(new BigNumber(10).pow(18))
     if (pool2.isSingleAsset) {quoteTokens = new BigNumber(pool2.totalStaked).div(new BigNumber(10).pow(18)).div(2)}
     const tvl = getTotalValueFromQuoteTokens(quoteTokens, pool2.quoteTokenSymbol, prices)
@@ -36,17 +36,19 @@ const Bonds: React.FC = () => {
   })
   const [finishedPools, openPools] = partition(poolsWithApy, (pool2) => pool2.isFinished)
   const { url, isExact } = useRouteMatch()
+  const [modalOpen, setModalOpen] = useState(true)
+  const handleModal = async () => {
+    setModalOpen(!modalOpen)
+  }
 
   return (
     <Page>
       { /* Bonds card layout */ }
       <Route exact path={`${path}`}>
-        {orderBy(openPools, ['sortOrder']).map((pool2) => 
-        (<PoolCard key={pool2.sousId} pool2={pool2}/>))}
+        {orderBy(openPools, ['sortOrder']).map((pool2) => (<PoolCard key={pool2.sousId} pool2={pool2}/>))}
       </Route>
       <Route path={`${path}/inactive`}>
-        {orderBy(finishedPools, ['sortOrder']).map((pool2) => 
-        (<PoolCard key={pool2.sousId} pool2={pool2}/>))}
+        {orderBy(finishedPools, ['sortOrder']).map((pool2) => (<PoolCard key={pool2.sousId} pool2={pool2}/>))}
       </Route>
       { /* Active/Inactive button */ }
       <ActiveInactiveContatiner>
@@ -57,6 +59,6 @@ const Bonds: React.FC = () => {
   )
 }
 
-export default Bonds
+export default Bond
 
 

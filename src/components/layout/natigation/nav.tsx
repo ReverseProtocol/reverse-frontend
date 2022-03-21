@@ -1,72 +1,76 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
-import { Flex } from '@pancakeswap-libs/uikit'
 import { usePriceCakeBusd } from 'state/hooks'
-import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Container } from 'react-bootstrap';
+import { Container, ButtonGroup, Button } from 'react-bootstrap'
 import { getBalanceNumber } from 'utils/formatBalance'
 import useTokenBalance from 'hooks/useTokenBalance'
 import { getCakeAddress } from 'utils/addressHelpers'
+import { NavLink } from 'react-router-dom'
 
-const Nav = (props) => {
+const StyledButton = styled(Button)`
+  text-align: center;
+  border: #FFFF solid 0px;
+  border-radius: 30px;
+  padding: 20px;
+  background-color: #2D3544;
+`
+
+const MenuContainer = styled(Container)`
+  padding-top: 50px;
+  text-align: center;
+`
+
+const activeClassName = 'ACTIVE'
+
+const StyledNavLink = styled(NavLink).attrs({ activeClassName })`
+  background-color: #2D3544;
+  &:focus  {
+    background-color: #3F4550;
+    border: #FFFF solid 0px !important;
+    box-shadow: none;
+  }
+`
+
+const NavBar = () => {
   const { account, connect, reset } = useWallet()
-  const cakePriceUsd = usePriceCakeBusd()
-  const [isChecked, setIsChecked] = useState(false);
-  const cakeBalance = getBalanceNumber(useTokenBalance(getCakeAddress())).toLocaleString('en-us', { maximumFractionDigits: 2 });
+  const rvrsPriceUsd = usePriceCakeBusd()
+  const rvrsBalance = getBalanceNumber(useTokenBalance(getCakeAddress())).toLocaleString('en-us', { maximumFractionDigits: 2 });
 
   return (
     <MenuContainer>
-      <NavContainer>
-        <Flex justifyContent="space-between">
-          <Link to="/stakeDeprecated" className="nav-links" onClick={() => { setIsChecked(!isChecked) }}>
-            <TypographyBold>veRVRS</TypographyBold>
-          </Link>
-          <Link to="/bonds" className="nav-links" onClick={() => { setIsChecked(!isChecked) }}>
-            <TypographyBold>Bonds</TypographyBold>
-          </Link>
-          <Link to="/airdrop" className="nav-links" onClick={() => { setIsChecked(!isChecked) }}>
-            <TypographyBold>Airdrop</TypographyBold>
-          </Link>
-        </Flex>
-      </NavContainer>
-      { /*  <ul className="nav-tabs outsideMainNav">
-        <li className="web3li">
-        {account != null && account.length > 1 ?
-          <TypographyBold style={{ justifyContent: 'center' }}>
-            <TypographyBold>{cakeBalance} RVRS</TypographyBold>{account.substring(0, 6)}...
-          </TypographyBold> : <TypographyBold>Connect</TypographyBold> }
-      </li> </ul> */ }
+      <ButtonGroup>
+        <StyledButton
+          as={StyledNavLink}
+          to="/stakeDeprecated"
+          isActive={(match, { pathname }) =>
+            Boolean(match) ||
+            pathname.startsWith('/stakeDeprecated')
+          }
+        >veRVRS
+        </StyledButton>
+        <StyledButton
+          as={StyledNavLink}
+          to="/bonds"
+          isActive={(match, { pathname }) =>
+            Boolean(match) ||
+            pathname.startsWith('/bonds')
+          }
+        >&nbsp;Bonds&nbsp;
+        </StyledButton>
+        <StyledButton
+          as={StyledNavLink}
+          to="/airdrop"
+          isActive={(match, { pathname }) =>
+            Boolean(match) ||
+            pathname.startsWith('/airdrop')
+          }
+        >Airdrop
+        </StyledButton>
+      </ButtonGroup>
     </MenuContainer>
   )
 }
 
-const TypographyBold = styled.p`
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 0px;
-`
-
-const NavContainer = styled.div`
-  text-align: center;
-  border: 1px;
-  border-style: solid !important;
-  border-color: #ffff !important;
-  border-radius: 35px;
-  padding: 22px;
-  margin-bottom: -10px;
-  background-color: #2D3544;
-  &:hover:not(:disabled),
-  &:active:not(:disabled),
-  &:focus  {
-    background-color: #3F4550;
-  }
-`
-const MenuContainer = styled(Container)`
-  min-height: calc(1vh - 64px);
-  padding-top: 50px;
-  max-width: 350px;
-`
-
-export default Nav
+export default NavBar

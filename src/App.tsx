@@ -15,7 +15,7 @@ BigNumber.config({
 
 const Bonds = lazy(() => import('./pages/Bonds'))
 const StakeDeprecated = lazy(() => import('./pages/StakeDeprecated'))
-const NotFound = lazy(() => import('./pages/NotFound'))
+const NotFound = lazy(() => import('./pages/notFound'))
 const Airdrop = lazy(() => import('./pages/Airdrop'))
 
 const App: React.FC = () => {
@@ -31,24 +31,19 @@ const App: React.FC = () => {
     <Router>
       <ResetCSS />
       <Style />
-      <Nav>&nsbp;</Nav>
-      <Suspense fallback>
+      <Nav />
+      <Suspense fallback={null}>
         <Switch>
-          <Route path="/bonds">
-            <Bonds />
-          </Route>
-          <Route path="/stakeDeprecated">
-            <StakeDeprecated />
-          </Route>
-          <Route path="/airdrop">
-            <Airdrop />
-          </Route>
+          <Route path="/bonds" component={Bonds} />
+          <Route path="/stakeDeprecated" component={StakeDeprecated} />
+          <Route path="/airdrop" component={Airdrop} />
           <Route component={NotFound} />
         </Switch>
       </Suspense>
-      <MenuBottom>&nsbp;</MenuBottom>
+      <MenuBottom />
     </Router>
   )
+
 }
 
 export default React.memo(App)
