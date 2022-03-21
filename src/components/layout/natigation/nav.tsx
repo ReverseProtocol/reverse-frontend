@@ -13,8 +13,13 @@ const StyledButton = styled(Button)`
   text-align: center;
   border: #FFFF solid 0px;
   border-radius: 30px;
-  padding: 20px;
   background-color: #2D3544;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+  font-size: 18px;
+  font-weight: 400;
 `
 
 const MenuContainer = styled(Container)`
@@ -22,14 +27,23 @@ const MenuContainer = styled(Container)`
   text-align: center;
 `
 
+const ButtonContainer = styled.div`
+  border-radius: 35px;
+  background-color: #2D3544;
+  padding: 1px;
+  padding-top: 23px;
+  padding-bottom: 23px;
+  border: 1.5px;
+  border-style: solid !important;
+  border-color: #CBCBCB !important;
+`
+
 const activeClassName = 'ACTIVE'
 
 const StyledNavLink = styled(NavLink).attrs({ activeClassName })`
-  background-color: #2D3544;
   &:focus  {
-    background-color: #3F4550;
-    border: #FFFF solid 0px !important;
-    box-shadow: none;
+    background-image: linear-gradient(to right, #3E475E, #4E5E62);
+    font-weight: 600;
   }
 `
 
@@ -41,33 +55,33 @@ const NavBar = () => {
   return (
     <MenuContainer>
       <ButtonGroup>
-        <StyledButton
-          as={StyledNavLink}
-          to="/stakeDeprecated"
-          isActive={(match, { pathname }) =>
-            Boolean(match) ||
-            pathname.startsWith('/stakeDeprecated')
-          }
-        >veRVRS
-        </StyledButton>
-        <StyledButton
-          as={StyledNavLink}
-          to="/bonds"
-          isActive={(match, { pathname }) =>
-            Boolean(match) ||
-            pathname.startsWith('/bonds')
-          }
-        >&nbsp;Bonds&nbsp;
-        </StyledButton>
-        <StyledButton
-          as={StyledNavLink}
-          to="/airdrop"
-          isActive={(match, { pathname }) =>
-            Boolean(match) ||
-            pathname.startsWith('/airdrop')
-          }
-        >Airdrop
-        </StyledButton>
+        <ButtonContainer>
+          <StyledButton
+            as={StyledNavLink}
+            to="/stakeDeprecated"
+            isActive={(match, { pathname }) =>
+              Boolean(match) ||
+              pathname.startsWith('/stakeDeprecated')
+            }>veRVRS
+          </StyledButton>
+          <StyledButton
+            as={StyledNavLink}
+            to="/bonds"
+            isActive={(match, { pathname }) =>
+              Boolean(match) ||
+              pathname.startsWith('/bonds')
+            }
+          >&nbsp;Bonds&nbsp;
+          </StyledButton>
+          <StyledButton
+            as={StyledNavLink}
+            to="/airdrop"
+            isActive={(match, { pathname }) =>
+              Boolean(match) ||
+              pathname.startsWith('/airdrop')
+            }>Airdrop
+          </StyledButton>
+        </ButtonContainer>
       </ButtonGroup>
     </MenuContainer>
   )
