@@ -86,11 +86,11 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
   // returns
   const roiNo = (apy && apy.div(365).times(vesting).minus(100)).toNumber();
   const positiveRoi = roiNo > 0;
-  const roiStr = roiNo.toLocaleString('en-us', { maximumFractionDigits: 2, minimumFractionDigits: 0 });
+  const roiStr = roiNo.toLocaleString('en-us', { maximumFractionDigits: 0, minimumFractionDigits: 0 });
 
   // tvl
   const tbvNo = pool2.tvl && pool2.tvl.toNumber();
-  const tbvStr = tbvNo.toLocaleString('en-us', { maximumFractionDigits: 2, minimumFractionDigits: 0 });
+  const tbvStr = tbvNo.toLocaleString('en-us', { maximumFractionDigits: 0, minimumFractionDigits: 0 });
 
   // rewards to claim
   const rewardsNo = getBalanceNumber(earnings, tokenDecimals);
