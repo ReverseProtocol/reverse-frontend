@@ -59,6 +59,8 @@ const Nav = () => {
         </Typography>}
         */ }
 
+        <UnlockButton>Connect</UnlockButton>
+
     </MenuContainer>
   )
 }

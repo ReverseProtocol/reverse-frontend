@@ -1,10 +1,10 @@
 import React from 'react'
-import { Button, useWalletModal } from '@pancakeswap-libs/uikit'
 import ReactTooltip from 'react-tooltip';
 import rvrs from 'config/constants/rvrs'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import useI18n from 'hooks/useI18n'
 import styled from 'styled-components';
+import { useWalletModal } from './WalletModal';
 
 const UnlockButton = (props) => {
   const TranslateString = useI18n()
