@@ -9,12 +9,15 @@ import UnlockButton from 'components/unlock'
 import useTokenBalance from 'hooks/useTokenBalance'
 import { getCakeAddress } from 'utils/addressHelpers'
 import { NavLink } from 'react-router-dom'
+import { useWalletModal } from 'components/WalletModal'
+import rvrs from 'config/constants/rvrs'
 import Typography from '../typography/typography'
 
-const Nav = () => {
+const Nav = (props) => {
   const { account, connect, reset } = useWallet()
   const rvrsPriceUsd = usePriceCakeBusd()
   const rvrsBalance = getBalanceNumber(useTokenBalance(getCakeAddress())).toLocaleString('en-us', { maximumFractionDigits: 2 });
+  const { onPresentConnectModal } = useWalletModal(connect, reset)
 
   return (
     <MenuContainer>
@@ -47,25 +50,37 @@ const Nav = () => {
           </StyledButton>
         </ButtonContainer>
       </ButtonGroup>
-
-      {/*
-      {account != null && account.length > 1 ?
-        <Typography>
-          {rvrsBalance} RVRS {account.substring(0, 6)} 
-        </Typography>
-        :
-        <Typography>
-          <UnlockButton>Connect</UnlockButton>
-        </Typography>}
-        */ }
-
-        <UnlockButton>Connect</UnlockButton>
-
+      <ButtonGroup>
+        {account != null && account.length > 1 ?
+          <Typography>
+            {rvrsBalance} RVRS {account.substring(0, 6)}
+          </Typography>
+          :
+          <ConnectButton
+            disabled={rvrs.isLocked.unlockWalletButton}
+            onClick={onPresentConnectModal} {...props}>
+            Connect
+          </ConnectButton>
+        }
+      </ButtonGroup>
     </MenuContainer>
   )
 }
 
 const StyledButton = styled(Button)`
+  text-align: center;
+  border: #FFFF solid 0px;
+  border-radius: 35px;
+  background-color: #2D3544;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+  font-size: 18px;
+  font-weight: 500;
+`
+
+const ConnectButton = styled(Button)`
   text-align: center;
   border: #FFFF solid 0px;
   border-radius: 35px;
