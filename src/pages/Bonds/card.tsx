@@ -187,7 +187,7 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
                 <Typography>Sold&nbsp;Out</Typography>
               }
             </Flex>
-            {/* Vesting */}y
+            {/* Vesting */}
             <Flex flexDirection="column" alignItems="start">
               <TypographyBold style={{ marginBottom: "5px" }}>Vesting</TypographyBold>
               {!hasEnded ?

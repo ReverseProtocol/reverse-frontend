@@ -15,10 +15,10 @@ const bondButton = styled.button`
     :hover {
         background-image: linear-gradient(#5E7073, #909BBF);
         transition: 0.5s;
+        
     }
 
-    min-width: 110px;
-    
+    min-width: 110px;    
 `
 
 export default bondButton

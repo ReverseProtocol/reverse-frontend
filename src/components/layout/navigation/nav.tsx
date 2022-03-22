@@ -26,11 +26,19 @@ const Nav = (props) => {
         <ButtonContainer>
           <StyledButton
             as={StyledNavLink}
-            to="/stakeDeprecated"
+            to="/staking"
             isActive={(match, { pathname }) =>
               Boolean(match) ||
-              pathname.startsWith('/stakeDeprecated')
-            }>veRVRS
+              pathname.startsWith('/staking')
+            }>Staking
+          </StyledButton>
+          <StyledButton
+            as={StyledNavLink}
+            to="/airdrops"
+            isActive={(match, { pathname }) =>
+              Boolean(match) ||
+              pathname.startsWith('/airdrops')
+            }>Airdrops
           </StyledButton>
           <StyledButton
             as={StyledNavLink}
@@ -40,14 +48,6 @@ const Nav = (props) => {
               pathname.startsWith('/bonds')
             }
           >&nbsp;Bonds&nbsp;
-          </StyledButton>
-          <StyledButton
-            as={StyledNavLink}
-            to="/airdrop"
-            isActive={(match, { pathname }) =>
-              Boolean(match) ||
-              pathname.startsWith('/airdrop')
-            }>Airdrop
           </StyledButton>
         </ButtonContainer>
       </ButtonGroup>

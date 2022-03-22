@@ -52,7 +52,8 @@ const MaxButton = styled.button`
   border: 0px;
   :hover {
       background-image: linear-gradient(#506063, #A1ACCD);
-      box-shadow: 0px 0px 5px #5A6F73;
+      color: #FFFF;
+      transition: 0.5s;
   } 
 `
 

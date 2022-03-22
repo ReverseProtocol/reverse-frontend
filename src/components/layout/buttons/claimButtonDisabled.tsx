@@ -12,7 +12,6 @@ const claimButtonDisabled = styled.button`
     :hover {
         background-image: linear-gradient(to right, #2D3544, #323B4A);
     } 
-
 `
 
 export default claimButtonDisabled

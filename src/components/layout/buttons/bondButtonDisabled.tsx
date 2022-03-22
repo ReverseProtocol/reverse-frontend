@@ -13,10 +13,7 @@ const bondButtonDisabled = styled.button`
     border: 1px;
     border-style: solid !important;
     border-color: #5F6C74 !important;
-
     min-width: 110px;
-
-
     :hover {
         background-image: linear-gradient(to right, #2D3544, #323B4A);
     } 

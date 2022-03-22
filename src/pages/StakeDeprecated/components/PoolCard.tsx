@@ -165,7 +165,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
     }
   }, [onApprove, setRequestedApproval])
   const TVL = pool.tvl && pool.tvl.toNumber().toLocaleString('en-us', { maximumFractionDigits: 0 });
-  const TotalAPY = apy && apy.plus(445).toNumber().toLocaleString('en-us', { maximumFractionDigits: 0 });
+  const APY = apy && apy.toNumber().toLocaleString('en-us', { maximumFractionDigits: 0 });
   const bal = getBalanceNumber(stakedBalance).toLocaleString('en-us', { maximumFractionDigits: 0 });
 
   return (
@@ -174,8 +174,8 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
       <div>
         <Wrapper justifyContent="center" alignItems="center">
           <Flex flexDirection="column" alignItems='center'>
-            <QuoteTitle2>Total APY</QuoteTitle2>
-            <QuoteTitle>0%</QuoteTitle>
+            <QuoteTitle2>RVRS APY</QuoteTitle2>
+            <QuoteTitle>{APY}%</QuoteTitle>
           </Flex>
           <Flex flexDirection="column" alignItems='center' marginLeft='60px'>
             <QuoteTitle2> TVL</QuoteTitle2>

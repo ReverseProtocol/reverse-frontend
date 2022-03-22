@@ -16,7 +16,7 @@ BigNumber.config({
 const BONDS = lazy(() => import('./pages/Bonds'))
 const STAKEDEPRECATED = lazy(() => import('./pages/StakeDeprecated'))
 const NOTFOUND = lazy(() => import('./pages/notFound'))
-const AIRDROP = lazy(() => import('./pages/Airdrop'))
+const AIRDROP = lazy(() => import('./pages/Airdrops'))
 const VERVRS = lazy(() => import('./pages/veRVRS'))
 
 const App: React.FC = () => {
@@ -36,8 +36,8 @@ const App: React.FC = () => {
       <Suspense fallback={null}>
         <Switch>
           <Route path="/bonds" component={BONDS} />
-          <Route path="/stakeDeprecated" component={STAKEDEPRECATED} />
-          <Route path="/airdrop" component={AIRDROP} />
+          <Route path="/staking" component={STAKEDEPRECATED} />
+          <Route path="/airdrops" component={AIRDROP} />
           <Route component={NOTFOUND} />
         </Switch>
       </Suspense>

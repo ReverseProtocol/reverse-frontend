@@ -59,7 +59,7 @@ const StyledModal = styled.div`
 const DismissButton = styled.button`
   font-size: 18px;
   font-weight: 600;
-  color: #9CADB8;
+  color: #D6D6D6;
   padding: 0px;
   background: none;
   border-radius: 10px;
@@ -68,6 +68,8 @@ const DismissButton = styled.button`
   border-color: #5F6C74 !important;
   :hover {
       background: none;
+      color: #FFFF;
+      transition: 0.5s;
   } 
 `
 
