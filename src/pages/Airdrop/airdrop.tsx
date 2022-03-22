@@ -47,7 +47,10 @@ const Airdrop = () => {
     <Page>
       <AirdropContainer>
         <ContentCard style={{ marginBottom: '10px' }}>
-          <TypographyTitle style={{ marginTop: '15px', marginBottom: '10px' }}>Claim Your Weekly UST Airdrop</TypographyTitle>
+          <TypographyTitle style={{ marginTop: '15px', marginBottom: '10px' }}>Claim Your Weekly&nbsp;</TypographyTitle>
+          <a target="_blanK" rel="noreferrer" href="https://reverse.gitbook.io/docs/the-protocol/reverseum-bonding-pools" className="nav-links">
+            <TypographyTitle style={{ marginTop: '15px', marginBottom: '10px', borderBottom: '1px dotted #FFFF' }}>UST Airdrop</TypographyTitle>
+          </a>
         </ContentCard>
         <Flex justifyContent="center">
           <ContentCard style={{ marginRight: '7px' }}>

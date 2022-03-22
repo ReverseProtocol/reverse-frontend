@@ -12,15 +12,17 @@ import { NavLink } from 'react-router-dom'
 import { useWalletModal } from 'components/WalletModal'
 import rvrs from 'config/constants/rvrs'
 import Typography from '../typography/typography'
+import { Flex } from '../flex'
 
 const Nav = (props) => {
   const { account, connect, reset } = useWallet()
   const rvrsPriceUsd = usePriceCakeBusd()
-  const rvrsBalance = getBalanceNumber(useTokenBalance(getCakeAddress())).toLocaleString('en-us', { maximumFractionDigits: 2 });
+  const rvrsBalance = getBalanceNumber(useTokenBalance(getCakeAddress())).toLocaleString('en-us', { maximumFractionDigits: 0 });
   const { onPresentConnectModal } = useWalletModal(connect, reset)
 
   return (
     <MenuContainer>
+      <Flex justifyContent="space-between" paddingLeft="365px" paddingRight="100px"> 
       <ButtonGroup>
         <ButtonContainer>
           <StyledButton
@@ -52,9 +54,10 @@ const Nav = (props) => {
       </ButtonGroup>
       <ButtonGroup>
         {account != null && account.length > 1 ?
-          <Typography>
-            {rvrsBalance} RVRS {account.substring(0, 6)}
-          </Typography>
+          <ConnectButton style={{justifyContent:"space-between"}}>
+            <object type="image/svg+xml" data="/images/hmny.svg" width="50px">&nbsp;</object> 
+            {account.substring(0, 6)}...
+          </ConnectButton>
           :
           <ConnectButton
             disabled={rvrs.isLocked.unlockWalletButton}
@@ -63,11 +66,12 @@ const Nav = (props) => {
           </ConnectButton>
         }
       </ButtonGroup>
+      </Flex>
     </MenuContainer>
   )
 }
 
-const StyledButton = styled(Button)`
+const StyledButton = styled.div`
   text-align: center;
   border: #FFFF solid 0px;
   border-radius: 35px;
@@ -78,19 +82,20 @@ const StyledButton = styled(Button)`
   padding-right: 30px;
   font-size: 18px;
   font-weight: 500;
+  &:hover  {
+    background-image: linear-gradient(to right, #383F51, #354246);
+    font-weight: 600;
+  }
 `
 
-const ConnectButton = styled(Button)`
+const ConnectButton = styled.div`
   text-align: center;
-  border: #FFFF solid 0px;
+  padding: 5px;
+  border: #FFFF solid 1px;
   border-radius: 35px;
   background-color: #2D3544;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 30px;
-  padding-right: 30px;
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 600;
 `
 
 const MenuContainer = styled(Container)`
@@ -113,7 +118,7 @@ const activeClassName = 'ACTIVE'
 
 const StyledNavLink = styled(NavLink).attrs({ activeClassName })`
   &:focus  {
-    background-image: linear-gradient(to right, #3E475E, #4E5E62);
+    background-image: linear-gradient(to right, #464F68, #506970);
     font-weight: 600;
   }
 `

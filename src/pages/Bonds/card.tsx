@@ -75,7 +75,7 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
   const needsApproval = !userHasBondedBalance && !allowance.toNumber()
 
   // to start 
-  const hasStarted =  block > startBlock
+  const hasStarted = block > startBlock
   const hoursToStartNo = (startBlock - block) * 2 * 0.000277778;
   const hoursToStartStr = hoursToStartNo.toLocaleString('en-us', { maximumFractionDigits: 2, minimumFractionDigits: 0 });
 
@@ -122,7 +122,14 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
         {hasStarted ?
           <Flex justifyContent="space-between">
             <Flex justifyContent="space-between">
-              <TypographyTitle style={{ marginLeft: "15px" }}>{tokenName}&nbsp;veBonds</TypographyTitle>
+              <TypographyTitle>
+                <Flex justifyContent="space-between">
+                  <TypographyTitle style={{ marginLeft: "17px" }}>{tokenName}&nbsp;</TypographyTitle>
+                  <a target="_blanK" rel="noreferrer" href="https://reverse.gitbook.io/docs/the-protocol/reverseum-bonding-pools" className="nav-links">
+                    <TypographyTitle style={{ borderBottom: '1px dotted #FFFF' }}>rvBond</TypographyTitle>
+                  </a>
+                </Flex>
+              </TypographyTitle>
             </Flex>
             {positiveRoi ?
               <Flex alignItems="end">
@@ -151,9 +158,14 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
           </Flex>
           :
           <Flex justifyContent="space-between">
-            <Flex justifyContent="space-between">
-              <TypographyTitle style={{ marginLeft: "17px" }}>{tokenName}&nbsp;veBonds</TypographyTitle>
-            </Flex>
+            <TypographyTitle>
+              <Flex justifyContent="space-between">
+                <TypographyTitle style={{ marginLeft: "17px" }}>{tokenName}&nbsp;</TypographyTitle>
+                <a target="_blanK" rel="noreferrer" href="https://reverse.gitbook.io/docs/the-protocol/reverseum-bonding-pools" className="nav-links">
+                  <TypographyTitle style={{ borderBottom: '1px dotted #FFFF' }}>rvBond</TypographyTitle>
+                </a>
+              </Flex>
+            </TypographyTitle>
             <Flex alignItems="end">
               <BondButtonDisabled disabled style={{ justifyContent: "center" }}>
                 {hoursToStartStr}h Left
@@ -167,13 +179,10 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
           <Flex justifyContent="space-between">
             {/* ROI */}
             <Flex flexDirection="column" alignItems="start">
-              <Link  to='https://reverse.gitbook.io/docs/the-protocol/reverseum-bonding-pools'>
-                <TypographyBold style={{ marginBottom: "5px", borderBottom:'1px dotted #FFFF' }}>vROI</TypographyBold>
-              </Link> 
-              
+              <TypographyBold style={{ marginBottom: "5px" }}>vROI</TypographyBold>
               {positiveRoi ?
-                <Typography>{roiStr}%</Typography> 
-                : 
+                <Typography>{roiStr}%</Typography>
+                :
                 <Typography>Sold&nbsp;Out</Typography>
               }
             </Flex>
