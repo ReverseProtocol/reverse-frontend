@@ -87,6 +87,7 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
   // returns
   const roiNo = (apy && apy.div(365).times(vesting).minus(100)).toNumber();
   const positiveRoi = roiNo > 0;
+  const fivePercentRoi = roiNo > 5;
   const roiStr = roiNo.toLocaleString('en-us', { maximumFractionDigits: 0, minimumFractionDigits: 0 });
 
   // tvl
@@ -131,7 +132,7 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
                 </Flex>
               </TypographyTitle>
             </Flex>
-            {positiveRoi ?
+            {fivePercentRoi ?
               <Flex alignItems="end">
                 {user && (needsApproval ? (
                   <BondButton
@@ -186,7 +187,7 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
                 <Typography>Sold&nbsp;Out</Typography>
               }
             </Flex>
-            {/* Vesting */}
+            {/* Vesting */}y
             <Flex flexDirection="column" alignItems="start">
               <TypographyBold style={{ marginBottom: "5px" }}>Vesting</TypographyBold>
               {!hasEnded ?
