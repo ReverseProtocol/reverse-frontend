@@ -69,9 +69,11 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
 
   // bonded balance
   const bondedBalance = new BigNumber(userData?.stakedBalance || 0);
+  const bondedBalanceNo = bondedBalance.toNumber();  
+  const bondedBalanceStr = getBalanceNumber(bondedBalance).toLocaleString('en-us', { maximumFractionDigits: 2, minimumFractionDigits: 2 });
+
+  // misc
   const userHasBondedBalance = bondedBalance?.toNumber() > 0
-  const bondedBalanceNo = bondedBalance.toNumber();
-  const bondedBalanceStr = bondedBalanceNo.toLocaleString('en-us', { maximumFractionDigits: 2, minimumFractionDigits: 0 });
   const needsApproval = !userHasBondedBalance && !allowance.toNumber()
 
   // to start 
@@ -203,10 +205,10 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
             {user && (
               <Flex flexDirection="column" alignItems="start">
                 {bondTokenBalanceNo > 0 ?
-                  <TypographyBold style={{ marginBottom: "5px" }}>Bonded</TypographyBold> : <Typography>&nbsp;</Typography>
+                  <TypographyBold style={{ marginBottom: "5px" }}>Bonded</TypographyBold> : <TypographyBold style={{ marginBottom: "5px" }}>Bonded</TypographyBold>
                 }
                 {bondTokenBalanceNo > 0 ?
-                  <Typography>TODO&nbsp;{tokenName}</Typography> : <Typography>&nbsp;</Typography>
+                  <Typography>{bondedBalanceStr}&nbsp;{tokenName}</Typography> : <Typography>N/A</Typography>
                 }
               </Flex>
             )}

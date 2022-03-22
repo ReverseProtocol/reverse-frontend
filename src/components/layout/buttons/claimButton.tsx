@@ -5,6 +5,7 @@ const claimButton = styled.button`
     background-image: linear-gradient(#506063, #909BBF);
     border-radius: 18px;
     border: 0px;
+    color: #EEEEEE;
     box-shadow: 0px 0px 8px #506063;
     :hover {
         background-image: linear-gradient(#506063, #A1ACCD);
