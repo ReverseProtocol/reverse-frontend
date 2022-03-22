@@ -16,7 +16,6 @@ import { Pool } from 'state/types'
 import useTokenBalance from 'hooks/useTokenBalance'
 import { getCakeAddress } from 'utils/addressHelpers'
 import WithdrawModal from './WithdrawModal'
-import Card from './Card'
 import { usePriceCakeBusd } from "../../../state/hooks";
 
 const QuoteTitle = styled.p`
@@ -84,6 +83,23 @@ const UnstakeButton = styled.button`
   display: inline-flex;
   max-height: 40px;
   padding: 25px;
+`
+
+const Card = styled.div<{ isActive?: boolean; isFinished?: boolean }>`
+align-self: baseline;
+background-image: linear-gradient(#2D3544, #2D3544);
+border-radius: 30px;
+display: flex;
+flex-direction: column;
+padding: 40px;
+position: relative;
+text-align: center;
+margin-bottom: 0px;
+border: 1px solid #FFFF;
+box-shadow: 0px 0px 0px #A5A5A5;
+border: 0.5npx;
+border-style: solid !important;
+border-color: #9B9B9B !important;
 `
 
 

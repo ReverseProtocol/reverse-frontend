@@ -12,6 +12,27 @@ interface Props extends InjectedProps {
   bodyPadding?: string;
 }
 
+const Modal: React.FC<Props> = ({
+  title,
+  onDismiss,
+  children,
+  hideCloseButton = false,
+}) => (
+
+  <StyledModal>
+    <TitleContainer>
+      <Flex justifyContent="space-between">
+        <TypographyTitle>{title}</TypographyTitle>
+        <DismissButton onClick={onDismiss}>Close</DismissButton>
+      </Flex>
+    </TitleContainer>
+    <Divider />
+    <Flex>
+      {children}
+    </Flex>
+  </StyledModal>
+)
+
 const Divider = styled.div`
   height: 0px;
   margin-top: 10px;
@@ -28,7 +49,7 @@ const TitleContainer = styled(Container)`
 
 const StyledModal = styled.div`
   background-image: linear-gradient(#2D3544, #37404E);
-  padding: 15px;
+  padding: 20px;
   border: 1px solid #FFF;
   border-radius: 25px;
   z-index: ${({ theme }) => theme.zIndices.modal};
@@ -49,26 +70,5 @@ const DismissButton = styled.button`
       background: none;
   } 
 `
-
-const Modal: React.FC<Props> = ({
-  title,
-  onDismiss,
-  children,
-  hideCloseButton = false,
-}) => (
-
-  <StyledModal>
-    <TitleContainer>
-      <Flex justifyContent="space-between">
-        <TypographyTitle>{title}</TypographyTitle>
-        <DismissButton onClick={onDismiss}>Close</DismissButton>
-      </Flex>
-    </TitleContainer>
-    <Divider />
-    <Flex>
-      {children}
-    </Flex>
-  </StyledModal>
-);
 
 export default Modal;

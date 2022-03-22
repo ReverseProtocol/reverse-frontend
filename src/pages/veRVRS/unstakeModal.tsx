@@ -4,9 +4,8 @@ import ModalActions from 'components/layout/modal/modalActions'
 import styled from 'styled-components'
 import Modal from 'components/layout/modal/modal'
 import ModalButton from 'components/layout/buttons/modalButton'
-import TokenInput from '../../../components/layout/modal/input'
-import { getFullDisplayBalance } from '../../../utils/formatBalance'
-
+import TokenInput from 'components/layout/modal/input'
+import { getFullDisplayBalance } from 'utils/formatBalance'
 const DEFAULT_TOKEN_DECIMALS = new BigNumber(10).pow(18)
 
 interface WithdrawModalProps {

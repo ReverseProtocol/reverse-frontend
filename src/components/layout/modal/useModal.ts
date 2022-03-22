@@ -1,5 +1,5 @@
 import { useCallback, useContext, useEffect } from "react";
-import { Context } from "./ModalContext";
+import { Context } from "./context";
 import { Handler } from "./types";
 
 const useModal = (modal: React.ReactNode, closeOnOverlayClick = true): [Handler, Handler] => {

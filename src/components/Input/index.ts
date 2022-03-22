@@ -1,2 +1,2 @@
-export { default } from 'components/TokenInput/Input'
-export type { InputProps } from 'components/TokenInput/Input'
+export { default } from 'components/layout/modal/input/input'
+export type { InputProps } from 'components/layout/modal/input/input'

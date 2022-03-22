@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Button } from '@pancakeswap-libs/uikit'
 import useI18n from 'hooks/useI18n'
-import Input, { InputProps } from 'components/TokenInput/Input'
+import Input, { InputProps } from 'components/layout/modal/input/input'
 
 interface Props extends InputProps {
   max: number | string

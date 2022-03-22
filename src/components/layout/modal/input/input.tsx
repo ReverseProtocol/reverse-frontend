@@ -11,15 +11,14 @@ export interface InputProps {
 
 const Input: React.FC<InputProps> = ({ endAdornment, onChange, placeholder, startAdornment, value }) => {
   return (
-    <StyledInputWrapper>
-      {startAdornment}
+    <InputWrapper>
       <StyledInput placeholder="0 RVRS" value={value} onChange={onChange} />
       {endAdornment}
-    </StyledInputWrapper>
+    </InputWrapper>
   )
 }
 
-const StyledInputWrapper = styled.div`
+const InputWrapper = styled.div`
   align-items: center;
   background-image: linear-gradient(to right, #F2F2F2, #CCCCCC);
   border-radius: 20px;

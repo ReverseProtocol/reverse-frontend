@@ -8,19 +8,6 @@ interface ModalsContext {
   setCloseOnOverlayClick: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const ModalWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: ${({ theme }) => theme.zIndices.modal - 1};
-`;
-
 export const Context = createContext<ModalsContext>({
   onPresent: () => null,
   onDismiss: () => null,
@@ -54,8 +41,8 @@ const ModalProvider: React.FC = ({ children }) => {
         onPresent: handlePresent,
         onDismiss: handleDismiss,
         setCloseOnOverlayClick,
-      }}
-    >
+      }}>
+        
       {isOpen && (
         <ModalWrapper>
           {React.isValidElement(modalNode) &&
@@ -66,7 +53,16 @@ const ModalProvider: React.FC = ({ children }) => {
       )}
       {children}
     </Context.Provider>
-  );
-};
+  )
+}
+
+const ModalWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 0;
+`
 
 export default ModalProvider;

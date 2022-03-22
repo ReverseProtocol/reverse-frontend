@@ -9,6 +9,7 @@ const confirmModalButton = styled.button`
     background-image: linear-gradient(#506063, #909BBF);
     border-radius: 15px;
     border: 0px;
+    min-height: 50px;
     box-shadow: 0px 0px 10px #506063;
     :hover {
         background-image: linear-gradient(#5E7073, #909BBF);
