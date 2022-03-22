@@ -13,7 +13,8 @@ const claimAirdropButton = styled.button`
     box-shadow: 0px 0px 10px #506063;
     :hover {
         background-image: linear-gradient(#506063, #A1ACCD);
-        box-shadow: 0px 0px 12px #5A6F73;
+        box-shadow: 0px 0px 15px #5A6F73;
+        transition: 0.5s;
     } 
 `
 

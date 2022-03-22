@@ -82,8 +82,8 @@ const StyledButton = styled.div`
   font-size: 18px;
   font-weight: 500;
   &:hover  {
-    background-image: linear-gradient(to right, #383F51, #354246);
-    font-weight: 600;
+    background-color: #363F50;
+    transition: 0.4s;
   }
 `
 

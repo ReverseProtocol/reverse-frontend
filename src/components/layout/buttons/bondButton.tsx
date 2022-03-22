@@ -14,6 +14,7 @@ const bondButton = styled.button`
     box-shadow: 0px 0px 10px #506063;
     :hover {
         background-image: linear-gradient(#5E7073, #909BBF);
+        transition: 0.5s;
     }
 
     min-width: 110px;
