@@ -22,7 +22,6 @@ const Nav = (props) => {
 
   return (
     <MenuContainer>
-      <Flex justifyContent="space-between" paddingLeft="365px" paddingRight="100px"> 
       <ButtonGroup>
         <ButtonContainer>
           <StyledButton
@@ -52,6 +51,7 @@ const Nav = (props) => {
           </StyledButton>
         </ButtonContainer>
       </ButtonGroup>
+      {/*
       <ButtonGroup>
         {account != null && account.length > 1 ?
           <ConnectButton style={{justifyContent:"space-between"}}>
@@ -65,8 +65,7 @@ const Nav = (props) => {
             Connect
           </ConnectButton>
         }
-      </ButtonGroup>
-      </Flex>
+      </ButtonGroup> */ }
     </MenuContainer>
   )
 }
