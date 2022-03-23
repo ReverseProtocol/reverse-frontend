@@ -34,7 +34,6 @@ const App: React.FC = () => {
       <ResetCSS />
       <Style />
       <Nav />
-
       {!account ?
         <Page>&nbsp;</Page>
         :
@@ -47,7 +46,6 @@ const App: React.FC = () => {
           </Switch>
         </Suspense>
       }
-
       <MenuBottom />
     </Router>
   )

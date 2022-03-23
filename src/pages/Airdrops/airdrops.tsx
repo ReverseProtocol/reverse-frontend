@@ -1,11 +1,12 @@
 import React, { useCallback, useState } from 'react'
 import Page from 'components/layout/containers/page'
-import { Flex, Skeleton } from '@pancakeswap-libs/uikit'
+import { Flex } from '@pancakeswap-libs/uikit'
 import BigNumber from 'bignumber.js'
 import { useWallet } from "@binance-chain/bsc-use-wallet"
 import TypographyTitle from 'components/layout/typography/typographyTitle'
 import TypographyBold from 'components/layout/typography/typographyBold'
 import Typography from 'components/layout/typography/typography'
+import { Skeleton } from 'components/Skeleton'
 import AirdropContainer from 'components/layout/containers/airdropContainer'
 import ContentCard from 'components/layout/cards/airdrop/contentCard'
 import TitleCard from 'components/layout/cards/airdrop/titleCard'
@@ -25,8 +26,13 @@ const Airdrop = () => {
   const toClaim = getBalanceNumber(airdropData.userClaimable)
   const claimed = getBalanceNumber(airdropData.userTotalClaimed)
   const lastClaimAmount = getBalanceNumber(airdropData.userLastClaimedAmount)
-  const expectedReturns = new BigNumber(lastClaimAmount).times(52.2).toNumber().toLocaleString('en-us', { maximumFractionDigits: 2 })
-  const totalDistributedStr = totalDistributed.toLocaleString('en-us', { maximumFractionDigits: 2 })
+
+  const expectedReturnsNo = new BigNumber(lastClaimAmount).times(52.2).toNumber()
+  const expectedReturnsStr = expectedReturnsNo.toLocaleString('en-us', { maximumFractionDigits: 2 })
+
+  const totalDistributedNo = totalDistributed;
+  const totalDistributedStr = totalDistributed.toLocaleString('en-us', { maximumFractionDigits: 2 });
+
   const toClaimStr = toClaim.toLocaleString('en-us', { maximumFractionDigits: 3, minimumFractionDigits: 2 })
   const claimedStr = claimed.toLocaleString('en-us', { maximumFractionDigits: 3 })
   const lastClaimAmountStr = lastClaimAmount.toLocaleString('en-us', { maximumFractionDigits: 0 })
@@ -51,21 +57,36 @@ const Airdrop = () => {
             <TypographyTitle style={{ marginTop: '15px', marginBottom: '15px', borderBottom: '1px dotted #FFFF' }}>UST Airdrop</TypographyTitle>
           </a>
         </TitleCard>
+
         <Flex justifyContent="center">
           <ContentCard style={{ marginRight: '7px' }}>
-            <TypographyBold style={{ marginBottom: '5px' }}>{totalDistributedStr} UST</TypographyBold>
+            {totalDistributedNo > 10 ?
+              <TypographyBold style={{ marginBottom: '5px' }}>${totalDistributedStr}</TypographyBold>
+              :
+              <Typography><Skeleton height={10} marginBottom="5px" /></Typography>
+            }
             <Typography>Total Distributed</Typography>
           </ContentCard>
           <ContentCardMain>
-            <TypographyBold style={{ marginBottom: '5px' }}>{expectedReturns} UST</TypographyBold>
+            {expectedReturnsNo > 1 ?
+              <TypographyBold style={{ marginBottom: '5px' }}>{expectedReturnsStr} UST</TypographyBold>
+              :
+              <Typography><Skeleton height={10} marginBottom="5px" /></Typography>
+            }
             <Typography>Yearly Returns</Typography>
           </ContentCardMain>
           <ContentCard style={{ marginLeft: '7px' }}>
-            <TypographyBold style={{ marginBottom: '5px' }}>{claimedStr} UST</TypographyBold>
+
             {account != null && account.length > 1 ?
-              <Typography>Claimed by ({account.substring(0, 5)})</Typography>
+              <div>
+                <TypographyBold style={{ marginBottom: '5px' }}>{claimedStr} UST</TypographyBold>
+                <Typography>Claimed by ({account.substring(0, 5)})</Typography>
+              </div>
               :
-              <Typography><Skeleton /></Typography>
+              <div>
+                <Typography><Skeleton /></Typography>
+                <Typography><Skeleton marginTop="5px"/></Typography>
+              </div>
             }
           </ContentCard>
         </Flex>

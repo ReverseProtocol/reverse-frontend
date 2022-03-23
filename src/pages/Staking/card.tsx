@@ -1,7 +1,7 @@
 import BigNumber from 'bignumber.js'
 import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
-import { useModal, Skeleton } from '@pancakeswap-libs/uikit'
+import { useModal } from '@pancakeswap-libs/uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { useERC20 } from 'hooks/useContract'
 import { useSousApprove } from 'hooks/useApprove'
@@ -10,6 +10,7 @@ import { useSousUnstake } from 'hooks/useUnstake'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { QuoteToken, PoolCategory } from 'config/constants/types'
 import { Pool } from 'state/types'
+import { Skeleton } from 'components/Skeleton'
 import useTokenBalance from 'hooks/useTokenBalance'
 import { getCakeAddress } from 'utils/addressHelpers'
 import Typography from 'components/layout/typography/typography'
@@ -115,7 +116,7 @@ const Card: React.FC<HarvestProps> = ({ pool }) => {
           {pool.apy ?
             <TypographyBold style={{ marginBottom: '5px' }}>${tvlStr}</TypographyBold>
             :
-            <Typography><Skeleton height={10} width={60} /></Typography>
+            <Typography><Skeleton height={10} marginBottom="5px" /></Typography>
           }
           <Typography>TVL</Typography>
         </ContentCard>
@@ -123,7 +124,7 @@ const Card: React.FC<HarvestProps> = ({ pool }) => {
           {pool.apy ?
             <TypographyBold style={{ marginBottom: '5px' }}>{apyStr}%</TypographyBold>
             :
-            <Typography><Skeleton height={10}  /></Typography>
+            <Typography><Skeleton height={10} marginBottom="5px" /></Typography>
           }
           <Typography>Annual Yield</Typography>
         </ContentCardMain>
@@ -131,7 +132,7 @@ const Card: React.FC<HarvestProps> = ({ pool }) => {
           {pool.apy ?
             <TypographyBold style={{ marginBottom: '5px' }}>{monthlyRoiStr}%</TypographyBold>
             :
-            <Typography><Skeleton height={10} /></Typography>
+            <Typography><Skeleton height={10} marginBottom="5px" /></Typography>
           }
           <Typography>Monthly ROI</Typography>
         </ContentCard>
@@ -141,7 +142,7 @@ const Card: React.FC<HarvestProps> = ({ pool }) => {
           {pool.apy ?
             <TypographyBold style={{ marginBottom: '5px' }}>{stakedStr}</TypographyBold>
             :
-            <Typography><Skeleton height={10} /></Typography>
+            <Typography><Skeleton height={10} marginBottom="5px" /></Typography>
           }
           <Typography>Staked RVRS</Typography>
         </ContentCard2>
@@ -149,7 +150,7 @@ const Card: React.FC<HarvestProps> = ({ pool }) => {
           {pool.apy ?
             <TypographyBold style={{ marginBottom: '5px' }}>${stakedUsdStr}</TypographyBold>
             :
-            <Typography><Skeleton height={10} /></Typography>
+            <Typography><Skeleton height={10} marginBottom="5px" /></Typography>
           }
           <Typography>Staked (USD)</Typography>
         </ContentCard2>

@@ -26,19 +26,18 @@ const pulse = keyframes`
 
 const Root = styled.div<SkeletonProps>`
   min-height: 18px;
-  display: block;
   justify-content: center;
   align-items: center;
   background-color: #232834;
   border-radius: 5px;
   ${layout}
   ${space}
-`;
+`
 
 const Pulse = styled(Root)`
   animation: ${pulse} 3s infinite ease-out;
   transform: translate3d(0, 0, 0);
-`;
+`
 
 const Waves = styled(Root)`
   position: relative;
