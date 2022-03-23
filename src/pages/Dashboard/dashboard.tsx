@@ -33,7 +33,7 @@ const ContentCard = styled(Container)`
 `
 
 const TierCard = styled(Container)`
-  background-image: linear-gradient(to right, #333B4C, #37404E);
+  background-image: linear-gradient(to right, #353E50, #3D4853);
   border-radius: 20px;
   flex-direction: column;
   justify-content: space-around;
@@ -46,13 +46,14 @@ const TierCard = styled(Container)`
 `
 
 const TitleCard = styled(Container)`
-  background-image: linear-gradient(to right, #333B4C, #37404E);
+  background-image: linear-gradient(to right, #353E50, #3D4853);
   border-radius: 20px;
   flex-direction: column;
   justify-content: space-around;
   position: center;
   text-align: center;
   padding: 20px;
+  
 `
 
 const Dashboard = () => {
@@ -64,6 +65,7 @@ const Dashboard = () => {
   const claimed = getBalanceNumber(airdropData.userTotalClaimed)
   const lastClaimAmount = getBalanceNumber(airdropData.userLastClaimedAmount)
   const rvrsBalance = getBalanceNumber(useTokenBalance(getCakeAddress()));
+  const rvrsBalanceStr = rvrsBalance.toLocaleString('en-us', { maximumFractionDigits: 2, minimumFractionDigits: 2 })
 
   const expectedReturnsNo = new BigNumber(lastClaimAmount).times(52.2).toNumber()
   const expectedReturnsStr = expectedReturnsNo.toLocaleString('en-us', { maximumFractionDigits: 2 })
@@ -90,26 +92,47 @@ const Dashboard = () => {
     <Page>
       <AirdropContainer>
 
-        <TitleCard style={{ marginBottom: '10px' }}>
+        <TitleCard style={{ marginBottom: '10px', marginTop:'0px' }}>
           <TypographyTitle style={{ marginTop: '15px', marginBottom: '15px' }}>
-            <div>({account.substring(0, 8)})&nbsp;</div>
-            <div>Statistics</div>
+            <div>{account.substring(0, 10)}&nbsp;</div>
+            <div>| User Statistics</div>
           </TypographyTitle>
         </TitleCard>
 
         <Flex justifyContent="center">
 
           <ContentCard style={{ marginRight: '7px' }}>
-            <Typography>&nbsp;</Typography>
+            <TypographyBold style={{ marginBottom: '5px' }}>0.00</TypographyBold>
+            <Typography>veRVRS Balance</Typography>
           </ContentCard>
 
-          <TierCard>
+          <TierCard style={{ marginRight: '7px' }}>
             <TypographyBold style={{ marginBottom: '5px' }}>Current Tier</TypographyBold>
             <Typography>Silver Reversor <FaAward /></Typography>
           </TierCard>
 
-          <ContentCard style={{ marginLeft: '7px' }}>
-            <Typography style={{ marginBottom: '5px' }}>&nbsp;</Typography>
+          <ContentCard>
+            <TypographyBold style={{ marginBottom: '5px' }}>{rvrsBalanceStr}</TypographyBold>
+            <Typography>RVRS Balance</Typography>
+          </ContentCard>
+
+        </Flex>
+
+        <Flex justifyContent="center" marginTop="10px">
+
+          <ContentCard style={{ marginRight: '7px' }}>
+            <TypographyBold style={{ marginBottom: '5px' }}>0.00</TypographyBold>
+            <Typography>veRVRS Cap</Typography>
+          </ContentCard>
+
+          <ContentCard style={{ marginRight: '7px' }}>
+            <TypographyBold style={{ marginBottom: '5px' }}>0.00</TypographyBold>
+            <Typography>Staked RVRS</Typography>
+          </ContentCard>
+
+          <ContentCard>
+            <TypographyBold style={{ marginBottom: '5px' }}>$46.29</TypographyBold>
+            <Typography>Last UST Airdrop</Typography>
           </ContentCard>
 
         </Flex>
