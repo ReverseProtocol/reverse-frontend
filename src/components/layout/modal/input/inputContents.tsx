@@ -14,7 +14,7 @@ interface TokenInputProps extends InputProps {
 const InputContent: React.FC<TokenInputProps> = (
     { max, symbol, onChange, onSelectMax, value, depositFeeBP = 0, valueUsd= 0 }) => {
     const maxAvailableNo = new BigNumber(max).toNumber();
-    const maxAvailableStr = maxAvailableNo.toLocaleString('en-us', { maximumFractionDigits: 2, minimumFractionDigits: 2 });
+    const maxAvailableStr = maxAvailableNo.toLocaleString('en-us', { maximumFractionDigits: 3, minimumFractionDigits: 2 });
     
   return (
     <InputContentWrapper>

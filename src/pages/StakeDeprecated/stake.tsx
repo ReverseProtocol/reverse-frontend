@@ -18,7 +18,7 @@ import {
   lookupPrice, useFarmFromPid,
 } from 'state/hooks'
 import Page from 'components/layout/containers/page'
-import PoolCard from './components/PoolCard'
+import PoolCard from './card'
 
 
 export const aprToApy = (apr: number): BigNumber => {
@@ -82,23 +82,20 @@ const Farm: React.FC = () => {
 
   const [finishedPools, openPools] = partition(poolsWithApy, (pool) => pool.isFinished)
   const { url, isExact } = useRouteMatch()
-  const TranslateString = useI18n()
   console.log(poolsWithApy)
 
   return (
     <Page>
-        <Route exact path={`${path}`}>
-          <>
-            {orderBy(openPools, ['sortOrder']).map((pool) => (
-              <PoolCard key={pool.sousId} pool={pool} />
-            ))}
-          </>
-        </Route>
-        <Route path={`${path}/history`}>
-          {orderBy(finishedPools, ['sortOrder']).map((pool) => (
-            <PoolCard key={pool.sousId} pool={pool} />
-          ))}
-        </Route>
+      <Route exact path={`${path}`}>
+        {orderBy(openPools, ['sortOrder']).map((pool) => (
+          <PoolCard key={pool.sousId} pool={pool} />
+        ))}
+      </Route>
+      <Route path={`${path}/history`}>
+        {orderBy(finishedPools, ['sortOrder']).map((pool) => (
+          <PoolCard key={pool.sousId} pool={pool} />
+        ))}
+      </Route>
     </Page>
   )
 }

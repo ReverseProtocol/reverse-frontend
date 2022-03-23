@@ -9,8 +9,6 @@ const contentCard = styled(Container)`
   position: center;
   text-align: center;
   padding: 20px;
-  padding-bottom: 25px;
-  padding-top: 25px;
 `
 
 export default contentCard

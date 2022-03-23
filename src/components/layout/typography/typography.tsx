@@ -4,7 +4,6 @@ const typography = styled.p`
     font-size: 16px;
     color: #CFCFCF;
     font-weight: 400;
-    transition: 0.3s;
 `
 
 export default typography

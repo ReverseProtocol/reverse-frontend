@@ -1,1 +1,1 @@
-export { default } from './airdrop'
+export { default } from './airdrops'

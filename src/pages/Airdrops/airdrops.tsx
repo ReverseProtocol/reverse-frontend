@@ -10,6 +10,7 @@ import TypographyBold from 'components/layout/typography/typographyBold'
 import Typography from 'components/layout/typography/typography'
 import AirdropContainer from 'components/layout/containers/airdropContainer'
 import ContentCard from 'components/layout/cards/airdrop/contentCard'
+import TitleCard from 'components/layout/cards/airdrop/titleCard'
 import ContentCardMain from 'components/layout/cards/airdrop/contentCardMain'
 import Divider from 'components/divider'
 import ClaimButtonDisabled from 'components/layout/buttons/claimAirdropButtonDisabled'
@@ -46,12 +47,12 @@ const Airdrop = () => {
   return (
     <Page>
       <AirdropContainer>
-        <ContentCard style={{ marginBottom: '10px' }}>
-          <TypographyTitle style={{ marginTop: '15px', marginBottom: '10px' }}>Claim Your Weekly&nbsp;</TypographyTitle>
+        <TitleCard style={{ marginBottom: '10px' }}>
+          <TypographyTitle>Claim Your Weekly&nbsp;</TypographyTitle>
           <a target="_blanK" rel="noreferrer" href="https://reverse.gitbook.io/docs/the-protocol/reverseum-bonding-pools" className="nav-links">
-            <TypographyTitle style={{ marginTop: '15px', marginBottom: '10px', borderBottom: '1px dotted #FFFF' }}>UST Airdrop</TypographyTitle>
+            <TypographyTitle style={{ marginTop: '15px', marginBottom: '15px', borderBottom: '1px dotted #FFFF' }}>UST Airdrop</TypographyTitle>
           </a>
-        </ContentCard>
+        </TitleCard>
         <Flex justifyContent="center">
           <ContentCard style={{ marginRight: '7px' }}>
             <TypographyBold style={{ marginBottom: '5px' }}>{totalDistributedStr} UST</TypographyBold>
