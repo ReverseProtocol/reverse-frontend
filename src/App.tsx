@@ -17,6 +17,7 @@ BigNumber.config({
 const BONDS = lazy(() => import('./pages/Bonds'))
 const STAKEDEPRECATED = lazy(() => import('./pages/Staking'))
 const NOTFOUND = lazy(() => import('./pages/notFound'))
+const DASHBOARD = lazy(() => import('./pages/Dashboard'))
 const AIRDROP = lazy(() => import('./pages/Airdrops'))
 const VERVRS = lazy(() => import('./pages/veRVRS'))
 
@@ -42,6 +43,7 @@ const App: React.FC = () => {
             <Route path="/bonds" component={BONDS} />
             <Route path="/staking" component={STAKEDEPRECATED} />
             <Route path="/airdrop" component={AIRDROP} />
+            <Route path="/dashboard" component={DASHBOARD} />
             <Route component={NOTFOUND} />
           </Switch>
         </Suspense>

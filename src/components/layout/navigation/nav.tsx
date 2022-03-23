@@ -20,38 +20,45 @@ const Nav = (props) => {
 
   return (
     <MenuContainer>
-      <ButtonGroup style={{marginLeft:"170px"}}>
-          <ButtonContainer>
-            <StyledButton
-              as={StyledNavLink}
-              to="/staking"
-              isActive={(match, { pathname }) =>
-                Boolean(match) ||
-                pathname.startsWith('/staking')
-              }>Staking
-            </StyledButton>
-            <StyledButton
-              as={StyledNavLink}
-              to="/bonds"
-              isActive={(match, { pathname }) =>
-                Boolean(match) ||
-                pathname.startsWith('/bonds')
-              }
-            >&nbsp;Bonds&nbsp;
-            </StyledButton>
-            <StyledButton
-              as={StyledNavLink}
-              to="/airdrop"
-              isActive={(match, { pathname }) =>
-                Boolean(match) ||
-                pathname.startsWith('/airdrop')
-              }>Airdrop
-            </StyledButton>
-          </ButtonContainer>
+      <ButtonGroup style={{ marginLeft: "170px" }}>
+        <ButtonContainer>
+          <StyledButton
+            as={StyledNavLink}
+            to="/staking"
+            isActive={(match, { pathname }) =>
+              Boolean(match) ||
+              pathname.startsWith('/staking')
+            }>Staking
+          </StyledButton>
+          <StyledButton
+            as={StyledNavLink}
+            to="/bonds"
+            isActive={(match, { pathname }) =>
+              Boolean(match) ||
+              pathname.startsWith('/bonds')
+            }
+          >&nbsp;Bonds&nbsp;
+          </StyledButton>
+          <StyledButton
+            as={StyledNavLink}
+            to="/airdrop"
+            isActive={(match, { pathname }) =>
+              Boolean(match) ||
+              pathname.startsWith('/airdrop')
+            }>Airdrop
+          </StyledButton>
+        </ButtonContainer>
       </ButtonGroup>
       <ButtonGroup>
         {account != null && account.length > 1 ?
-          <ConnectButton style={{ justifyContent: "space-between" }}>
+          <ConnectButton
+            style={{ justifyContent: "space-between" }}
+            as={StyledNavLink}
+            to="/dashboard"
+            isActive={(match, { pathname }) =>
+              Boolean(match) ||
+              pathname.startsWith('/airdrop')
+            }>
             <Flex alignItems="center">
               <object type="image/svg+xml" data="/images/hmny.svg" width="50px">&nbsp;</object>
               <div style={{ marginLeft: "10px", marginRight: "20px" }}>{account.substring(0, 6)}</div>
@@ -59,6 +66,12 @@ const Nav = (props) => {
           </ConnectButton>
           :
           <ConnectButton
+            as={StyledNavLink}
+            to="/dashboard"
+            isActive={(match, { pathname }) =>
+              Boolean(match) ||
+              pathname.startsWith('/dashboard')
+            }
             disabled={rvrs.isLocked.unlockWalletButton}
             onClick={onPresentConnectModal} {...props}>
             <Flex alignItems="center">
