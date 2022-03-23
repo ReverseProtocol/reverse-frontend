@@ -22,7 +22,7 @@ const pulse = keyframes`
   100% {
     opacity: 0.2;
   }
-`;
+`
 
 const Root = styled.div<SkeletonProps>`
   min-height: 18px;

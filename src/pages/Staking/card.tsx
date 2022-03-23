@@ -116,7 +116,7 @@ const Card: React.FC<HarvestProps> = ({ pool }) => {
           {pool.apy ?
             <TypographyBold style={{ marginBottom: '5px' }}>${tvlStr}</TypographyBold>
             :
-            <Typography><Skeleton height={10} marginBottom="5px" /></Typography>
+            <Typography><Skeleton height={10} width={60} marginBottom="5px" /></Typography>
           }
           <Typography>TVL</Typography>
         </ContentCard>

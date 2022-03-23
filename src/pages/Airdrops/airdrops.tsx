@@ -57,13 +57,12 @@ const Airdrop = () => {
             <TypographyTitle style={{ marginTop: '15px', marginBottom: '15px', borderBottom: '1px dotted #FFFF' }}>UST Airdrop</TypographyTitle>
           </a>
         </TitleCard>
-
         <Flex justifyContent="center">
           <ContentCard style={{ marginRight: '7px' }}>
             {totalDistributedNo > 10 ?
               <TypographyBold style={{ marginBottom: '5px' }}>${totalDistributedStr}</TypographyBold>
               :
-              <Typography><Skeleton height={10} marginBottom="5px" /></Typography>
+              <Typography><Skeleton height={20} marginBottom="5px" /></Typography>
             }
             <Typography>Total Distributed</Typography>
           </ContentCard>
@@ -71,12 +70,11 @@ const Airdrop = () => {
             {expectedReturnsNo > 1 ?
               <TypographyBold style={{ marginBottom: '5px' }}>{expectedReturnsStr} UST</TypographyBold>
               :
-              <Typography><Skeleton height={10} marginBottom="5px" /></Typography>
+              <Typography><Skeleton height={20} marginBottom="5px" /></Typography>
             }
             <Typography>Yearly Returns</Typography>
           </ContentCardMain>
           <ContentCard style={{ marginLeft: '7px' }}>
-
             {account != null && account.length > 1 ?
               <div>
                 <TypographyBold style={{ marginBottom: '5px' }}>{claimedStr} UST</TypographyBold>

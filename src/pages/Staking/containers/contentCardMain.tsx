@@ -1,5 +1,20 @@
 import { Container } from 'react-bootstrap'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+
+const pulse = keyframes`
+  0% {
+    box-shadow: 0px 0px 5px #5A6F73;
+  }
+  30% {
+    box-shadow: 0px 0px 15px #5A6F73;
+  }
+  70% {
+    box-shadow: 0px 0px 15px #5A6F73;
+  }
+  100% {
+    box-shadow: 0px 0px 5px #5A6F73;
+  }
+`
 
 const contentCardMain = styled(Container)`
   background-image: linear-gradient(to right, #3E475E, #4E5E62);
@@ -12,5 +27,6 @@ const contentCardMain = styled(Container)`
   padding-right: 40px;
   padding-left: 40px;
   `
+
 
 export default contentCardMain

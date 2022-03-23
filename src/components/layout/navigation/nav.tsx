@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { usePriceCakeBusd } from 'state/hooks'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -10,6 +10,7 @@ import { getCakeAddress } from 'utils/addressHelpers'
 import { NavLink } from 'react-router-dom'
 import { useWalletModal } from 'components/walletModal'
 import rvrs from 'config/constants/rvrs'
+import { Flex } from '../flex'
 
 const Nav = (props) => {
   const { account, connect, reset } = useWallet()
@@ -19,53 +20,69 @@ const Nav = (props) => {
 
   return (
     <MenuContainer>
-      <ButtonGroup>
-        <ButtonContainer>
-          <StyledButton
-            as={StyledNavLink}
-            to="/staking"
-            isActive={(match, { pathname }) =>
-              Boolean(match) ||
-              pathname.startsWith('/staking')
-            }>Staking
-          </StyledButton>
-          <StyledButton
-            as={StyledNavLink}
-            to="/bonds"
-            isActive={(match, { pathname }) =>
-              Boolean(match) ||
-              pathname.startsWith('/bonds')
-            }
-          >&nbsp;Bonds&nbsp;
-          </StyledButton>
-          <StyledButton
-            as={StyledNavLink}
-            to="/airdrop"
-            isActive={(match, { pathname }) =>
-              Boolean(match) ||
-              pathname.startsWith('/airdrop')
-            }>Airdrop
-          </StyledButton>
-        </ButtonContainer>
+      <ButtonGroup style={{marginLeft:"170px"}}>
+          <ButtonContainer>
+            <StyledButton
+              as={StyledNavLink}
+              to="/staking"
+              isActive={(match, { pathname }) =>
+                Boolean(match) ||
+                pathname.startsWith('/staking')
+              }>Staking
+            </StyledButton>
+            <StyledButton
+              as={StyledNavLink}
+              to="/bonds"
+              isActive={(match, { pathname }) =>
+                Boolean(match) ||
+                pathname.startsWith('/bonds')
+              }
+            >&nbsp;Bonds&nbsp;
+            </StyledButton>
+            <StyledButton
+              as={StyledNavLink}
+              to="/airdrop"
+              isActive={(match, { pathname }) =>
+                Boolean(match) ||
+                pathname.startsWith('/airdrop')
+              }>Airdrop
+            </StyledButton>
+          </ButtonContainer>
       </ButtonGroup>
-      {  /*
       <ButtonGroup>
         {account != null && account.length > 1 ?
-          <ConnectButton style={{justifyContent:"space-between"}}>
-            <object type="image/svg+xml" data="/images/hmny.svg" width="50px">&nbsp;</object> 
-            {account.substring(0, 6)}...
+          <ConnectButton style={{ justifyContent: "space-between" }}>
+            <Flex alignItems="center">
+              <object type="image/svg+xml" data="/images/hmny.svg" width="50px">&nbsp;</object>
+              <div style={{ marginLeft: "10px", marginRight: "20px" }}>{account.substring(0, 6)}</div>
+            </Flex>
           </ConnectButton>
           :
           <ConnectButton
             disabled={rvrs.isLocked.unlockWalletButton}
             onClick={onPresentConnectModal} {...props}>
-            Connect
+            <Flex alignItems="center">
+              <object type="image/svg+xml" data="/images/hmny.svg" width="50px">&nbsp;</object>
+              <div style={{ marginLeft: "10px", marginRight: "20px" }}>Connect</div>
+            </Flex>
           </ConnectButton>
         }
-      </ButtonGroup>  */ }
+      </ButtonGroup>
     </MenuContainer>
   )
 }
+
+const pulse = keyframes`
+  0% {
+    box-shadow: 0px 0px 0px #5A6F73;
+  }
+  50% {
+    box-shadow: 0px 0px 15px #5A6F73;
+  }
+  100% {
+    box-shadow: 0px 0px 0px #5A6F73;
+  }
+`
 
 const StyledButton = styled.div`
   text-align: center;
@@ -93,6 +110,8 @@ const ConnectButton = styled.div`
   font-size: 18px;
   font-weight: 600;
   margin-left: 20px
+
+  
 `
 
 const MenuContainer = styled(Container)`
@@ -109,6 +128,7 @@ const ButtonContainer = styled.div`
   border: 1.5px;
   border-style: solid !important;
   border-color: #CBCBCB !important;
+  animation: ${pulse} 3s infinite ease-out;
 `
 
 const activeClassName = 'ACTIVE'

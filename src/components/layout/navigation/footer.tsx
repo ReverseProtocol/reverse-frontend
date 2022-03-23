@@ -41,6 +41,8 @@ const TypographyBold = styled.p`
   font-size: 15px;
   font-weight: 500;
   margin-bottom: 0px;
+  transition: 0.3s;
+
 `
 
 const NavContainer = styled(Container)`
