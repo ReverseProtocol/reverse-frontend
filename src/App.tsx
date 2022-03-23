@@ -37,7 +37,7 @@ const App: React.FC = () => {
         <Switch>
           <Route path="/bonds" component={BONDS} />
           <Route path="/staking" component={STAKEDEPRECATED} />
-          <Route path="/airdrops" component={AIRDROP} />
+          <Route path="/airdrop" component={AIRDROP} />
           <Route component={NOTFOUND} />
         </Switch>
       </Suspense>

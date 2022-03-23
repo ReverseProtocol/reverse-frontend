@@ -127,7 +127,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
         </ContentCard>
         <ContentCardMain>
           <TypographyBold style={{ marginBottom: '5px' }}>{apyStr}%</TypographyBold>
-          <Typography>APY</Typography>
+          <Typography>Annual Yield</Typography>
         </ContentCardMain>
         <ContentCard style={{ marginLeft: '7px' }}>
           <TypographyBold style={{ marginBottom: '5px' }}>{monthlyRoiStr}%</TypographyBold>
@@ -166,16 +166,27 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
             </>
             :
             <>
+              <UnstakeButton
+                style={{ marginRight: "12px" }}
+                disabled
+                onClick={isOldSyrup ? async () => {
+                  setPendingTx(true)
+                  await onUnstake('0')
+                  setPendingTx(false)
+                } : onPresentWithdraw}>
+                Unstake
+              </UnstakeButton>
               <StakeButton
                 disabled={isFinished && sousId !== 0}
                 onClick={onPresentDeposit}>
-                Stake
+                &nbsp;Stake&nbsp;
               </StakeButton>
             </>
           }
         </Flex>
       ) : (
         <StakeButton
+          style={{marginTop:"20px", marginBottom:"20px"}}
           disabled={requestedApproval}
           onClick={handleApprove}>
           Enable

@@ -34,20 +34,20 @@ const Nav = (props) => {
           </StyledButton>
           <StyledButton
             as={StyledNavLink}
-            to="/airdrops"
-            isActive={(match, { pathname }) =>
-              Boolean(match) ||
-              pathname.startsWith('/airdrops')
-            }>Airdrops
-          </StyledButton>
-          <StyledButton
-            as={StyledNavLink}
             to="/bonds"
             isActive={(match, { pathname }) =>
               Boolean(match) ||
               pathname.startsWith('/bonds')
             }
           >&nbsp;Bonds&nbsp;
+          </StyledButton>
+          <StyledButton
+            as={StyledNavLink}
+            to="/airdrop"
+            isActive={(match, { pathname }) =>
+              Boolean(match) ||
+              pathname.startsWith('/airdrop')
+            }>Airdrop
           </StyledButton>
         </ButtonContainer>
       </ButtonGroup>
