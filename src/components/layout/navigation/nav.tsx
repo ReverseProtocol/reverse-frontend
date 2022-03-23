@@ -61,7 +61,8 @@ const Nav = (props) => {
             Connect
           </ConnectButton>
         }
-      </ButtonGroup> */ }
+      </ButtonGroup> 
+      */ }
     </MenuContainer>
   )
 }

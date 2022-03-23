@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const Page = styled.div`
-  min-height: calc(100vh - 202px);
+  min-height: calc(100vh - 221px);
   margin-left: auto;
   margin-right: auto;
   max-width: 590px;
