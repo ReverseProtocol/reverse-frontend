@@ -1,8 +1,6 @@
 import React, { useCallback, useState } from 'react'
-import styled from 'styled-components'
 import Page from 'components/layout/containers/page'
-import useI18n from 'hooks/useI18n'
-import { Flex } from '@pancakeswap-libs/uikit'
+import { Flex, Skeleton } from '@pancakeswap-libs/uikit'
 import BigNumber from 'bignumber.js'
 import { useWallet } from "@binance-chain/bsc-use-wallet"
 import TypographyTitle from 'components/layout/typography/typographyTitle'
@@ -67,7 +65,7 @@ const Airdrop = () => {
             {account != null && account.length > 1 ?
               <Typography>Claimed by ({account.substring(0, 5)})</Typography>
               :
-              <Typography>&nbsp;</Typography>
+              <Typography><Skeleton /></Typography>
             }
           </ContentCard>
         </Flex>
@@ -91,6 +89,5 @@ const Airdrop = () => {
     </Page>
   )
 }
-
 
 export default Airdrop

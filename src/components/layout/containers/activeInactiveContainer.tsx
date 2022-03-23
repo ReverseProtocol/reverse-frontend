@@ -10,7 +10,7 @@ const activeInactiveContatiner = styled(Container)`
   border-style: solid !important;
   border-color: #CBCBCB !important;
   border-radius: 25px;
-  max-width: 220px;
+  max-width: 200px;
   background-color: #2D3544;
 `
 

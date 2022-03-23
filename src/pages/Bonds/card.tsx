@@ -1,18 +1,14 @@
 import BigNumber from 'bignumber.js'
 import React, { useCallback, useState } from 'react'
-import styled from 'styled-components'
-import useI18n from 'hooks/useI18n'
 import { useSousApproveBurn } from 'hooks/useApprove'
 import { useSousStakeBurn } from 'hooks/useStake'
 import { useSousHarvestBurn } from 'hooks/useHarvest'
-import { Flex, useModal } from '@pancakeswap-libs/uikit'
+import { Flex, Skeleton, useModal } from '@pancakeswap-libs/uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { useERC20 } from 'hooks/useContract'
 import useBlock from 'hooks/useBlock'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { QuoteToken, PoolCategory } from 'config/constants/types'
 import { Pool2 } from 'state/types'
-import { Link } from 'react-router-dom'
 import BondsContainer from '../../components/layout/containers/bondsContainer'
 import ContentCard from '../../components/layout/cards/bonds/contentCard'
 import HeaderCard from '../../components/layout/cards/bonds/headerCard'
@@ -69,7 +65,7 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
 
   // bonded balance
   const bondedBalance = new BigNumber(userData?.stakedBalance || 0);
-  const bondedBalanceNo = bondedBalance.toNumber();  
+  const bondedBalanceNo = bondedBalance.toNumber();
   const bondedBalanceStr = getBalanceNumber(bondedBalance).toLocaleString('en-us', { maximumFractionDigits: 2, minimumFractionDigits: 2 });
 
   // misc
@@ -170,9 +166,17 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
               </Flex>
             </TypographyTitle>
             <Flex alignItems="end">
-              <BondButtonDisabled disabled style={{ justifyContent: "center" }}>
-                {hoursToStartStr}h Left
-              </BondButtonDisabled>
+              <div>
+                {hoursToStartNo > 1000 ?
+                  <BondButtonDisabled disabled style={{ justifyContent: "center" }}>
+                    <Skeleton height={10} />
+                  </BondButtonDisabled>
+                  :
+                  <BondButtonDisabled disabled style={{ justifyContent: "center" }}>
+                    {hoursToStartStr}h Left
+                  </BondButtonDisabled>
+                }
+              </div>
             </Flex>
           </Flex>
         }
@@ -183,32 +187,56 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
             {/* ROI */}
             <Flex flexDirection="column" alignItems="start">
               <TypographyBold style={{ marginBottom: "5px" }}>vROI</TypographyBold>
-              {positiveRoi ?
-                <Typography>{roiStr}%</Typography>
+              {hasStarted ?
+                <div>
+                  {positiveRoi ?
+                    <Typography>{roiStr}%</Typography>
+                    :
+                    <Typography>Sold&nbsp;Out</Typography>
+                  }
+                </div>
                 :
-                <Typography>Sold&nbsp;Out</Typography>
+                <Skeleton height={10} width={60} />
               }
             </Flex>
             {/* Vesting */}
             <Flex flexDirection="column" alignItems="start">
               <TypographyBold style={{ marginBottom: "5px" }}>Vesting</TypographyBold>
               {!hasEnded ?
-                <Typography>{vestingStr}&nbsp;Days</Typography> : <Typography>Ended</Typography>
+                <div>
+                  {hasStarted ?
+                    <Typography>{vestingStr}&nbsp;Days</Typography>
+                    :
+                    <Skeleton height={10} width={60} />}
+                </div>
+                :
+                <Typography>Ended</Typography>
               }
             </Flex>
             {/* TVL */}
             <Flex flexDirection="column" alignItems="start">
               <TypographyBold style={{ marginBottom: "5px" }}>TVL</TypographyBold>
-              <Typography>${tbvStr}</Typography>
+              <div>
+                {hasStarted ?
+                  <Typography>${tbvStr}</Typography>
+                  :
+                  <Skeleton height={10} width={60} />}
+              </div>
             </Flex>
             {/* Bonded by user */}
             {user && (
               <Flex flexDirection="column" alignItems="start">
-                {bondTokenBalanceNo > 0 ?
-                  <TypographyBold style={{ marginBottom: "5px" }}>Bonded</TypographyBold> : <TypographyBold style={{ marginBottom: "5px" }}>Bonded</TypographyBold>
-                }
-                {bondTokenBalanceNo > 0 ?
-                  <Typography>{bondedBalanceStr}&nbsp;{tokenName}</Typography> : <Typography>N/A</Typography>
+                <TypographyBold style={{ marginBottom: "5px" }}>Bonded</TypographyBold>
+                {hasStarted ?
+                  <div>
+                    {bondedBalanceNo ?
+                      <Typography>{bondedBalanceStr}&nbsp;{tokenName}</Typography>
+                      :
+                      <Typography>N/A</Typography>
+                    }
+                  </div>
+                  :
+                  <Typography><Skeleton height={10} width={64} /></Typography>
                 }
               </Flex>
             )}

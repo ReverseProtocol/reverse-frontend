@@ -1,7 +1,7 @@
 import BigNumber from 'bignumber.js'
 import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
-import { useModal, Flex } from '@pancakeswap-libs/uikit'
+import { useModal, Flex, Skeleton } from '@pancakeswap-libs/uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { useERC20 } from 'hooks/useContract'
 import { useSousApprove } from 'hooks/useApprove'
@@ -15,6 +15,7 @@ import { getCakeAddress } from 'utils/addressHelpers'
 import Typography from 'components/layout/typography/typography'
 import TypographyBold from 'components/layout/typography/typographyBold'
 import TypographyTitle from 'components/layout/typography/typographyTitle'
+
 import WithdrawModal from './modals/withdrawModal'
 import StakeModal from './modals/stakeModal'
 import { usePriceCakeBusd } from "../../state/hooks";

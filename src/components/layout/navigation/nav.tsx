@@ -9,6 +9,7 @@ import useTokenBalance from 'hooks/useTokenBalance'
 import { getCakeAddress } from 'utils/addressHelpers'
 import { NavLink } from 'react-router-dom'
 import { useWalletModal } from 'components/walletModal'
+import rvrs from 'config/constants/rvrs'
 
 const Nav = (props) => {
   const { account, connect, reset } = useWallet()
@@ -47,7 +48,7 @@ const Nav = (props) => {
           </StyledButton>
         </ButtonContainer>
       </ButtonGroup>
-      {/*
+      {  /*
       <ButtonGroup>
         {account != null && account.length > 1 ?
           <ConnectButton style={{justifyContent:"space-between"}}>
@@ -61,8 +62,7 @@ const Nav = (props) => {
             Connect
           </ConnectButton>
         }
-      </ButtonGroup> 
-      */ }
+      </ButtonGroup>  */ }
     </MenuContainer>
   )
 }
@@ -92,6 +92,7 @@ const ConnectButton = styled.div`
   background-color: #2D3544;
   font-size: 18px;
   font-weight: 600;
+  margin-left: 20px
 `
 
 const MenuContainer = styled(Container)`
