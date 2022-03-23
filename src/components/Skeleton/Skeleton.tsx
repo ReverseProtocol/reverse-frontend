@@ -31,7 +31,6 @@ const Root = styled.div<SkeletonProps>`
   align-items: center;
   background-color: #232834;
   border-radius: 5px;
-
   ${layout}
   ${space}
 `;

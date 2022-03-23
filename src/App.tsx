@@ -6,6 +6,7 @@ import BigNumber from 'bignumber.js'
 import { useFetchPublicData } from 'state/hooks'
 import MenuBottom from 'components/layout/navigation/footer'
 import Style from 'components/Style'
+import Page from 'components/layout/containers/page'
 import Nav from './components/layout/navigation/nav'
 
 BigNumber.config({
@@ -33,14 +34,20 @@ const App: React.FC = () => {
       <ResetCSS />
       <Style />
       <Nav />
-      <Suspense fallback={null}>
-        <Switch>
-          <Route path="/bonds" component={BONDS} />
-          <Route path="/staking" component={STAKEDEPRECATED} />
-          <Route path="/airdrop" component={AIRDROP} />
-          <Route component={NOTFOUND} />
-        </Switch>
-      </Suspense>
+
+      {!account ?
+        <Page>&nbsp;</Page>
+        :
+        <Suspense fallback={null}>
+          <Switch>
+            <Route path="/bonds" component={BONDS} />
+            <Route path="/staking" component={STAKEDEPRECATED} />
+            <Route path="/airdrop" component={AIRDROP} />
+            <Route component={NOTFOUND} />
+          </Switch>
+        </Suspense>
+      }
+
       <MenuBottom />
     </Router>
   )
