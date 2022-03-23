@@ -22,7 +22,7 @@ const ContentCard = styled(Container)`
   justify-content: space-around;
   position: center;
   text-align: center;
-  padding: 20px;
+  padding: 15px;
 `
 
 const TierCard = styled(Container)`
@@ -32,7 +32,7 @@ const TierCard = styled(Container)`
   justify-content: space-around;
   position: center;
   text-align: center;
-  padding: 20px;
+  padding: 15px;
   border: 2px;
   border-style: solid !important;
   border-color: #808080 !important;
@@ -61,7 +61,7 @@ const Dashboard = () => {
         <TitleCard style={{ marginBottom: '10px', marginTop: '0px' }}>
           <TypographyTitle style={{ marginTop: '15px', marginBottom: '15px' }}>
             <div>{account.substring(0, 10)}&nbsp;</div>
-            <div>| User Statistics</div>
+            <div>| Statistics</div>
           </TypographyTitle>
         </TitleCard>
         <Flex justifyContent="center">
@@ -85,18 +85,32 @@ const Dashboard = () => {
           </ContentCard>
           <ContentCard style={{ marginRight: '7px' }} >
             <TypographyBold style={{ marginBottom: '5px' }}><Skeleton /></TypographyBold>
-            <Typography>Last UST Airdrop</Typography>
+            <Typography>To Reach Cap</Typography>
           </ContentCard>
           <ContentCard >
             <TypographyBold style={{ marginBottom: '5px' }}><Skeleton /></TypographyBold>
             <Typography>Staked RVRS</Typography>
           </ContentCard>
         </Flex>
+        <Flex justifyContent="center" marginTop="10px">
+          <ContentCard style={{ marginRight: '7px' }}>
+            <TypographyBold style={{ marginBottom: '5px' }}><Skeleton /></TypographyBold>
+            <Typography>Expected Yearly Returns</Typography>
+          </ContentCard>
+          <ContentCard>
+            <TypographyBold style={{ marginBottom: '5px' }}><Skeleton /></TypographyBold>
+            <Typography>Treasury Balance</Typography>
+          </ContentCard>
+        </Flex>
+        <Flex justifyContent="center" marginTop="10px">
+          <ContentCard>
+            <TypographyBold style={{ marginBottom: '5px' }}><Skeleton /></TypographyBold>
+            <Typography>RVRS Per $1 Worth of Treasury</Typography>
+          </ContentCard>
+        </Flex>
       </DashboardContainer>
     </Page>
   )
 }
-
-
 
 export default Dashboard
