@@ -5,14 +5,10 @@ import { usePriceCakeBusd } from 'state/hooks'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Container, ButtonGroup, Button } from 'react-bootstrap'
 import { getBalanceNumber } from 'utils/formatBalance'
-import UnlockButton from 'components/unlock'
 import useTokenBalance from 'hooks/useTokenBalance'
 import { getCakeAddress } from 'utils/addressHelpers'
 import { NavLink } from 'react-router-dom'
-import { useWalletModal } from 'components/WalletModal'
-import rvrs from 'config/constants/rvrs'
-import Typography from '../typography/typography'
-import { Flex } from '../flex'
+import { useWalletModal } from 'components/walletModal'
 
 const Nav = (props) => {
   const { account, connect, reset } = useWallet()

@@ -1,8 +1,8 @@
 import React from "react";
 import { Modal } from "components/layout/modal";
 import { Button, Flex, LinkExternal } from "@pancakeswap-libs/uikit";
-import CopyToClipboard from "./CopyToClipboard";
 import { localStorageKey } from "./config";
+import CopyToClipboard from "./CopyToClipboard";
 
 interface Props {
   account: string;

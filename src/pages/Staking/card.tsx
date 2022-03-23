@@ -33,20 +33,8 @@ interface HarvestProps {
   pool: PoolWithApy
 }
 
-const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
-  const {
-    sousId,
-    stakingTokenName,
-    stakingTokenAddress,
-    apr,
-    apy,
-    tokenDecimals,
-    poolCategory,
-    isFinished,
-    userData,
-    stakingLimit,
-    pricePerShare
-  } = pool
+const Card: React.FC<HarvestProps> = ({ pool }) => {
+  const { sousId, stakingTokenName, stakingTokenAddress, apy, tokenDecimals, poolCategory, isFinished, userData, stakingLimit, pricePerShare } = pool
 
   // rvrs
   const rvrsBalance = getBalanceNumber(useTokenBalance(getCakeAddress()));
@@ -144,8 +132,9 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
           <Typography>Staked (USD)</Typography>
         </ContentCard2>
       </Flex>
+      <Divider />
       {account && (!needsApproval ? (
-        <Flex justifyContent="center" marginTop="20px" marginBottom="20px">
+        <Flex justifyContent="center" marginTop="0px" marginBottom="20px">
           {stakedNo > 0 ?
             <>
               <UnstakeButton
@@ -186,7 +175,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
         </Flex>
       ) : (
         <StakeButton
-          style={{marginTop:"20px", marginBottom:"20px"}}
+          style={{ marginTop: "0px", marginBottom: "20px" }}
           disabled={requestedApproval}
           onClick={handleApprove}>
           Enable
@@ -235,4 +224,13 @@ const UnstakeButton = styled.button`
   } 
 `
 
-export default PoolCard
+const Divider = styled.div`
+  background-color: #9B9B9B;
+  height: 1px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25px;
+  width: 0%;
+`
+
+export default Card

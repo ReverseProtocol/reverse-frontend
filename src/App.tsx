@@ -14,7 +14,7 @@ BigNumber.config({
 })
 
 const BONDS = lazy(() => import('./pages/Bonds'))
-const STAKEDEPRECATED = lazy(() => import('./pages/StakeDeprecated'))
+const STAKEDEPRECATED = lazy(() => import('./pages/Staking'))
 const NOTFOUND = lazy(() => import('./pages/notFound'))
 const AIRDROP = lazy(() => import('./pages/Airdrops'))
 const VERVRS = lazy(() => import('./pages/veRVRS'))
