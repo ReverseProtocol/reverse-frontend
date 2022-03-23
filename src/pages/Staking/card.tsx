@@ -1,7 +1,7 @@
 import BigNumber from 'bignumber.js'
 import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
-import { useModal, Flex, Skeleton } from '@pancakeswap-libs/uikit'
+import { useModal, Skeleton } from '@pancakeswap-libs/uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { useERC20 } from 'hooks/useContract'
 import { useSousApprove } from 'hooks/useApprove'
@@ -13,9 +13,9 @@ import { Pool } from 'state/types'
 import useTokenBalance from 'hooks/useTokenBalance'
 import { getCakeAddress } from 'utils/addressHelpers'
 import Typography from 'components/layout/typography/typography'
+import { Flex } from 'components/layout/flex'
 import TypographyBold from 'components/layout/typography/typographyBold'
 import TypographyTitle from 'components/layout/typography/typographyTitle'
-
 import WithdrawModal from './modals/withdrawModal'
 import StakeModal from './modals/stakeModal'
 import { usePriceCakeBusd } from "../../state/hooks";
@@ -74,6 +74,7 @@ const Card: React.FC<HarvestProps> = ({ pool }) => {
   const tvlStr = tvlNo.toLocaleString('en-us', { maximumFractionDigits: 0, minimumFractionDigits: 0 });
 
   // apy
+  const apyNo = apy && apy.toNumber();
   const apyStr = apy && apy.toNumber().toLocaleString('en-us', { maximumFractionDigits: 2, minimumFractionDigits: 2 });
   const monthlyRoiStr = apy && apy.div(12).toNumber().toLocaleString('en-us', { maximumFractionDigits: 2, minimumFractionDigits: 2 });
 
@@ -111,25 +112,45 @@ const Card: React.FC<HarvestProps> = ({ pool }) => {
       </TitleCard>
       <Flex justifyContent="center" marginBottom="10px">
         <ContentCard style={{ marginRight: '7px' }}>
-          <TypographyBold style={{ marginBottom: '5px' }}>${tvlStr}</TypographyBold>
+          {pool.apy ?
+            <TypographyBold style={{ marginBottom: '5px' }}>${tvlStr}</TypographyBold>
+            :
+            <Typography><Skeleton height={10} width={60} /></Typography>
+          }
           <Typography>TVL</Typography>
         </ContentCard>
         <ContentCardMain>
-          <TypographyBold style={{ marginBottom: '5px' }}>{apyStr}%</TypographyBold>
+          {pool.apy ?
+            <TypographyBold style={{ marginBottom: '5px' }}>{apyStr}%</TypographyBold>
+            :
+            <Typography><Skeleton height={10}  /></Typography>
+          }
           <Typography>Annual Yield</Typography>
         </ContentCardMain>
         <ContentCard style={{ marginLeft: '7px' }}>
-          <TypographyBold style={{ marginBottom: '5px' }}>{monthlyRoiStr}%</TypographyBold>
+          {pool.apy ?
+            <TypographyBold style={{ marginBottom: '5px' }}>{monthlyRoiStr}%</TypographyBold>
+            :
+            <Typography><Skeleton height={10} /></Typography>
+          }
           <Typography>Monthly ROI</Typography>
         </ContentCard>
       </Flex>
       <Flex justifyContent="center">
         <ContentCard2 style={{ marginRight: '7px' }}>
-          <TypographyBold style={{ marginBottom: '5px' }}>{stakedStr}</TypographyBold>
+          {pool.apy ?
+            <TypographyBold style={{ marginBottom: '5px' }}>{stakedStr}</TypographyBold>
+            :
+            <Typography><Skeleton height={10} /></Typography>
+          }
           <Typography>Staked RVRS</Typography>
         </ContentCard2>
         <ContentCard2>
-          <TypographyBold style={{ marginBottom: '5px' }}>${stakedUsdStr}</TypographyBold>
+          {pool.apy ?
+            <TypographyBold style={{ marginBottom: '5px' }}>${stakedUsdStr}</TypographyBold>
+            :
+            <Typography><Skeleton height={10} /></Typography>
+          }
           <Typography>Staked (USD)</Typography>
         </ContentCard2>
       </Flex>

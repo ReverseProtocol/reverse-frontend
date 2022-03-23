@@ -256,7 +256,11 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
                 }}>
                 <Flex flexDirection="column" alignItems="center">
                   <TypographyBold style={{ marginBottom: "4px" }}>Claim</TypographyBold>
-                  <Typography>{rewardsStr}&nbsp;RVRS</Typography>
+                  {hasStarted ?
+                    <Typography>{rewardsStr}&nbsp;RVRS</Typography>
+                    :
+                    <Skeleton height={10} width={60} />
+                  }
                 </Flex>
               </ClaimButton>
               :
@@ -270,7 +274,11 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
                 }}>
                 <Flex flexDirection="column" alignItems="center">
                   <TypographyBold style={{ marginBottom: "4px" }}>Claim</TypographyBold>
-                  <Typography>{rewardsStr}&nbsp;RVRS</Typography>
+                  {hasStarted ?
+                    <Typography>{rewardsStr}&nbsp;RVRS</Typography>
+                    :
+                    <Skeleton height={10} width={60} />
+                  }
                 </Flex>
               </ClaimButtonDisabled>
             }

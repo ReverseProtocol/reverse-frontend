@@ -6,6 +6,6 @@ const Flex = styled.div<FlexProps>`
   display: flex;
   ${flexbox}
   ${space}
-`;
+`
 
 export default Flex;
