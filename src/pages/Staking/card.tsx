@@ -190,7 +190,8 @@ const Card: React.FC<HarvestProps> = ({ pool }) => {
               </UnstakeButton>
               <StakeButton
                 disabled={isFinished && sousId !== 0}
-                onClick={onPresentDeposit}>
+                onClick={onPresentDeposit}
+              >
                 &nbsp;Stake&nbsp;
               </StakeButton>
             </>
@@ -213,7 +214,7 @@ const StakeButton = styled.button`
   font-weight: 600;
   color: #E2E2E2;
   justify-content: center;
-  background-image: linear-gradient(#506063, #909BBF);
+  background-image: linear-gradient(180deg, #506063, #909BBF);
   border-radius: 15px;
   border: 0px;
   padding-left: 110px;
@@ -221,8 +222,8 @@ const StakeButton = styled.button`
   padding-top: 17px;
   padding-bottom: 17px;
   :hover {
-    background-image: linear-gradient(#506063, #A1ACCD);
-    box-shadow: 0px 0px 10px #5A6F73;
+    background-image: linear-gradient(180deg, #506063, #A1ACCD);
+    box-shadow: 0px 0px 10px 0px #5A6F73;
     transition: 0.5s;
     color: #FFFF;
   }

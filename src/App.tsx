@@ -4,10 +4,10 @@ import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { ResetCSS } from '@pancakeswap-libs/uikit'
 import BigNumber from 'bignumber.js'
 import { useFetchPublicData } from 'state/hooks'
-import MenuBottom from 'components/layout/navigation/footer'
+import MenuBottom from 'components/navigation/footer'
 import Style from 'components/Style'
 import Page from 'components/layout/containers/page'
-import Nav from './components/layout/navigation/nav'
+import Nav from './components/navigation/nav'
 
 BigNumber.config({
   EXPONENTIAL_AT: 1000,
@@ -37,7 +37,6 @@ const App: React.FC = () => {
       <ResetCSS />
       <Style />
       <Nav />
-
       {!account ?
         <Suspense fallback={null}>
           <Switch>
@@ -55,7 +54,6 @@ const App: React.FC = () => {
           </Switch>
         </Suspense>
       }
-      
       <MenuBottom />
     </Router>
   )

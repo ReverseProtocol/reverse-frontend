@@ -11,6 +11,7 @@ import AirdropContainer from 'components/layout/containers/airdropContainer'
 import ContentCard from 'components/layout/cards/airdrop/contentCard'
 import TitleCard from 'components/layout/cards/airdrop/titleCard'
 import ContentCardMain from 'components/layout/cards/airdrop/contentCardMain'
+import Ripples, { createRipples } from 'react-ripples'
 import Divider from 'components/divider'
 import ClaimButtonDisabled from 'components/layout/buttons/claimAirdropButtonDisabled'
 import ClaimButton from 'components/layout/buttons/claimAirdropButton'
@@ -83,7 +84,7 @@ const Airdrop = () => {
               :
               <div>
                 <Typography><Skeleton /></Typography>
-                <Typography><Skeleton marginTop="5px"/></Typography>
+                <Typography><Skeleton marginTop="5px" /></Typography>
               </div>
             }
           </ContentCard>
@@ -94,9 +95,19 @@ const Airdrop = () => {
             <TypographyBold style={{ marginLeft: '10px', marginTop: '5px' }}>{toClaimStr}</TypographyBold>
           </Flex>
           {toClaim && toClaim > 0 ?
-            <ClaimButton onClick={handleAirdropClaim} disabled={pendingTxn}>
-              Claim
-            </ClaimButton>
+            <div
+              style={{
+                display: 'inline-flex',
+                borderRadius: 15,
+                overflow: 'hidden',
+              }}
+            >
+              <Ripples>
+                <ClaimButton onClick={handleAirdropClaim} disabled={pendingTxn}>
+                  Collect
+                </ClaimButton>
+              </Ripples>
+            </div>
             :
             <ClaimButtonDisabled disabled>
               Claimed

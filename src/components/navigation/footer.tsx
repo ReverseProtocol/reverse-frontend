@@ -51,12 +51,11 @@ const NavContainer = styled(Container)`
 `
 const MenuContainer = styled(Container)`
   padding-bottom: 10px;
-  background-image: #2D3544;
-  background-image: linear-gradient(to right, #354256, #2C3646);
-  opacity: 0.8;
+  background-coloe: linear-gradient(to right, #354256, #2C3646);
+  background-color: rgba(42, 52, 67, 0.6);
   :hover {
-    opacity: 0.9;
-    transition: 0.3s;
+    background-color: rgba(42, 52, 67, 1);
+    transition: 0.5s;
   }
   max-width: 4000px;
 `

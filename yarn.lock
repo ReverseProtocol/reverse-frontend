@@ -7002,6 +7002,11 @@
   "resolved" "https://registry.npmjs.org/core-js-pure/-/core-js-pure-3.9.1.tgz"
   "version" "3.9.1"
 
+"core-js@^1.0.0":
+  "integrity" "sha1-ZSKUwUZR2yj6k70tX/KYOk8IxjY="
+  "resolved" "https://registry.npmjs.org/core-js/-/core-js-1.2.7.tgz"
+  "version" "1.2.7"
+
 "core-js@^2.4.0", "core-js@^2.5.0":
   "integrity" "sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ=="
   "resolved" "https://registry.npmjs.org/core-js/-/core-js-2.6.12.tgz"
@@ -7132,6 +7137,14 @@
     "ripemd160" "^2.0.0"
     "safe-buffer" "^5.0.1"
     "sha.js" "^2.4.8"
+
+"create-react-class@^15.6.0":
+  "integrity" "sha512-QZv4sFWG9S5RUvkTYWbflxeZX+JG7Cz0Tn33rQBJ+WFQTqTfUTjMjiv9tnfXazjsO5r0KhPs+AqCjyrQX6h2ng=="
+  "resolved" "https://registry.npmjs.org/create-react-class/-/create-react-class-15.7.0.tgz"
+  "version" "15.7.0"
+  dependencies:
+    "loose-envify" "^1.3.1"
+    "object-assign" "^4.1.1"
 
 "cross-env@^5.2.0":
   "integrity" "sha512-1yHhtcfAd1r4nwQgknowuUNfIT9E8dOMMspC36g45dN+iD1blloi7xp8X/xAIDnjHWyt1uQ8PHk2fkNaym7soQ=="
@@ -9416,6 +9429,19 @@
   "resolved" "https://registry.npmjs.org/fbjs-css-vars/-/fbjs-css-vars-1.0.2.tgz"
   "version" "1.0.2"
 
+"fbjs@^0.8.9":
+  "integrity" "sha512-EQaWFK+fEPSoibjNy8IxUtaFOMXcWsY0JaVrQoZR9zC8N2Ygf9iDITPWjUTVIax95b6I742JFLqASHfsag/vKA=="
+  "resolved" "https://registry.npmjs.org/fbjs/-/fbjs-0.8.18.tgz"
+  "version" "0.8.18"
+  dependencies:
+    "core-js" "^1.0.0"
+    "isomorphic-fetch" "^2.1.1"
+    "loose-envify" "^1.0.0"
+    "object-assign" "^4.1.0"
+    "promise" "^7.1.1"
+    "setimmediate" "^1.0.5"
+    "ua-parser-js" "^0.7.30"
+
 "fbjs@^3.0.0", "fbjs@^3.0.1":
   "integrity" "sha512-ucV0tDODnGV3JCnnkmoszb5lf4bNpzjv80K41wd4k798Etq+UYD0y0TIfalLjZoKgjive6/adkRnszwapiDgBQ=="
   "resolved" "https://registry.npmjs.org/fbjs/-/fbjs-3.0.4.tgz"
@@ -11512,6 +11538,14 @@
   "resolved" "https://registry.npmjs.org/isobject/-/isobject-4.0.0.tgz"
   "version" "4.0.0"
 
+"isomorphic-fetch@^2.1.1":
+  "integrity" "sha1-YRrhrPFPXoH3KVB0coGf6XM1WKk="
+  "resolved" "https://registry.npmjs.org/isomorphic-fetch/-/isomorphic-fetch-2.2.1.tgz"
+  "version" "2.2.1"
+  dependencies:
+    "node-fetch" "^1.0.1"
+    "whatwg-fetch" ">=0.10.0"
+
 "isstream@~0.1.2":
   "integrity" "sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo="
   "resolved" "https://registry.npmjs.org/isstream/-/isstream-0.1.2.tgz"
@@ -13516,6 +13550,14 @@
   dependencies:
     "minimatch" "^3.0.2"
 
+"node-fetch@^1.0.1":
+  "integrity" "sha512-NhZ4CsKx7cYm2vSrBAr2PvFOe6sWDf0UYLRqA6svUYg7+/TSfVAu49jYC4BvQ4Sms9SZgdqGBgroqfDhJdTyKQ=="
+  "resolved" "https://registry.npmjs.org/node-fetch/-/node-fetch-1.7.3.tgz"
+  "version" "1.7.3"
+  dependencies:
+    "encoding" "^0.1.11"
+    "is-stream" "^1.0.1"
+
 "node-fetch@^2.6.0", "node-fetch@^2.6.1":
   "integrity" "sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw=="
   "resolved" "https://registry.npmjs.org/node-fetch/-/node-fetch-2.6.1.tgz"
@@ -15370,7 +15412,7 @@
     "react-is" "^16.3.2"
     "warning" "^4.0.0"
 
-"prop-types@^15.0.0", "prop-types@^15.5.4", "prop-types@^15.6.0", "prop-types@^15.6.1", "prop-types@^15.6.2", "prop-types@^15.7.2", "prop-types@>=15.7.2":
+"prop-types@^15.0.0", "prop-types@^15.5.10", "prop-types@^15.5.4", "prop-types@^15.6.0", "prop-types@^15.6.1", "prop-types@^15.6.2", "prop-types@^15.7.2", "prop-types@>=15.7.2":
   "integrity" "sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ=="
   "resolved" "https://registry.npmjs.org/prop-types/-/prop-types-15.7.2.tgz"
   "version" "15.7.2"
@@ -15761,6 +15803,16 @@
     "object-assign" "^4.1.1"
     "scheduler" "^0.20.1"
 
+"react-dom@^15.0.2":
+  "integrity" "sha512-mpjXqC2t1FuYsILOLCj0kg6pbg460byZkVA/80VtDmKU/pYmoTdHOtaMcTRIDiyXLz4sIur0cQ04nOC6iGndJg=="
+  "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-15.7.0.tgz"
+  "version" "15.7.0"
+  dependencies:
+    "fbjs" "^0.8.9"
+    "loose-envify" "^1.1.0"
+    "object-assign" "^4.1.0"
+    "prop-types" "^15.5.10"
+
 "react-dom@^16.8.6":
   "integrity" "sha512-1gCeQXDLoIqMgqD3IO2Ah9bnf0w9kzhwN5q4FGnHZ67hBm9yePzB5JJAIQCc8x3pFnNlwFq4RidZggNAAkzWWw=="
   "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-16.14.0.tgz"
@@ -15953,6 +16005,19 @@
   "resolved" "https://registry.npmjs.org/react-responsive-masonry/-/react-responsive-masonry-2.1.2.tgz"
   "version" "2.1.2"
 
+"react-ripple-effect@^1.0.4":
+  "integrity" "sha1-Y6TlsnedJuKEX/5HsLKSzFggi/U="
+  "resolved" "https://registry.npmjs.org/react-ripple-effect/-/react-ripple-effect-1.0.4.tgz"
+  "version" "1.0.4"
+  dependencies:
+    "react" "^15.0.2"
+    "react-dom" "^15.0.2"
+
+"react-ripples@^2.2.1":
+  "integrity" "sha512-TfLjgZICQlsYCN2iX4fdeZNjoDzhJVC7r+R3irqyaNvCtWezouS9j+sE+nwSk747irtV8RKRDHmwMmsNBOw8Qg=="
+  "resolved" "https://registry.npmjs.org/react-ripples/-/react-ripples-2.2.1.tgz"
+  "version" "2.2.1"
+
 "react-router-dom@^5.2.0":
   "integrity" "sha512-gxAmfylo2QUjcwxI63RhQ5G85Qqt4voZpUXSEqCwykV0baaOTQDR1f0PmY8AELqIyVc0NEZUj0Gov5lNGcXgsA=="
   "resolved" "https://registry.npmjs.org/react-router-dom/-/react-router-dom-5.2.0.tgz"
@@ -16132,6 +16197,17 @@
   dependencies:
     "loose-envify" "^1.1.0"
     "object-assign" "^4.1.1"
+
+"react@^15.0.2", "react@^15.7.0":
+  "integrity" "sha512-5/MMRYmpmM0sMTHGLossnJCrmXQIiJilD6y3YN3TzAwGFj6zdnMtFv6xmi65PHKRV+pehIHpT7oy67Sr6s9AHA=="
+  "resolved" "https://registry.npmjs.org/react/-/react-15.7.0.tgz"
+  "version" "15.7.0"
+  dependencies:
+    "create-react-class" "^15.6.0"
+    "fbjs" "^0.8.9"
+    "loose-envify" "^1.1.0"
+    "object-assign" "^4.1.0"
+    "prop-types" "^15.5.10"
 
 "react@^16.14.0", "react@^16.8.6":
   "integrity" "sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g=="
@@ -20029,7 +20105,7 @@
   "resolved" "https://registry.npmjs.org/whatwg-fetch/-/whatwg-fetch-3.6.2.tgz"
   "version" "3.6.2"
 
-"whatwg-fetch@2.0.4":
+"whatwg-fetch@>=0.10.0", "whatwg-fetch@2.0.4":
   "integrity" "sha512-dcQ1GWpOD/eEQ97k66aiEVpNnapVj90/+R+SXTPYGHpYBBypfKJEQjLrvMZ7YXbKm21gXd4NcuxUTjiv1YtLng=="
   "resolved" "https://registry.npmjs.org/whatwg-fetch/-/whatwg-fetch-2.0.4.tgz"
   "version" "2.0.4"

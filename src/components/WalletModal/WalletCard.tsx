@@ -1,6 +1,7 @@
 import { Button } from "@pancakeswap-libs/uikit";
 import typographyBold from "components/layout/typography/typographyBold";
 import React from "react";
+import Ripples, { createRipples } from 'react-ripples'
 import styled from "styled-components";
 import { localStorageKey } from "./config";
 import { Login, Config } from "./types";
@@ -15,20 +16,30 @@ interface Props {
 const WalletCard: React.FC<Props> = ({ login, walletConfig, onDismiss, mb }) => {
   const { title, icon: Icon } = walletConfig;
   return (
-    <ConnectButton
-      onClick={() => {
-        login(walletConfig.connectorId);
-        window.localStorage.setItem(localStorageKey, "1");
-        onDismiss();
+    <div
+      style={{
+        display: 'inline-flex',
+        borderRadius: 15,
+        overflow: 'hidden',
+        marginLeft: '10px',
       }}
-      style={{ justifyContent: "space-between" }}
-      id={`wallet-connect-${title.toLocaleLowerCase()}`}
     >
-      <Txt style={{ justifyContent: "space-between" }}>
-        {title}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <Icon width="40px" />
-      </Txt>
-    </ConnectButton>
+      <Ripples>
+        <ConnectButton
+          onClick={() => {
+            login(walletConfig.connectorId);
+            window.localStorage.setItem(localStorageKey, "1");
+          }}
+          style={{ justifyContent: "space-between" }}
+          id={`wallet-connect-${title.toLocaleLowerCase()}`}
+        >
+          <Txt style={{ justifyContent: "space-between" }}>
+            {title}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <Icon width="40px" />
+          </Txt>
+        </ConnectButton>
+      </Ripples>
+    </div>
   );
 };
 

@@ -10,7 +10,8 @@ import { getCakeAddress } from 'utils/addressHelpers'
 import { NavLink } from 'react-router-dom'
 import { useWalletModal } from 'components/walletModal'
 import rvrs from 'config/constants/rvrs'
-import { Flex } from '../flex'
+import { Flex } from '../layout/flex'
+
 
 const Nav = (props) => {
   const { account, connect, reset } = useWallet()
@@ -18,20 +19,20 @@ const Nav = (props) => {
   const rvrsBalance = getBalanceNumber(useTokenBalance(getCakeAddress())).toLocaleString('en-us', { maximumFractionDigits: 0 });
   const { onPresentConnectModal } = useWalletModal(connect, reset)
 
+
+
   return (
     <MenuContainer>
-
-
-      <ButtonGroup style={{marginRight:"20px"}}>
+      <ButtonGroup style={{ marginRight: "20px" }}>
         <ButtonContainer>
-          <StyledButton
-            as={StyledNavLink}
-            to="/staking"
-            isActive={(match, { pathname }) =>
-              Boolean(match) ||
-              pathname.startsWith('/staking')
-            }>Staking
-          </StyledButton>
+            <StyledButton
+              as={StyledNavLink}
+              to="/staking"
+              isActive={(match, { pathname }) =>
+                Boolean(match) ||
+                pathname.startsWith('/staking')
+              }>Staking
+            </StyledButton>
           <StyledButton
             as={StyledNavLink}
             to="/bonds"
@@ -65,7 +66,7 @@ const Nav = (props) => {
             }>
             <Flex alignItems="center">
               <object type="image/svg+xml" data="/images/hmny.svg" width="50px">&nbsp;</object>
-              <div style={{marginLeft:'10px', marginRight:'20px'}}>{account.substring(0, 6)}</div>
+              <div style={{ marginLeft: '10px', marginRight: '20px' }}>{account.substring(0, 6)} </div>
             </Flex>
           </ConnectButton>
           :
@@ -80,7 +81,7 @@ const Nav = (props) => {
             onClick={onPresentConnectModal} {...props}>
             <Flex alignItems="center">
               <object type="image/svg+xml" data="/images/hmny.svg" width="50px">&nbsp;</object>
-              <div style={{marginLeft:'10px', marginRight:'20px'}}>Connect</div>
+              <div style={{ marginLeft: '10px', marginRight: '20px' }}>Connect</div>
             </Flex>
           </ConnectButton>
         }
@@ -100,13 +101,13 @@ const MenuContainer = styled(Container)`
 
 const pulse = keyframes`
   0% {
-    box-shadow: 0px 0px 0px #5A6F73;
+    box-shadow: 0px 0px 5px -5px #5A6F73;
   }
   50% {
-    box-shadow: 0px 0px 0px #5A6F73;
+    box-shadow: -10px 0px 30px -5px #506970, 0px 0px 40px -5px #464F68
   }
   100% {
-    box-shadow: 0px 0px 0px #5A6F73;
+    box-shadow: 0px 0px 5px -5px #5A6F73;
   }
 `
 
@@ -123,7 +124,7 @@ const StyledButton = styled.div`
   font-weight: 500;
   &:hover  {
     background-color: #363F50;
-    transition: 0.4s;
+    transition: 0.5s;
   }
 `
 
@@ -139,7 +140,8 @@ const ConnectButton = styled.div`
   font-weight: 500;
   &:hover  {
     background-color: #363F50;
-    transition: 0.4s;
+    transition: 0.5s;
+    transform: translate(-5px)
   }
 `
 
@@ -149,9 +151,9 @@ const ButtonContainer = styled.div`
   padding-top: 23px;
   padding-bottom: 23px;
   border: 1.5px;
-  border-style: solid !important;
   border-color: #CBCBCB !important;
-  animation: ${pulse} 3s infinite ease-out;
+  border-style: solid !important;
+  animation: ${pulse} 8s infinite ease-out;
 `
 
 const activeClassName = 'ACTIVE'
@@ -160,6 +162,8 @@ const StyledNavLink = styled(NavLink).attrs({ activeClassName })`
   &:focus  {
     background-image: linear-gradient(to right, #464F68, #506970);
     font-weight: 600;
+    transform: translate(0px)
+
   }
 `
 

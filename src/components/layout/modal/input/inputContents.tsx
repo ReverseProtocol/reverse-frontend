@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js/bignumber'
+import Ripples, { createRipples } from 'react-ripples'
 import Input, { InputProps } from '../../../Input'
 
 interface TokenInputProps extends InputProps {
@@ -12,15 +13,30 @@ interface TokenInputProps extends InputProps {
 }
 
 const InputContent: React.FC<TokenInputProps> = (
-    { max, symbol, onChange, onSelectMax, value, depositFeeBP = 0, valueUsd= 0 }) => {
-    const maxAvailableNo = new BigNumber(max).toNumber();
-    const maxAvailableStr = maxAvailableNo.toLocaleString('en-us', { maximumFractionDigits: 3, minimumFractionDigits: 2 });
-    
+  { max, symbol, onChange, onSelectMax, value, depositFeeBP = 0, valueUsd = 0 }) => {
+  const maxAvailableNo = new BigNumber(max).toNumber();
+  const maxAvailableStr = maxAvailableNo.toLocaleString('en-us', { maximumFractionDigits: 3, minimumFractionDigits: 2 });
+
   return (
     <InputContentWrapper>
       <Text onClick={onSelectMax}>{maxAvailableStr}&nbsp;{symbol}&nbsp;Available</Text>
       <Input
-        endAdornment={ <MaxButton onClick={onSelectMax}>Max</MaxButton> }
+        endAdornment={
+          <div
+            style={{
+              display: 'inline-flex',
+              borderRadius: 15,
+              overflow: 'hidden',
+              marginLeft: '10px',
+            }}
+          >
+            <Ripples>
+              <MaxButton onClick={onSelectMax}>
+                Max
+              </MaxButton>
+            </Ripples>
+          </div>
+        }
         onChange={onChange}
         placeholder="0"
         value={value}
