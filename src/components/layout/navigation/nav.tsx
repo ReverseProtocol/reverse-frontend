@@ -20,7 +20,9 @@ const Nav = (props) => {
 
   return (
     <MenuContainer>
-      <ButtonGroup style={{ marginLeft: "170px" }}>
+
+
+      <ButtonGroup style={{marginRight:"20px"}}>
         <ButtonContainer>
           <StyledButton
             as={StyledNavLink}
@@ -49,6 +51,8 @@ const Nav = (props) => {
           </StyledButton>
         </ButtonContainer>
       </ButtonGroup>
+
+
       <ButtonGroup>
         {account != null && account.length > 1 ?
           <ConnectButton
@@ -61,7 +65,7 @@ const Nav = (props) => {
             }>
             <Flex alignItems="center">
               <object type="image/svg+xml" data="/images/hmny.svg" width="50px">&nbsp;</object>
-              <div style={{ marginLeft: "10px", marginRight: "20px" }}>{account.substring(0, 6)}</div>
+              <div style={{marginLeft:'10px', marginRight:'20px'}}>{account.substring(0, 6)}</div>
             </Flex>
           </ConnectButton>
           :
@@ -76,21 +80,30 @@ const Nav = (props) => {
             onClick={onPresentConnectModal} {...props}>
             <Flex alignItems="center">
               <object type="image/svg+xml" data="/images/hmny.svg" width="50px">&nbsp;</object>
-              <div style={{ marginLeft: "10px", marginRight: "20px" }}>Connect</div>
+              <div style={{marginLeft:'10px', marginRight:'20px'}}>Connect</div>
             </Flex>
           </ConnectButton>
         }
       </ButtonGroup>
+
+
     </MenuContainer>
   )
 }
+
+const MenuContainer = styled(Container)`
+  padding-top: 50px;
+  text-align: end;
+  flex-wrap: wrap;
+  max-width: 730px;
+`
 
 const pulse = keyframes`
   0% {
     box-shadow: 0px 0px 0px #5A6F73;
   }
   50% {
-    box-shadow: 0px 0px 15px #5A6F73;
+    box-shadow: 0px 0px 0px #5A6F73;
   }
   100% {
     box-shadow: 0px 0px 0px #5A6F73;
@@ -104,8 +117,8 @@ const StyledButton = styled.div`
   background-color: #2D3544;
   padding-top: 20px;
   padding-bottom: 20px;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 28px;
+  padding-right: 28px;
   font-size: 18px;
   font-weight: 500;
   &:hover  {
@@ -116,26 +129,23 @@ const StyledButton = styled.div`
 
 const ConnectButton = styled.div`
   text-align: center;
-  padding: 5px;
-  border: #FFFF solid 1px;
+  border: 1.5px;
+  border-style: solid !important;
+  border-color: #CBCBCB !important;
   border-radius: 35px;
   background-color: #2D3544;
+  padding: 5px;
   font-size: 18px;
-  font-weight: 600;
-  margin-left: 20px
-
-  
-`
-
-const MenuContainer = styled(Container)`
-  padding-top: 50px;
-  text-align: center;
+  font-weight: 500;
+  &:hover  {
+    background-color: #363F50;
+    transition: 0.4s;
+  }
 `
 
 const ButtonContainer = styled.div`
   border-radius: 35px;
   background-color: #2D3544;
-  padding: 1px;
   padding-top: 23px;
   padding-bottom: 23px;
   border: 1.5px;

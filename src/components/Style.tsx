@@ -13,7 +13,7 @@ const Style = createGlobalStyle`
 }
 
 #root {
-  background-image: linear-gradient(#323B4A, #252B38);
+  background: radial-gradient(circle at 100%, #2B3647, #2B3647 50%, #39475C 75%, #2B3647 75%);
 }
 
 div {

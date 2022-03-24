@@ -20,6 +20,8 @@ const NOTFOUND = lazy(() => import('./pages/notFound'))
 const DASHBOARD = lazy(() => import('./pages/Dashboard'))
 const AIRDROP = lazy(() => import('./pages/Airdrops'))
 const VERVRS = lazy(() => import('./pages/veRVRS'))
+const UNLOCK = lazy(() => import('./pages/unlock'))
+
 
 const App: React.FC = () => {
   const { account, connect } = useWallet()
@@ -35,19 +37,25 @@ const App: React.FC = () => {
       <ResetCSS />
       <Style />
       <Nav />
+
       {!account ?
-        <Page>&nbsp;</Page>
+        <Suspense fallback={null}>
+          <Switch>
+            <Route component={UNLOCK} />
+          </Switch>
+        </Suspense>
         :
         <Suspense fallback={null}>
           <Switch>
             <Route path="/bonds" component={BONDS} />
             <Route path="/staking" component={STAKEDEPRECATED} />
             <Route path="/airdrop" component={AIRDROP} />
-            <Route path="/dashboard" component={DASHBOARD} />
+            <Route path="/" component={DASHBOARD} />
             <Route component={NOTFOUND} />
           </Switch>
         </Suspense>
       }
+      
       <MenuBottom />
     </Router>
   )

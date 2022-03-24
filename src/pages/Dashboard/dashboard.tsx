@@ -9,11 +9,10 @@ import { Skeleton } from 'components/Skeleton'
 import DashboardContainer from 'components/layout/containers/airdropContainer'
 import useTokenBalance from 'hooks/useTokenBalance'
 import { getCakeAddress } from 'utils/addressHelpers'
-import { FaAward } from 'react-icons/fa';
+import { FaAward, FaClipboard, FaExternalLinkAlt } from 'react-icons/fa';
 import { Container } from 'react-bootstrap'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { getBalanceNumber } from "../../utils/formatBalance"
-
 
 const ContentCard = styled(Container)`
   background-image: linear-gradient(to right, #333B4C, #37404E);
@@ -51,6 +50,18 @@ const TitleCard = styled(Container)`
 const Dashboard = () => {
   const { account } = useWallet()
 
+  const between = (x: any, min: number, max: number): boolean => {
+    return x >= min && x <= max;
+  }
+
+  const evaluateTier = (balance: number): number => {
+    if (between(balance, 100, 1000)) return 1;
+    if (between(balance, 1000, 5000)) return 2;
+    if (between(balance, 5000, 10000)) return 3;
+    if (balance > 10000) return 4;
+    return 0;
+  }
+
   // wallet balance rvrs/vervrs
   const rvrsBalanceNo = getBalanceNumber(useTokenBalance(getCakeAddress()));
   const rvrsBalanceStr = rvrsBalanceNo.toLocaleString('en-us', { maximumFractionDigits: 2, minimumFractionDigits: 2 })
@@ -60,9 +71,16 @@ const Dashboard = () => {
       <DashboardContainer>
         <TitleCard style={{ marginBottom: '10px', marginTop: '0px' }}>
           <TypographyTitle style={{ marginTop: '15px', marginBottom: '15px' }}>
-            <div>{account.substring(0, 10)}&nbsp;</div>
-            <div>| Statistics</div>
+            <div>Dashboard&nbsp;</div>
+            <a
+              href={`https://explorer.harmony.one/address/${account}`}
+              className="nav-icon"
+              onClick={() => navigator.clipboard.writeText(`${account}`)}>
+
+              <Typography>{account.substring(0, 16)}...&nbsp;<FaExternalLinkAlt /></Typography>
+            </a>
           </TypographyTitle>
+
         </TitleCard>
         <Flex justifyContent="center">
           <ContentCard style={{ marginRight: '7px' }}>
