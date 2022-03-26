@@ -1,6 +1,6 @@
 import React from "react";
+import { Modal } from "components/layout/modal";
 import { Button, Flex, LinkExternal } from "@pancakeswap-libs/uikit";
-import Modal from "components/layout/modal";
 import { localStorageKey } from "./config";
 import CopyToClipboard from "./CopyToClipboard";
 

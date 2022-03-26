@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { HelpIcon, Link } from "@pancakeswap-libs/uikit";
-import Modal from "components/layout/modal";
+import { Modal } from "components/layout/modal";
 import WalletCard from "./WalletCard";
 import config from "./config";
 import { Login } from "./types";
