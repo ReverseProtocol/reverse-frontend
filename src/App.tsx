@@ -20,7 +20,6 @@ const NOTFOUND = lazy(() => import('./pages/NotFound'))
 const DASHBOARD = lazy(() => import('./pages/Dashboard'))
 const AIRDROP = lazy(() => import('./pages/Airdrops'))
 const VERVRS = lazy(() => import('./pages/veRVRS'))
-const UNLOCK = lazy(() => import('./pages/Unlock'))
 
 
 const App: React.FC = () => {
@@ -38,11 +37,7 @@ const App: React.FC = () => {
       <Style />
       <Nav />
       {!account ?
-        <Suspense fallback={null}>
-          <Switch>
-            <Route component={UNLOCK} />
-          </Switch>
-        </Suspense>
+        <Page>&nbsp;</Page>
         :
         <Suspense fallback={null}>
           <Switch>
