@@ -211,7 +211,7 @@ const Bonds: React.FC<HarvestProps> = ({ pool2 }) => {
                     <Skeleton height={10} width={60} />}
                 </div>
                 :
-                <Typography>Endedd</Typography>
+                <Typography>Ended</Typography>
               }
             </Flex>
             {/* TVL */}
