@@ -16,11 +16,11 @@ BigNumber.config({
 
 const BONDS = lazy(() => import('./pages/Bonds'))
 const STAKEDEPRECATED = lazy(() => import('./pages/Staking'))
-const NOTFOUND = lazy(() => import('./pages/NotFound'))
+const NOTFOUND = lazy(() => import('./pages/notFound'))
 const DASHBOARD = lazy(() => import('./pages/Dashboard'))
 const AIRDROP = lazy(() => import('./pages/Airdrops'))
 const VERVRS = lazy(() => import('./pages/veRVRS'))
-const UNLOCK = lazy(() => import('./pages/Unlock'))
+const UNLOCK = lazy(() => import('./pages/unlock'))
 
 
 const App: React.FC = () => {
