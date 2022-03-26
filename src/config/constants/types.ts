@@ -169,7 +169,6 @@ export interface Pool2Config {
   isDepositFinished?: boolean
   lockBlock?: number
   notFinished?: boolean
-  tokensAllocated?: number
 }
 
 export type Images = {

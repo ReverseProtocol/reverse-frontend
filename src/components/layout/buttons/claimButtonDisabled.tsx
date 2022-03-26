@@ -1,13 +1,17 @@
 import styled from 'styled-components'
 
 const claimButtonDisabled = styled.button`
-    padding: 12px;
-    background-image: linear-gradient(#506063, #909BBF);
+    background-image: linear-gradient(#2D3544, #323B4A);
     border-radius: 18px;
-    border: 0px;
-    color: #EEEEEE;
+    color: #FFFF;
+    border: 1px;
+    border-style: solid !important;
+    border-color: #5F6C74 !important;
+    width: 100%;
     min-width: 110px;
-    opacity: 0.3
+    :hover {
+        background-image: linear-gradient(to right, #2D3544, #323B4A);
+    } 
 `
 
 export default claimButtonDisabled

@@ -221,11 +221,10 @@ const StakeButton = styled.button`
   padding-right: 110px;
   padding-top: 17px;
   padding-bottom: 17px;
-  transition: all 0.3s ease-in-out;
-
   :hover {
     background-image: linear-gradient(180deg, #506063, #A1ACCD);
     box-shadow: 0px 0px 10px 0px #5A6F73;
+    transition: 0.5s;
     color: #FFFF;
   }
 `
@@ -242,10 +241,9 @@ const UnstakeButton = styled.button`
   padding-right: 100px;
   padding-top: 17px;
   padding-bottom: 17px;
-  transition: all 0.3s ease-in-out;
-
   :hover {
       background-color: #535E6F;
+      transition: 0.3s;
       color: #FFFF;
   } 
 `

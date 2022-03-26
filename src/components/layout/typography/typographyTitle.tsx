@@ -5,6 +5,6 @@ const typographyTitle = styled.p`
     font-weight: 800;
     align-items: center;
     display: inline-flex;
-    transition: all 0.3s ease-in-out;
-    `
+    transition: 0.3s;
+`
 export default typographyTitle

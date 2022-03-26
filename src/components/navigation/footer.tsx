@@ -28,14 +28,6 @@ const MenuBottom = (props) => {
               <TypographyBold>Twitter</TypographyBold>
             </a>
           </Flex>
-          <Flex flexDirection="column" alignItems="start" marginLeft="-80px">
-            <a style={{ marginBottom: "14px" }} target="_blanK" rel="noreferrer" href="https://medium.com/@reverseprotocolONE" className="nav-links">
-              <TypographyBold>Medium</TypographyBold>
-            </a>
-            <a target="_blanK" rel="noreferrer" href="https://t.me/ReverseProtocolOne" className="nav-links">
-              <TypographyBold>Telegram</TypographyBold>
-            </a>
-          </Flex>
           <Link to="/">
             <object type="image/svg+xml" data="/images/reverse.svg" width="150px" style={{ marginTop: "-5px" }}>&nbsp;</object>
           </Link>
@@ -55,15 +47,15 @@ const TypographyBold = styled.p`
 const NavContainer = styled(Container)`
   text-align: center;
   padding: 20px;
-  max-width: 580px;
+  max-width: 520px;
 `
 const MenuContainer = styled(Container)`
   padding-bottom: 10px;
   background-coloe: linear-gradient(to right, #354256, #2C3646);
   background-color: rgba(42, 52, 67, 0.6);
-  transition: all 0.3s ease-in-out;
   :hover {
     background-color: rgba(42, 52, 67, 1);
+    transition: 0.5s;
   }
   max-width: 4000px;
 `

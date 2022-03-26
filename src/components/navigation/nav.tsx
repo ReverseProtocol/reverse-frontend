@@ -111,30 +111,6 @@ const pulse = keyframes`
   }
 `
 
-const pulseinset = keyframes`
-  0% {
-    box-shadow: 0px 0px 0px 0px #5A6F73 inset;
-  }
-  50% {
-    box-shadow: 0px 0px 20px -5px #363F50 inset;
-  }
-  100% {
-    box-shadow: 0px 0px 0px 0px #5A6F73 inset;
-  }
-`
-
-const pulseinsetclick = keyframes`
-  0% {
-    box-shadow: 0px 0px 10px 20px #506970 inset;
-  }
-  50% {
-    box-shadow: 0px 0px 20px 20px #506970 inset;
-  }
-  100% {
-    box-shadow: 0px 0px 10px 10px #506970 inset;
-  }
-`
-
 const StyledButton = styled.div`
   text-align: center;
   border: #FFFF solid 0px;
@@ -146,11 +122,10 @@ const StyledButton = styled.div`
   padding-right: 28px;
   font-size: 18px;
   font-weight: 500;
-  transition: all 0.3s ease-in-out;
   &:hover  {
     background-color: #363F50;
+    transition: 0.5s;
   }
-
 `
 
 const ConnectButton = styled.div`
@@ -163,9 +138,9 @@ const ConnectButton = styled.div`
   padding: 5px;
   font-size: 18px;
   font-weight: 500;
-  transition: all 0.4s ease-in-out;
   &:hover  {
     background-color: #363F50;
+    transition: 0.5s;
     transform: translate(-5px)
   }
 `
@@ -178,7 +153,7 @@ const ButtonContainer = styled.div`
   border: 1.5px;
   border-color: #CBCBCB !important;
   border-style: solid !important;
-  animation: ${pulse} 8s infinite
+  animation: ${pulse} 8s infinite ease-out;
 `
 
 const activeClassName = 'ACTIVE'
@@ -186,6 +161,9 @@ const activeClassName = 'ACTIVE'
 const StyledNavLink = styled(NavLink).attrs({ activeClassName })`
   &:focus  {
     background-image: linear-gradient(to right, #464F68, #506970);
+    font-weight: 600;
+    transform: translate(0px)
+
   }
 `
 
