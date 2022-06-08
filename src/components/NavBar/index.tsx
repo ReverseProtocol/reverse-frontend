@@ -228,7 +228,7 @@ const NavBar = (props) => {
                     </a>
                   </li>
                   <li className="nav-icon">
-                    <a target="_blanK" rel="noreferrer" href="https://gov.harmony.one/#/reverse" className="nav-links">
+                    <a target="_blanK" rel="noreferrer" href="https://snapshot.org/#/rvrsprotocol.eth" className="nav-links">
                       <span className="msbitem"><FaVoteYea /></span>
                     </a>
                   </li>
@@ -248,7 +248,7 @@ const NavBar = (props) => {
                     </a>
                   </li>
                    <li className="nav-icon">
-                    <a target="_blanK" rel="noreferrer" href="https://docs.google.com/spreadsheets/d/1fNsmVWqtPrtZr7z4i2n1ZgRNAEZdX3coPzMbZNPCZ34/edit#gid=1364928066" className="nav-links">
+                    <a target="_blanK" rel="noreferrer" href="https://docs.google.com/spreadsheets/d/1fNsmVWqtPrtZr7z4i2n1ZgRNAEZdX3coPzMbZNPCZ34/edit#gid=563760963" className="nav-links">
                       <span className="msbitem"><FaClipboard /></span>
                     </a>
                   </li>
@@ -312,7 +312,7 @@ const NavBar = (props) => {
                     </a>
                   </li>
                   <li className="nav-tab">
-                    <a target="_blanK" rel="noreferrer" href="https://gov.harmony.one/#/reverse" className="nav-links">
+                    <a target="_blanK" rel="noreferrer" href="https://snapshot.org/#/rvrsprotocol.eth" className="nav-links">
                       <span className="dditem"><FaVoteYea /> Govern</span>
                     </a>
                   </li>
@@ -332,7 +332,7 @@ const NavBar = (props) => {
                     </a>
                   </li>
                    <li className="nav-tab">
-                    <a target="_blanK" rel="noreferrer" href="https://docs.google.com/spreadsheets/d/1fNsmVWqtPrtZr7z4i2n1ZgRNAEZdX3coPzMbZNPCZ34/edit#gid=1364928066" className="nav-links">
+                    <a target="_blanK" rel="noreferrer" href="https://docs.google.com/spreadsheets/d/1fNsmVWqtPrtZr7z4i2n1ZgRNAEZdX3coPzMbZNPCZ34/edit#gid=563760963" className="nav-links">
                       <span className="dditem"><FaClipboard /> Treasury</span>
                     </a>
                   </li>
