@@ -234,7 +234,7 @@ const MoneyWheel: React.FC = () => {
 
                 <DetailsCard>
 
-                  <Flex justifyContent='space-between' alignItems='center' ml='20px' mr='40px' mt="35px"  marginBottom='0px'  > 
+                { /*  <Flex justifyContent='space-between' alignItems='center' ml='20px' mr='40px' mt="35px"  marginBottom='0px'  > 
                     <Stat>${tokenPrice}</Stat>
                     <Stat>${mCap}</Stat>
                   </Flex>
@@ -242,7 +242,7 @@ const MoneyWheel: React.FC = () => {
                   <Flex justifyContent='space-between' alignItems='center' ml='20px' mr='40px'  mt="8px"  marginBottom='0px'  >
                       <Sub>Price</Sub>
                       <Sub>Market Cap</Sub> 
-                  </Flex>
+                  </Flex> */ }
 
                   <Flex justifyContent='space-between' alignItems='center' ml='20px' mr='40px'    mt="20px"  marginBottom='0px'  > 
                     <Stat>{circulatingRvrsString}</Stat>
