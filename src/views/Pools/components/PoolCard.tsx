@@ -212,7 +212,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
   const StakedUSDBalance = getBalanceNumber(stakedBalanceUsd).toLocaleString('en-us',{ maximumFractionDigits: 0 })
   const FiveDayROI = apr && apr.div(53).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
   const ExpectedBalance = apr && apr.div(365).times(7).times(0.01).times(getBalanceNumber(stakedBalanceUsd)).plus(getBalanceNumber(stakedBalanceUsd)).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
-  const TotalAPY = apy && apy.plus(445).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
+  const TotalAPY = apy && apy.plus(30).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
   const bal = getBalanceNumber(stakedBalance).toLocaleString('en-us',{ maximumFractionDigits: 0 });
 
   return (
@@ -237,8 +237,8 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
         </Wrapper>
 
         <Flex justifyContent='space-between' marginTop='18px'>
-          <Text1>UST APY</Text1>
-          <Text1>45%</Text1>
+          <Text1>USD APY</Text1>
+          <Text1>30%</Text1>
         </Flex>
 
         
@@ -265,13 +265,13 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
         </Flex>
 
         <Flex justifyContent='space-between' marginTop='12px'>
-          <SmallText>Balance (in UST)</SmallText>
-          <SmallText>${StakedUSDBalance}</SmallText>
+         { /*  <SmallText>Balance (in UST)</SmallText>
+          <SmallText>${StakedUSDBalance}</SmallText> */ }
         </Flex>
 
         <Flex justifyContent='space-between' marginTop='5px'>
-          <SmallText>Expected Balance (7 Days)</SmallText>
-          <SmallText>${ExpectedBalance}</SmallText>
+         { /* <SmallText>Expected Balance (7 Days)</SmallText>
+          <SmallText>${ExpectedBalance}</SmallText> */ }
         </Flex>
 
         
